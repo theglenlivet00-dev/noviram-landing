@@ -1,758 +1,1068 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noviram Digital Kft. | Digital Agency & App Studio</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        /* Backdrop Glass Blur */
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noviram Digital — Marketing, websites, apps, managed end to end</title>
+<meta name="description" content="Noviram Digital is a two-founder studio covering marketing, websites, apps, and the ongoing management most agencies drop after launch.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #0A0E1A;
+    --ink-2: #121a30;
+    --paper: #F4F6F9;
+    --paper-2: #E9ECF2;
+    --signal: #FF4D2E;
+    --signal-2: #FF8A63;
+    --slate: #363c4a;
+    --slate-soft: #6b7280;
+    --mist: #9aa3b8;
+    --wire-light: #DCE1EA;
+    --wire-dark: #212a42;
+    --white: #ffffff;
 
-        /* Continuous Sliding Text Marquee */
-        @keyframes marquee {
-            0% { transform: translateX(0%); }
-            100% { transform: translateX(-50%); }
-        }
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
 
-        .animate-marquee {
-            display: flex;
-            width: 200%;
-            animation: marquee 20s linear infinite;
-        }
+    --container: 1180px;
+    --radius: 14px;
+  }
 
-        .animate-marquee:hover {
-            animation-play-state: paused;
-        }
-    </style>
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    font-family: var(--font-body);
+    color: var(--slate);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+  }
+  img,svg{ display:block; max-width:100%; }
+  a{ color: inherit; text-decoration: none; }
+  ul{ list-style: none; margin:0; padding:0; }
+  h1,h2,h3{ font-family: var(--font-display); margin:0; line-height:1.05; }
+  p{ margin:0; }
+
+  :focus-visible{
+    outline: 2px solid var(--signal);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .wrap{
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- SCROLL PROGRESS ---------- */
+  .scroll-progress{
+    position: fixed; top:0; left:0; height:3px; width:0%;
+    background: var(--signal);
+    z-index: 80;
+  }
+
+  .eyebrow{
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--signal);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom: 16px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background: var(--signal);
+    border-radius:2px;
+    flex-shrink:0;
+  }
+  .section--dark .eyebrow{ color: var(--signal-2); }
+
+  .btn{
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 999px;
+    padding: 13px 26px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border: 1px solid transparent;
+    cursor:pointer;
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+  }
+  .btn:hover{ transform: translateY(-2px); }
+  .btn-primary{
+    background: var(--signal);
+    color: var(--white);
+    box-shadow: 0 10px 30px -8px rgba(255,77,46,0.55);
+  }
+  .btn-primary:hover{ box-shadow: 0 14px 34px -6px rgba(255,77,46,0.65); }
+  .btn-ghost{
+    background: transparent;
+    border-color: var(--wire-light);
+    color: var(--slate);
+  }
+  .btn-ghost:hover{ border-color: var(--slate); }
+  .section--dark .btn-ghost{ border-color: var(--wire-dark); color: var(--paper); }
+  .section--dark .btn-ghost:hover{ border-color: var(--mist); }
+
+  /* ---------- LANGUAGE SWITCH ---------- */
+  .lang-switch{
+    display:flex; align-items:center;
+    border:1px solid var(--wire-light);
+    border-radius:999px;
+    padding:3px;
+    font-family: var(--font-mono);
+    font-size:12px;
+    gap:2px;
+    flex-shrink:0;
+  }
+  .lang-btn{
+    border:none; background:none; cursor:pointer;
+    padding:6px 11px; border-radius:999px;
+    color: var(--slate-soft);
+    font-family: inherit; font-size: inherit; letter-spacing:0.04em;
+    transition: background .15s ease, color .15s ease;
+  }
+  .lang-btn[aria-pressed="true"]{ background: var(--ink); color: var(--paper); }
+  .mobile-panel .lang-switch{ margin-top:4px; }
+
+  /* ---------- NAV ---------- */
+  header{
+    position: sticky; top:0; z-index: 50;
+    background: rgba(244,246,249,0.82);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--wire-light);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height: 76px;
+    gap: 20px;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    flex-shrink:0;
+  }
+  .logo-mark{ flex-shrink:0; }
+  .nav-links{
+    display:none; align-items:center; gap: 34px;
+    font-size: 14.5px; font-weight: 500; color: var(--slate);
+  }
+  .nav-links a{ transition: color .15s ease; }
+  .nav-links a:hover{ color: var(--signal); }
+  .nav-cta{ display:flex; align-items:center; gap:12px; }
+  .nav-cta .btn-primary{ display:none; }
+  .nav-toggle{
+    display:flex;
+    width:42px; height:42px;
+    border-radius:10px;
+    border:1px solid var(--wire-light);
+    background: var(--white);
+    align-items:center; justify-content:center;
+    cursor:pointer;
+    flex-shrink:0;
+    color: var(--ink);
+  }
+  .nav-toggle .icon-close{ display:none; }
+  .nav-toggle[aria-expanded="true"] .icon-menu{ display:none; }
+  .nav-toggle[aria-expanded="true"] .icon-close{ display:block; }
+
+  .mobile-panel{
+    display:none;
+    position: fixed; inset: 76px 0 0 0;
+    background: var(--paper);
+    z-index: 49;
+    padding: 32px 28px;
+    flex-direction: column;
+    gap: 26px;
+    overflow-y:auto;
+  }
+  .mobile-panel.open{ display:flex; }
+  .mobile-panel a{ font-family: var(--font-display); font-size: 26px; font-weight:600; color:var(--ink); }
+  .mobile-panel .btn{ align-self:flex-start; margin-top: 6px; }
+
+  @media (min-width: 881px){
+    .nav-links{ display:flex; }
+    .nav-cta .btn-primary{ display:inline-flex; }
+    .nav-toggle{ display:none; }
+  }
+
+  /* ---------- SECTIONS ---------- */
+  .section{ padding: 108px 0; }
+  .section--dark{ background: var(--ink); color: var(--paper); }
+  .section--tight{ padding: 64px 0; }
+  .section-head{ max-width: 620px; margin-bottom: 56px; }
+  .section-head h2{ font-size: clamp(1.9rem, 2.6vw, 2.6rem); font-weight:600; color: var(--ink); }
+  .section--dark .section-head h2{ color: var(--paper); }
+  .section-head .lede{ margin-top:18px; font-size:16.5px; line-height:1.65; color: var(--slate-soft); }
+  .section--dark .section-head .lede{ color: var(--mist); }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding-top: 84px; padding-bottom: 60px; overflow:hidden; }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 48px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size: clamp(2.4rem, 4.4vw, 3.9rem);
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .hero .lede{
+    margin-top: 22px;
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--slate-soft);
+    max-width: 46ch;
+  }
+  .hero-actions{ margin-top: 34px; display:flex; gap:14px; flex-wrap:wrap; }
+  .trust-line{
+    margin-top: 22px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
+    color: var(--slate-soft);
+  }
+
+  .hero-copy{
+    opacity:0; transform: translateY(16px);
+    animation: rise .7s ease forwards;
+  }
+  .hero h1{ animation: rise .7s ease .08s forwards; opacity:0; transform:translateY(16px); }
+  .hero .lede{ animation: rise .7s ease .18s forwards; opacity:0; transform:translateY(16px); }
+  .hero-actions{ animation: rise .7s ease .28s forwards; opacity:0; transform:translateY(16px); }
+  .trust-line{ animation: rise .7s ease .36s forwards; opacity:0; transform:translateY(16px); }
+  @keyframes rise{ to{ opacity:1; transform:translateY(0); } }
+
+  /* ---------- ORBIT ---------- */
+  .orbit-wrap{ display:flex; align-items:center; justify-content:center; }
+  .orbit{
+    position: relative;
+    width: clamp(220px, 30vw, 340px);
+    height: clamp(220px, 30vw, 340px);
+  }
+  .orbit-ring{
+    position:absolute; inset:0;
+    border: 1.5px dashed var(--wire-light);
+    border-radius: 50%;
+  }
+  .orbit-core{
+    position:absolute; top:50%; left:50%; transform: translate(-50%,-50%);
+    width: 30%; height:30%;
+    background: var(--ink);
+    border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--font-display);
+    font-weight:700;
+    color: var(--signal-2);
+    font-size: clamp(20px, 2.6vw, 30px);
+    z-index:3;
+    animation: corePulse 3.2s ease-in-out infinite;
+  }
+  @keyframes corePulse{
+    0%,100%{ box-shadow: 0 0 0 10px rgba(255,77,46,0.06), 0 20px 40px -18px rgba(10,14,26,0.5); }
+    50%{ box-shadow: 0 0 0 17px rgba(255,77,46,0.13), 0 20px 40px -18px rgba(10,14,26,0.5); }
+  }
+  .orbit-track{
+    position:absolute; inset:0;
+    animation: spin 46s linear infinite;
+  }
+  .orbit-spoke{
+    position:absolute; top:50%; left:50%;
+    width:50%; height:1.5px;
+    background: linear-gradient(90deg, rgba(255,77,46,0.35), rgba(255,77,46,0));
+    transform-origin: left center;
+  }
+  .orbit-spoke.n{ transform: rotate(-90deg); }
+  .orbit-spoke.e{ transform: rotate(0deg); }
+  .orbit-spoke.s{ transform: rotate(90deg); }
+  .orbit-spoke.w{ transform: rotate(180deg); }
+
+  .orbit-node{
+    position:absolute;
+    width: 30%; height: 30%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .orbit-node.n{ top:0; left:50%; transform: translate(-50%,-50%); }
+  .orbit-node.e{ top:50%; left:100%; transform: translate(-50%,-50%); }
+  .orbit-node.s{ top:100%; left:50%; transform: translate(-50%,-50%); }
+  .orbit-node.w{ top:50%; left:0; transform: translate(-50%,-50%); }
+
+  .orbit-node .pip{
+    width: 100%; height:100%;
+    border-radius: 50%;
+    background: var(--white);
+    border: 1.5px solid var(--wire-light);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--font-mono);
+    font-weight:500;
+    font-size: clamp(10px, 1.4vw, 13px);
+    color: var(--ink);
+    box-shadow: 0 12px 24px -14px rgba(10,14,26,0.35);
+    animation: spin-reverse 46s linear infinite;
+  }
+
+  @keyframes spin{ to{ transform: rotate(360deg); } }
+  @keyframes spin-reverse{ to{ transform: rotate(-360deg); } }
+
+  @media (max-width: 880px){
+    .hero-grid{ grid-template-columns: 1fr; }
+    .orbit-wrap{ order:-1; margin-bottom: 8px; }
+    .orbit{ width: 240px; height:240px; }
+  }
+
+  /* ---------- TICKER ---------- */
+  .ticker{
+    border-top: 1px solid var(--wire-light);
+    border-bottom: 1px solid var(--wire-light);
+    overflow:hidden;
+    background: var(--white);
+  }
+  .ticker-track{
+    display:flex;
+    width: max-content;
+    animation: marquee 32s linear infinite;
+    padding: 20px 0;
+  }
+  .ticker-item{
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--slate-soft);
+    white-space: nowrap;
+    display:flex; align-items:center; gap: 28px;
+    padding-right: 28px;
+  }
+  .ticker-item::after{ content:"·"; color: var(--signal); font-size:16px; }
+  @keyframes marquee{ from{ transform: translateX(0); } to{ transform: translateX(-50%); } }
+
+  /* ---------- SERVICES ---------- */
+  .services-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .service-card{
+    background: var(--white);
+    border: 1px solid var(--wire-light);
+    border-radius: var(--radius);
+    padding: 32px;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .service-card:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 24px 40px -28px rgba(10,14,26,0.28);
+    border-color: #cdd4e0;
+  }
+  .service-tag{
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--signal);
+    background: rgba(255,77,46,0.08);
+    border-radius: 6px;
+    padding: 4px 9px;
+    display:inline-block;
+    margin-bottom: 18px;
+  }
+  .service-card h3{
+    font-size: 21px; font-weight:600; color: var(--ink);
+    margin-bottom: 10px;
+  }
+  .service-card p{ font-size: 15px; line-height:1.6; color: var(--slate-soft); }
+  .service-icon{ margin-bottom: 18px; color: var(--ink); }
+
+  @media (max-width: 700px){
+    .services-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- PROCESS ---------- */
+  .process-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .process-step{
+    border-top: 2px solid var(--ink);
+    padding-top: 20px;
+  }
+  .process-num{
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--signal);
+    display:block;
+    margin-bottom: 14px;
+  }
+  .process-step h3{ font-size: 19px; font-weight:600; color: var(--ink); margin-bottom: 8px; }
+  .process-step p{ font-size: 14.5px; color: var(--slate-soft); line-height:1.6; }
+  @media (max-width: 780px){
+    .process-grid{ grid-template-columns: 1fr; gap: 30px; }
+  }
+
+  /* ---------- WORK (single featured build) ---------- */
+  .work-feature{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 52px;
+    align-items:center;
+  }
+  .work-mock{
+    border-radius: var(--radius);
+    border:1px solid var(--wire-light);
+    overflow:hidden;
+    background: var(--white);
+    box-shadow: 0 30px 60px -34px rgba(10,14,26,0.3);
+  }
+  .work-mock-bar{
+    display:flex; align-items:center; gap:6px;
+    padding:11px 14px;
+    border-bottom:1px solid var(--wire-light);
+    background: var(--paper-2);
+  }
+  .work-mock-dot{ width:8px; height:8px; border-radius:50%; background: var(--wire-light); }
+  .work-mock-url{
+    margin-left:10px;
+    font-family: var(--font-mono);
+    font-size:11px; color: var(--slate-soft);
+    background: var(--white);
+    border:1px solid var(--wire-light);
+    border-radius:999px;
+    padding:3px 12px;
+  }
+  .work-mock-body{
+    aspect-ratio: 4/3;
+    background: repeating-linear-gradient(135deg, var(--paper) 0 2px, var(--paper-2) 2px 4px);
+    display:flex; align-items:center; justify-content:center;
+    border: 1.5px dashed var(--wire-light);
+    margin: 14px;
+    border-radius: 8px;
+  }
+  .work-mock-label{
+    font-family: var(--font-mono); font-size:12px; letter-spacing:0.06em;
+    color: var(--slate-soft); text-transform:uppercase;
+    background: var(--white);
+    padding:6px 12px; border-radius:999px; border:1px solid var(--wire-light);
+  }
+  .work-status{
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--signal);
+    background: rgba(255,77,46,0.08);
+    border-radius: 999px;
+    padding: 5px 12px;
+    display:inline-block;
+    margin-bottom: 16px;
+  }
+  .work-content h3{ font-size: 25px; font-weight:600; color: var(--ink); margin-bottom: 12px; }
+  .work-content p{ font-size: 15.5px; color: var(--slate-soft); line-height:1.65; max-width: 42ch; }
+
+  @media (max-width: 880px){
+    .work-feature{ grid-template-columns: 1fr; }
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 60px;
+    align-items:start;
+  }
+  .about-copy p{ font-size: 16.5px; line-height: 1.75; color: var(--slate); }
+  .about-copy p + p{ margin-top: 16px; }
+  .stat-list{ display:flex; flex-direction:column; gap: 22px; }
+  .stat-item{
+    border-top: 1px solid var(--wire-light);
+    padding-top: 16px;
+  }
+  .stat-item .num{
+    font-family: var(--font-display);
+    font-size: 30px; font-weight:700; color: var(--signal);
+    margin-right: 10px;
+  }
+  .stat-item .label{ font-size: 14.5px; color: var(--slate-soft); }
+
+  @media (max-width: 880px){
+    .about-grid{ grid-template-columns: 1fr; gap: 36px; }
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-section{
+    position: relative;
+    text-align:center;
+    overflow:hidden;
+  }
+  .contact-glow{
+    position:absolute; top:-40%; left:50%; transform:translateX(-50%);
+    width: 640px; height: 640px;
+    background: radial-gradient(circle, rgba(255,77,46,0.22), rgba(255,77,46,0) 70%);
+    pointer-events:none;
+  }
+  .contact-inner{ position:relative; max-width: 640px; margin:0 auto; }
+  .contact-inner h2{ font-size: clamp(1.9rem, 3.4vw, 3rem); color: var(--paper); font-weight:600; }
+  .contact-inner .lede{ margin-top:16px; font-size:16.5px; color: var(--mist); line-height:1.65; }
+  .contact-actions{ margin-top:34px; display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+  .copy-feedback{
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--signal-2);
+    margin-top: 14px;
+    height: 16px;
+  }
+
+  /* ---------- FOOTER LEGAL GRID ---------- */
+  .footer-legal{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--wire-dark);
+    margin-bottom: 28px;
+  }
+  .footer-col h5{
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--signal-2);
+    margin: 0 0 14px;
+  }
+  .footer-col p{ font-size: 13.5px; line-height:1.75; color: var(--mist); margin:0; }
+  .footer-col a{ color: var(--paper); }
+  .footer-col a:hover{ color: var(--signal-2); }
+  .footer-meta{ margin:0; }
+  .footer-meta div{
+    display:flex; justify-content:space-between; gap:12px;
+    padding: 7px 0; border-top: 1px solid var(--wire-dark);
+    font-size:12.5px;
+  }
+  .footer-meta div:first-child{ border-top:none; }
+  .footer-meta dt{ font-family: var(--font-mono); color: var(--mist); font-weight:400; margin:0; }
+  .footer-meta dd{ margin:0; color: var(--paper); text-align:right; }
+
+  @media (max-width: 780px){
+    .footer-legal{ grid-template-columns: 1fr; gap: 26px; }
+  }
+
+  /* ---------- CALL BUTTONS ---------- */
+  .footer-call-btn{
+    background:none; border:none; padding:0; margin:0;
+    font: inherit; color: var(--paper); cursor:pointer;
+    text-decoration: underline; text-underline-offset:3px;
+  }
+  .footer-call-btn:hover{ color: var(--signal-2); }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background: var(--ink); color: var(--mist); padding: 48px 0 32px; border-top: 1px solid var(--wire-dark); }
+  .footer-top{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap: 24px;
+    padding-bottom: 32px; margin-bottom: 28px;
+    border-bottom: 1px solid var(--wire-dark);
+  }
+  .footer-logo{ display:flex; align-items:center; gap:10px; color: var(--paper); font-family: var(--font-display); font-weight:700; font-size:17px; }
+  .footer-links{ display:flex; gap:28px; font-size:14px; }
+  .footer-links a:hover{ color: var(--paper); }
+  .footer-bottom{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-family: var(--font-mono); font-size: 12px; color: var(--mist);
+  }
+
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal{ opacity:0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .hero-copy, .hero h1, .hero .lede, .hero-actions, .trust-line{ animation:none !important; opacity:1 !important; transform:none !important; }
+    .orbit-track, .pip, .ticker-track, .orbit-core{ animation: none !important; }
+    .reveal{ opacity:1 !important; transform:none !important; transition:none !important; }
+    .btn:hover, .service-card:hover{ transform:none !important; }
+  }
+</style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white pb-20">
+<body>
 
-    <!-- Top Sliding Text Animated Banner -->
-    <div class="bg-gradient-to-r from-indigo-900 via-indigo-600 to-cyan-600 text-white text-xs font-semibold py-2 overflow-hidden border-b border-indigo-500/30">
-        <div class="animate-marquee whitespace-nowrap flex items-center gap-8">
-            <div class="flex items-center gap-8 shrink-0">
-                <span>🚀 DIGITAL AGENCY & APP STUDIO</span>
-                <span>•</span>
-                <span>WEB DEVELOPMENT</span>
-                <span>•</span>
-                <span>APP ENGINEERING</span>
-                <span>•</span>
-                <span>GROWTH MARKETING</span>
-                <span>•</span>
-                <span>MANAGED SERVICES</span>
-                <span>•</span>
-            </div>
-            <!-- Duplicate loop for seamless infinite scroll -->
-            <div class="flex items-center gap-8 shrink-0">
-                <span>🚀 DIGITAL AGENCY & APP STUDIO</span>
-                <span>•</span>
-                <span>WEB DEVELOPMENT</span>
-                <span>•</span>
-                <span>APP ENGINEERING</span>
-                <span>•</span>
-                <span>GROWTH MARKETING</span>
-                <span>•</span>
-                <span>MANAGED SERVICES</span>
-                <span>•</span>
-            </div>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<header>
+  <nav class="wrap" aria-label="Primary">
+    <a class="logo" href="#top">
+      <svg class="logo-mark" width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <circle cx="16" cy="17" r="10.5" stroke="currentColor" stroke-width="1.6"/>
+        <line x1="16" y1="17" x2="16" y2="6.3" stroke="currentColor" stroke-width="1.6"/>
+        <circle cx="16" cy="6.3" r="3" fill="var(--signal)"/>
+        <circle cx="16" cy="17" r="1.6" fill="currentColor"/>
+      </svg>
+      NOVIRAM
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services" data-i18n="nav.services">Services</a></li>
+      <li><a href="#work" data-i18n="nav.work">Work</a></li>
+      <li><a href="#about" data-i18n="nav.about">About</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <div class="lang-switch" role="group" aria-label="Language / Nyelv">
+        <button type="button" class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" class="lang-btn" data-lang="hu" aria-pressed="false">HU</button>
+      </div>
+      <a class="btn btn-primary" href="#contact" data-i18n="nav.cta">Start a project</a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobilePanel" data-i18n-aria="navtoggle.aria" aria-label="Open menu">
+        <svg class="icon-menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-panel" id="mobilePanel">
+    <a href="#services" data-i18n="nav.services">Services</a>
+    <a href="#work" data-i18n="nav.work">Work</a>
+    <a href="#about" data-i18n="nav.about">About</a>
+    <a href="#contact" data-i18n="nav.contact">Contact</a>
+    <a class="btn btn-primary" href="#contact" data-i18n="nav.cta">Start a project</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ---------- HERO ---------- -->
+  <section class="hero wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Noviram Digital · Status: Operational</p>
+        <h1 data-i18n="hero.h1">We plan it, build it, and keep it running.</h1>
+        <p class="lede" data-i18n="hero.lede">Noviram Digital is a two-founder studio covering marketing, websites, apps, and the ongoing management most agencies quietly drop after launch.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact" data-i18n="hero.primary">Start a project</a>
+          <a class="btn btn-ghost" href="#work" data-i18n="hero.secondary">See what we build</a>
         </div>
+        <p class="trust-line" data-i18n="trust.line">Direct access to both founders · One contract for all four disciplines</p>
+      </div>
+
+      <div class="orbit-wrap">
+        <div class="orbit" role="img" data-i18n-aria="orbit.aria" aria-label="Diagram of four service disciplines — marketing, websites, apps, and managed services — orbiting the Noviram core">
+          <div class="orbit-ring"></div>
+          <div class="orbit-track">
+            <div class="orbit-spoke n"></div>
+            <div class="orbit-spoke e"></div>
+            <div class="orbit-spoke s"></div>
+            <div class="orbit-spoke w"></div>
+            <div class="orbit-node n"><div class="pip">MKT</div></div>
+            <div class="orbit-node e"><div class="pip">WEB</div></div>
+            <div class="orbit-node s"><div class="pip">APP</div></div>
+            <div class="orbit-node w"><div class="pip">OPS</div></div>
+          </div>
+          <div class="orbit-core">N</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- TICKER ---------- -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <div class="ticker-item" data-i18n="ticker.1">Marketing Strategy</div>
+      <div class="ticker-item" data-i18n="ticker.2">Website Design &amp; Development</div>
+      <div class="ticker-item" data-i18n="ticker.3">App Development</div>
+      <div class="ticker-item" data-i18n="ticker.4">Managed Services</div>
+      <div class="ticker-item" data-i18n="ticker.5">Product Launches</div>
+      <div class="ticker-item" data-i18n="ticker.6">Growth Campaigns</div>
+      <div class="ticker-item" data-i18n="ticker.1">Marketing Strategy</div>
+      <div class="ticker-item" data-i18n="ticker.2">Website Design &amp; Development</div>
+      <div class="ticker-item" data-i18n="ticker.3">App Development</div>
+      <div class="ticker-item" data-i18n="ticker.4">Managed Services</div>
+      <div class="ticker-item" data-i18n="ticker.5">Product Launches</div>
+      <div class="ticker-item" data-i18n="ticker.6">Growth Campaigns</div>
+    </div>
+  </div>
+
+  <!-- ---------- SERVICES ---------- -->
+  <section class="section" id="services">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-i18n="services.eyebrow">Capabilities</p>
+        <h2 data-i18n="services.h2">Four disciplines. One team.</h2>
+        <p class="lede" data-i18n="services.lede">Most businesses stitch together an agency, a freelancer, a dev shop, and whoever answers the phone when something breaks. Noviram is built to be all four.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <svg class="service-icon" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4a1 1 0 0 0 1 1h2l5 4V5L7 9H5a1 1 0 0 0-1 1Z"/><path d="M16 8.5a4 4 0 0 1 0 7"/><path d="M19 6a7.5 7.5 0 0 1 0 12"/></svg>
+          <span class="service-tag">MKT</span>
+          <h3 data-i18n="services.mkt.title">Marketing</h3>
+          <p data-i18n="services.mkt.desc">Positioning, campaigns, and content built around what your business actually sells — not generic growth-hacking playbooks.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <svg class="service-icon" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="15" rx="2.2"/><path d="M3 9h18"/><circle cx="6.3" cy="6.7" r="0.6" fill="currentColor" stroke="none"/><circle cx="8.3" cy="6.7" r="0.6" fill="currentColor" stroke="none"/></svg>
+          <span class="service-tag">WEB</span>
+          <h3 data-i18n="services.web.title">Websites</h3>
+          <p data-i18n="services.web.desc">Fast, modern sites designed to convert visitors into customers — not just to look good in a portfolio.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <svg class="service-icon" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.4"/><path d="M10.3 18.2h3.4"/></svg>
+          <span class="service-tag">APP</span>
+          <h3 data-i18n="services.app.title">App development</h3>
+          <p data-i18n="services.app.desc">Web and mobile apps built to launch on schedule — and built to still work a year after that.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <svg class="service-icon" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.1"/><path d="M12 3v2.4M12 18.6V21M21 12h-2.4M5.4 12H3M18.1 5.9l-1.7 1.7M7.6 16.4l-1.7 1.7M18.1 18.1l-1.7-1.7M7.6 7.6 5.9 5.9"/></svg>
+          <span class="service-tag">OPS</span>
+          <h3 data-i18n="services.ops.title">Managed services</h3>
+          <p data-i18n="services.ops.desc">Hosting, updates, monitoring, and the maintenance work most teams don't have time for — handled continuously, not just at launch.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- PROCESS ---------- -->
+  <section class="section section--tight" style="background:var(--white); border-top:1px solid var(--wire-light); border-bottom:1px solid var(--wire-light);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-i18n="process.eyebrow">How we work</p>
+        <h2 data-i18n="process.h2">From first call to ongoing upkeep.</h2>
+      </div>
+      <div class="process-grid">
+        <div class="process-step reveal">
+          <span class="process-num">01</span>
+          <h3 data-i18n="process.s1.title">Discover</h3>
+          <p data-i18n="process.s1.desc">We start with a short call to understand what you actually need — not a lengthy, hourly-billed discovery phase.</p>
+        </div>
+        <div class="process-step reveal">
+          <span class="process-num">02</span>
+          <h3 data-i18n="process.s2.title">Build</h3>
+          <p data-i18n="process.s2.desc">We design and build what's needed — marketing, website, or app, alone or combined.</p>
+        </div>
+        <div class="process-step reveal">
+          <span class="process-num">03</span>
+          <h3 data-i18n="process.s3.title">Run</h3>
+          <p data-i18n="process.s3.desc">We stay on after launch: updating, maintaining, and continuously improving.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- WORK / IN THE LAB (single featured build) ---------- -->
+  <section class="section" id="work">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-i18n="work.eyebrow">In the lab</p>
+        <h2 data-i18n="work.h2">We build our own product too.</h2>
+        <p class="lede" data-i18n="work.lede">Alongside client work, we're building our own product — proof we're willing to bet on the things we build. The real thing lands here once it's live.</p>
+      </div>
+
+      <!-- Replace this panel with the real project: swap the mock screen for an actual screenshot, add name, description, and link -->
+      <div class="work-feature reveal">
+        <div class="work-mock">
+          <div class="work-mock-bar">
+            <span class="work-mock-dot"></span><span class="work-mock-dot"></span><span class="work-mock-dot"></span>
+            <span class="work-mock-url">noviram.com</span>
+          </div>
+          <div class="work-mock-body">
+            <span class="work-mock-label" data-i18n="work.mocklabel">Screenshot coming soon</span>
+          </div>
+        </div>
+        <div class="work-content">
+          <span class="work-status" data-i18n="work.status">In development</span>
+          <h3 data-i18n="work.title">Our first in-house build</h3>
+          <p data-i18n="work.desc">Details, screenshots, and a link go here once this one ships.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- ABOUT ---------- -->
+  <section class="section" id="about" style="background:var(--paper-2);">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow" data-i18n="about.eyebrow">About</p>
+        <h2 data-i18n="about.h2">Two founders. One team for everything digital.</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-copy reveal">
+          <p data-i18n="about.p1">Noviram Digital started with a simple frustration: businesses end up hiring one agency for marketing, another for the website, a freelancer for the app, and no one for what happens after launch.</p>
+          <p data-i18n="about.p2">We built Noviram to close those gaps. One team plans the strategy, builds the product, and stays on to run it afterward — so nothing gets lost between vendors, and nothing gets abandoned once it ships.</p>
+        </div>
+        <div class="stat-list reveal">
+          <div class="stat-item"><span class="num">2</span><span class="label" data-i18n="stat.1">Founders, personally on every project</span></div>
+          <div class="stat-item"><span class="num">4</span><span class="label" data-i18n="stat.2">Disciplines under one roof</span></div>
+          <div class="stat-item"><span class="num">1</span><span class="label" data-i18n="stat.3">Point of contact, start to finish</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- CONTACT ---------- -->
+  <section class="section section--dark contact-section" id="contact">
+    <div class="contact-glow" aria-hidden="true"></div>
+    <div class="wrap contact-inner reveal">
+      <p class="eyebrow" data-i18n="contact.eyebrow">Get in touch</p>
+      <h2 data-i18n="contact.h2">Tell us what you're building.</h2>
+      <p class="lede" data-i18n="contact.lede">Send a note to info@noviram.com and we'll get back to you with how we'd approach it — no discovery-call runaround.</p>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="mailto:info@noviram.com" data-i18n="contact.primary">Email us</a>
+        <button class="btn btn-ghost" id="copyEmailBtn" type="button" data-i18n="contact.secondary">Copy email address</button>
+      </div>
+      <div class="copy-feedback" id="copyFeedback" aria-live="polite"></div>
+      <div class="contact-actions" style="margin-top:14px;">
+        <button class="btn btn-ghost" type="button" id="callUsBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span data-i18n="contact.callbtn">Call us</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-logo"><svg class="logo-mark" width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="17" r="10.5" stroke="currentColor" stroke-width="1.6"/><line x1="16" y1="17" x2="16" y2="6.3" stroke="currentColor" stroke-width="1.6"/><circle cx="16" cy="6.3" r="3" fill="var(--signal)"/><circle cx="16" cy="17" r="1.6" fill="currentColor"/></svg> Noviram Digital Kft</div>
+      <ul class="footer-links">
+        <li><a href="#services" data-i18n="nav.services">Services</a></li>
+        <li><a href="#work" data-i18n="nav.work">Work</a></li>
+        <li><a href="#about" data-i18n="nav.about">About</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+      </ul>
     </div>
 
-    <!-- Navigation Header -->
-    <header class="sticky top-0 left-0 right-0 z-40 glass-panel border-b border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 flex items-center justify-center font-bold text-white shadow-lg group-hover:scale-105 transition-transform">
-                    N
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-extrabold text-lg tracking-tight text-white">NOVIRAM</span>
-                    <span class="text-[10px] tracking-widest text-slate-400 uppercase font-semibold">Digital Kft.</span>
-                </div>
-            </a>
+    <div class="footer-legal">
+      <div class="footer-col">
+        <h5 data-i18n="footer.legal.title">Company details</h5>
+        <dl class="footer-meta">
+          <div><dt data-i18n="footer.legal.regno">Reg. No.</dt><dd>01-09-459181</dd></div>
+          <div><dt data-i18n="footer.legal.taxid">Tax ID</dt><dd>33101787-1-42</dd></div>
+          <div><dt data-i18n="footer.legal.court">Court</dt><dd data-i18n="footer.legal.court.value">Metropolitan Court of Registration</dd></div>
+          <div><dt data-i18n="footer.legal.activity">Activity</dt><dd data-i18n="footer.legal.activity.value">6210 – Computer Programming</dd></div>
+        </dl>
+      </div>
 
-            <!-- Desktop Navigation Links -->
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-                <a href="#services" class="hover:text-indigo-400 transition-colors" data-i18n="nav-services">Services</a>
-                <a href="#products" class="hover:text-indigo-400 transition-colors" data-i18n="nav-products">Our App</a>
-                <a href="#about" class="hover:text-indigo-400 transition-colors" data-i18n="nav-about">About Us</a>
-                <a href="#contact" class="hover:text-indigo-400 transition-colors" data-i18n="nav-contact">Contact</a>
-            </nav>
+      <div class="footer-col">
+        <h5 data-i18n="footer.hq.title">Headquarters</h5>
+        <p data-i18n="footer.hq.address">1068 Budapest, Városligeti fasor 24., Hungary</p>
+        <p><a href="mailto:info@noviram.com">info@noviram.com</a></p>
+        <p><button class="footer-call-btn" type="button" id="footerCallBtn" data-i18n="footer.hq.callbtn">Call us</button></p>
+      </div>
 
-            <!-- Language Switcher & Action CTA -->
-            <div class="hidden md:flex items-center gap-5">
-                <div class="flex items-center bg-slate-900 border border-slate-800 rounded-full p-1 text-xs font-semibold">
-                    <button id="lang-en" onclick="setLanguage('en')" class="px-3 py-1 rounded-full transition-all bg-indigo-600 text-white shadow-sm">EN</button>
-                    <button id="lang-hu" onclick="setLanguage('hu')" class="px-3 py-1 rounded-full transition-all text-slate-400 hover:text-white">HU</button>
-                </div>
-                
-                <a href="#contact" class="px-5 py-2.5 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition-all shadow-md shadow-indigo-600/25" data-i18n="btn-work">
-                    Work With Us
-                </a>
-            </div>
-
-            <!-- Mobile Menu Toggle Button & Switcher -->
-            <div class="flex items-center gap-3 md:hidden">
-                <div class="flex items-center bg-slate-900 border border-slate-800 rounded-full p-1 text-xs font-semibold">
-                    <button id="lang-en-mob" onclick="setLanguage('en')" class="px-2.5 py-1 rounded-full transition-all bg-indigo-600 text-white shadow-sm">EN</button>
-                    <button id="lang-hu-mob" onclick="setLanguage('hu')" class="px-2.5 py-1 rounded-full transition-all text-slate-400 hover:text-white">HU</button>
-                </div>
-                <button id="menu-btn" class="p-2 text-slate-400 hover:text-white focus:outline-none">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
-            <a href="#services" class="block py-2 text-base font-medium text-slate-300 hover:text-white" data-i18n="nav-services">Services</a>
-            <a href="#products" class="block py-2 text-base font-medium text-slate-300 hover:text-white" data-i18n="nav-products">Our App</a>
-            <a href="#about" class="block py-2 text-base font-medium text-slate-300 hover:text-white" data-i18n="nav-about">About Us</a>
-            <a href="#contact" class="block py-2 text-base font-medium text-slate-300 hover:text-white" data-i18n="nav-contact">Contact</a>
-            <a href="#contact" class="block text-center mt-4 w-full py-3 rounded-xl bg-indigo-600 text-white font-semibold" data-i18n="btn-work">Work With Us</a>
-        </div>
-    </header>
-
-    <main>
-        <!-- Hero Section -->
-        <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-20">
-            <div class="absolute inset-0 z-0">
-                <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-600/15 rounded-full blur-[140px] pointer-events-none"></div>
-            </div>
-
-            <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-xs sm:text-sm font-semibold mb-8">
-                    <i data-lucide="sparkles" class="w-4 h-4"></i>
-                    <span data-i18n="hero-badge">Digital Agency & App Studio</span>
-                </div>
-                
-                <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-white mb-6 leading-[1.15]">
-                    <span data-i18n="hero-title-1">We scale businesses & build</span> <br/>
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-cyan-400 to-indigo-200" data-i18n="hero-title-2">next-generation digital apps.</span>
-                </h1>
-                
-                <p class="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed" data-i18n="hero-desc">
-                    Noviram Digital Kft. combines full-suite agency services with in-house product creation. We engineer high-performance web platforms, scale marketing, and develop proprietary apps.
-                </p>
-
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-base transition-all shadow-lg shadow-indigo-600/30 hover:scale-[1.02]" data-i18n="hero-cta-primary">
-                        Schedule a Strategy Call
-                    </a>
-                    <a href="#services" class="w-full sm:w-auto px-8 py-4 rounded-full border border-slate-800 bg-slate-900/50 hover:bg-slate-800 text-slate-300 font-semibold text-base transition-all" data-i18n="hero-cta-secondary">
-                        Explore Our Expertise
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services" class="py-24 bg-slate-900/50 border-y border-slate-800/60 relative">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-indigo-400 font-bold text-sm tracking-widest uppercase mb-2" data-i18n="services-subtitle">Our Core Offerings</h2>
-                    <p class="text-3xl sm:text-4xl font-extrabold text-white" data-i18n="services-title">Full-spectrum digital capabilities.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800/80 hover:border-indigo-500/50 transition-all">
-                        <div class="w-12 h-12 rounded-xl bg-indigo-600/10 text-indigo-400 flex items-center justify-center mb-6">
-                            <i data-lucide="trending-up" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3" data-i18n="s1-title">Digital Marketing</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="s1-desc">Performance campaigns, growth strategies, and brand positioning designed for high ROI.</p>
-                    </div>
-
-                    <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800/80 hover:border-indigo-500/50 transition-all">
-                        <div class="w-12 h-12 rounded-xl bg-indigo-600/10 text-indigo-400 flex items-center justify-center mb-6">
-                            <i data-lucide="layout" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3" data-i18n="s2-title">Website Building</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="s2-desc">High-converting, responsive, and ultra-fast websites tailored for modern brands.</p>
-                    </div>
-
-                    <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800/80 hover:border-indigo-500/50 transition-all">
-                        <div class="w-12 h-12 rounded-xl bg-indigo-600/10 text-indigo-400 flex items-center justify-center mb-6">
-                            <i data-lucide="smartphone" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3" data-i18n="s3-title">App Engineering</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="s3-desc">Custom iOS, Android, and web app development built with scalable architecture.</p>
-                    </div>
-
-                    <div class="p-8 rounded-2xl bg-slate-900 border border-slate-800/80 hover:border-indigo-500/50 transition-all">
-                        <div class="w-12 h-12 rounded-xl bg-indigo-600/10 text-indigo-400 flex items-center justify-center mb-6">
-                            <i data-lucide="shield-check" class="w-6 h-6"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-3" data-i18n="s4-title">Managed Services</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed" data-i18n="s4-desc">End-to-end technical support, maintenance, hosting, and operational oversight.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Products Showcase -->
-        <section id="products" class="py-24 relative overflow-hidden">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <h2 class="text-indigo-400 font-bold text-sm tracking-widest uppercase mb-2" data-i18n="portfolio-subtitle">In-House Products</h2>
-                    <p class="text-3xl sm:text-4xl font-extrabold text-white" data-i18n="portfolio-title">Flagship Mobile Application</p>
-                </div>
-
-                <div class="max-w-3xl mx-auto">
-                    <div class="p-8 sm:p-12 rounded-3xl bg-slate-900/90 border border-slate-800 flex flex-col items-center text-center relative overflow-hidden">
-                        <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-indigo-500/10 rounded-full blur-2xl"></div>
-                        
-                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-indigo-600 to-cyan-500 flex items-center justify-center mb-6 text-white shadow-lg shadow-indigo-500/20">
-                            <i data-lucide="smartphone" class="w-8 h-8"></i>
-                        </div>
-
-                        <span class="px-4 py-1.5 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 mb-4" data-i18n="app-status">
-                            Coming Soon
-                        </span>
-
-                        <h3 class="text-2xl sm:text-3xl font-extrabold text-white mb-4" data-i18n="app-title">Proprietary Mobile App</h3>
-                        
-                        <p class="text-slate-400 text-sm sm:text-base leading-relaxed mb-8 max-w-xl" data-i18n="app-desc">
-                            We are currently engineering our flagship digital application. Full details, features, and public release schedules will be featured here upon launch.
-                        </p>
-
-                        <div class="inline-flex items-center gap-2 text-xs font-semibold text-slate-500">
-                            <i data-lucide="clock" class="w-4 h-4 text-indigo-400"></i>
-                            <span data-i18n="app-note">Currently in Active Development</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Us Section -->
-        <section id="about" class="py-24 bg-slate-900/50 border-t border-slate-800/60">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    <div class="lg:col-span-7">
-                        <h2 class="text-indigo-400 font-bold text-sm tracking-widest uppercase mb-2" data-i18n="about-subtitle">Behind Noviram</h2>
-                        <h3 class="text-3xl sm:text-4xl font-extrabold text-white mb-6" data-i18n="about-title">Digital Execution Built with Precision.</h3>
-                        
-                        <p class="text-slate-300 text-base leading-relaxed mb-4" data-i18n="about-p1">
-                            Noviram Digital Kft. was established on the principle that digital execution should be seamless, data-backed, and beautifully engineered.
-                        </p>
-                        <p class="text-slate-400 text-base leading-relaxed mb-8" data-i18n="about-p2">
-                            Our dual approach—scaling partners through agency expertise while building our own digital products—ensures we operate with skin in the game.
-                        </p>
-
-                        <div class="grid grid-cols-2 gap-6 border-t border-slate-800 pt-8">
-                            <div>
-                                <p class="text-2xl font-extrabold text-white mb-1" data-i18n="stat-1-val">100%</p>
-                                <p class="text-xs text-slate-400" data-i18n="stat-1-lbl">In-House Execution</p>
-                            </div>
-                            <div>
-                                <p class="text-2xl font-extrabold text-white mb-1" data-i18n="stat-2-val">Full-Stack</p>
-                                <p class="text-xs text-slate-400" data-i18n="stat-2-lbl">Software Architecture & Growth</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Leadership Block -->
-                    <div class="lg:col-span-5 bg-gradient-to-b from-slate-900 to-slate-950 p-8 sm:p-10 rounded-3xl border border-slate-800">
-                        <h4 class="text-lg font-bold text-white mb-4" data-i18n="quote-title">Leadership Philosophy</h4>
-                        <blockquote class="text-slate-400 italic text-sm leading-relaxed mb-6" data-i18n="quote-text">
-                            "We don't build software just to launch it; we build software to solve actual market friction. That same mentality applies to every client strategy we execute."
-                        </blockquote>
-                        <div class="pt-4 border-t border-slate-800/80">
-                            <p class="text-base font-bold text-white" data-i18n="quote-signer">The Founders</p>
-                            <p class="text-xs text-slate-400" data-i18n="quote-signer-sub">Noviram Digital Kft.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-24 relative">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                    
-                    <!-- Direct Contact Details -->
-                    <div class="lg:col-span-5">
-                        <h2 class="text-indigo-400 font-bold text-sm tracking-widest uppercase mb-2" data-i18n="contact-subtitle">Get In Touch</h2>
-                        <h3 class="text-3xl sm:text-4xl font-extrabold text-white mb-6" data-i18n="contact-title">Let's build something remarkable.</h3>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-8" data-i18n="contact-desc">
-                            Ready to elevate your digital presence or explore a potential partnership? Reach out directly.
-                        </p>
-
-                        <div class="space-y-6">
-                            <!-- Email -->
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-lg bg-indigo-600/10 text-indigo-400 flex items-center justify-center shrink-0">
-                                    <i data-lucide="mail" class="w-5 h-5"></i>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider" data-i18n="c-email-label">Company Email</p>
-                                    <a href="mailto:info@noviram.com" class="text-white font-medium hover:text-indigo-400 transition-colors">info@noviram.com</a>
-                                </div>
-                            </div>
-
-                            <!-- HQ -->
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-lg bg-indigo-600/10 text-indigo-400 flex items-center justify-center shrink-0">
-                                    <i data-lucide="map-pin" class="w-5 h-5"></i>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider" data-i18n="c-hq-label">Headquarters</p>
-                                    <p class="text-white font-medium" data-i18n="c-company-name">Noviram Digital Ltd.</p>
-                                    <p class="text-slate-400 text-sm" data-i18n="c-address">1068 Budapest, Városligeti fasor 24., Hungary</p>
-                                </div>
-                            </div>
-
-                            <!-- Phone Button -->
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0">
-                                    <i data-lucide="phone-call" class="w-5 h-5"></i>
-                                </div>
-                                <div>
-                                    <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider mb-1.5" data-i18n="c-phone-label">Direct Line</p>
-                                    <a href="tel:+36301734105" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-300 font-semibold text-xs transition-all hover:scale-105 active:scale-95 shadow-sm">
-                                        <i data-lucide="phone" class="w-3.5 h-3.5"></i>
-                                        <span data-i18n="c-phone-btn">Call Us Now</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Contact Form -->
-                    <div class="lg:col-span-7 bg-slate-900 border border-slate-800 p-8 sm:p-10 rounded-3xl shadow-xl">
-                        <form onsubmit="event.preventDefault(); alert('Thank you for reaching out! We will contact you shortly.');" class="space-y-6">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2" data-i18n="f-name">Your Name</label>
-                                    <input type="text" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors" placeholder="John Doe">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2" data-i18n="f-email">Email Address</label>
-                                    <input type="email" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors" placeholder="john@company.com">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2" data-i18n="f-service">Service Needed</label>
-                                <select id="service-select" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors">
-                                </select>
-                            </div>
-
-                            <div>
-                                <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2" data-i18n="f-brief">Project Brief</label>
-                                <textarea id="f-textarea" rows="4" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500 transition-colors" placeholder="Tell us about your project or growth goals..."></textarea>
-                            </div>
-
-                            <button type="submit" class="w-full py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold transition-all shadow-lg shadow-indigo-600/25" data-i18n="f-submit">
-                                Send Message
-                            </button>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer Block -->
-    <footer class="bg-slate-950 border-t border-slate-900 text-slate-400 py-12 text-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-12 border-b border-slate-900">
-                <!-- Brand & Official Corporate Numbers -->
-                <div>
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-bold text-white text-sm">
-                            N
-                        </div>
-                        <span class="font-bold text-white">Noviram Digital Kft.</span>
-                    </div>
-                    <p class="text-xs text-slate-400 leading-relaxed space-y-1">
-                        <span><strong data-i18n="footer-reg">Company Reg. No.:</strong> 01-09-459181</span><br>
-                        <span><strong data-i18n="footer-tax">Tax ID:</strong> 33101787-1-42</span><br>
-                        <span><strong data-i18n="footer-court">Court of Registration:</strong> <span data-i18n="footer-court-name">Metropolitan Court of Registration</span></span><br>
-                        <span><strong data-i18n="footer-activity">Primary Activity:</strong> <span data-i18n="footer-activity-val">6210 - Computer Programming</span></span>
-                    </p>
-                </div>
-
-                <!-- Headquarters Details -->
-                <div>
-                    <h5 class="text-sm font-bold text-white mb-3" data-i18n="footer-head-hq">Headquarters & Contact</h5>
-                    <p class="mb-1 text-slate-300 font-medium" data-i18n="footer-company-legal">Noviram Digital Private Limited Company</p>
-                    <p class="mb-1 text-xs" data-i18n="footer-address">1068 Budapest, Városligeti fasor 24., Hungary</p>
-                    <p class="mb-3 text-xs"><span class="text-slate-500">Email:</span> info@noviram.com</p>
-                    <a href="tel:+36301734105" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-300 text-xs font-semibold transition-all">
-                        <i data-lucide="phone" class="w-3 h-3"></i>
-                        <span data-i18n="c-phone-btn">Call Us Now</span>
-                    </a>
-                </div>
-
-                <!-- Hosting Provider Information -->
-                <div>
-                    <h5 class="text-sm font-bold text-white mb-3" data-i18n="footer-head-host">Infrastructure & Hosting</h5>
-                    <p class="mb-1 text-slate-300 font-medium">Netlify, Inc.</p>
-                    <p class="mb-1 text-xs">512 2nd Street, Suite 200</p>
-                    <p class="mb-1 text-xs">San Francisco, CA 94107, USA</p>
-                    <p class="text-xs mt-2"><a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:underline">www.netlify.com</a></p>
-                </div>
-            </div>
-
-            <!-- Copyright & Legal -->
-            <div class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 gap-4">
-                <p data-i18n="footer-rights">© 2026 Noviram Digital Kft. All rights reserved.</p>
-                <div class="flex items-center gap-6">
-                    <a href="#privacy" onclick="openPrivacyModal()" class="hover:text-slate-300 transition-colors" data-i18n="privacy-link">Privacy Policy</a>
-                    <a href="#contact" class="hover:text-slate-300 transition-colors" data-i18n="nav-contact">Contact</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- GDPR Cookie Consent Banner -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-50 bg-slate-900/95 border-t border-slate-800 backdrop-blur-md p-4 sm:p-5 shadow-2xl transition-all">
-        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="text-xs sm:text-sm text-slate-300 max-w-4xl leading-relaxed">
-                <span data-i18n="cookie-text">We use essential and performance cookies to optimize site performance and analyze web traffic in compliance with GDPR.</span>
-                <a href="#privacy" onclick="openPrivacyModal()" class="text-indigo-400 hover:underline ml-1 font-semibold" data-i18n="cookie-learn-more">Learn more in Privacy Policy</a>.
-            </div>
-            <div class="flex items-center gap-3 shrink-0 w-full sm:w-auto justify-end">
-                <button onclick="declineCookies()" class="px-4 py-2 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-800 text-slate-300 text-xs font-semibold transition-all w-1/2 sm:w-auto" data-i18n="cookie-decline">
-                    Decline
-                </button>
-                <button onclick="acceptCookies()" class="px-5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition-all shadow-md shadow-indigo-600/20 w-1/2 sm:w-auto" data-i18n="cookie-accept">
-                    Accept All
-                </button>
-            </div>
-        </div>
+      <div class="footer-col">
+        <h5 data-i18n="footer.hosting.title">Infrastructure &amp; hosting</h5>
+        <p>GitHub, Inc.</p>
+        <p>88 Colin P. Kelly Jr. Street</p>
+        <p>San Francisco, CA 94107, USA</p>
+        <p><a href="https://pages.github.com" target="_blank" rel="noopener noreferrer">pages.github.com</a></p>
+      </div>
     </div>
 
-    <!-- Privacy Policy Dynamic Modal -->
-    <div id="privacy-modal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
-            <div class="p-6 border-b border-slate-800 flex items-center justify-between">
-                <h3 class="text-lg font-bold text-white" data-i18n="privacy-modal-title">Privacy Policy</h3>
-                <button onclick="closePrivacyModal()" class="text-slate-400 hover:text-white p-1">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
-            </div>
-            <div id="privacy-modal-body" class="p-6 overflow-y-auto text-sm text-slate-300 leading-relaxed space-y-4">
-                <!-- Dynamically populated based on active language -->
-            </div>
-            <div class="p-4 border-t border-slate-800 flex justify-end">
-                <button onclick="closePrivacyModal()" class="px-5 py-2 rounded-xl bg-indigo-600 text-white font-semibold text-xs hover:bg-indigo-500 transition-all">
-                    Close
-                </button>
-            </div>
-        </div>
+    <div class="footer-bottom">
+      <span data-i18n="footer.bottom">© 2026 Noviram Digital Kft. All rights reserved.</span>
+      <span>noviram.com · info@noviram.com</span>
     </div>
+  </div>
+</footer>
 
-    <!-- Client-Side JavaScript -->
-    <script>
-        let currentLang = 'en';
+<script>
+  // ---------- Translations ----------
+  const translations = {
+    en: {
+      'nav.services':'Services','nav.work':'Work','nav.about':'About','nav.contact':'Contact',
+      'nav.cta':'Start a project',
+      'hero.eyebrow':'Noviram Digital · Status: Operational',
+      'hero.h1':'We plan it, build it, and keep it running.',
+      'hero.lede':"Noviram Digital is a two-founder studio covering marketing, websites, apps, and the ongoing management most agencies quietly drop after launch.",
+      'hero.primary':'Start a project','hero.secondary':'See what we build',
+      'trust.line':'Direct access to both founders · One contract for all four disciplines',
+      'ticker.1':'Marketing Strategy','ticker.2':'Website Design & Development','ticker.3':'App Development','ticker.4':'Managed Services','ticker.5':'Product Launches','ticker.6':'Growth Campaigns',
+      'services.eyebrow':'Capabilities','services.h2':'Four disciplines. One team.',
+      'services.lede':'Most businesses stitch together an agency, a freelancer, a dev shop, and whoever answers the phone when something breaks. Noviram is built to be all four.',
+      'services.mkt.title':'Marketing','services.mkt.desc':'Positioning, campaigns, and content built around what your business actually sells — not generic growth-hacking playbooks.',
+      'services.web.title':'Websites','services.web.desc':'Fast, modern sites designed to convert visitors into customers — not just to look good in a portfolio.',
+      'services.app.title':'App development','services.app.desc':'Web and mobile apps built to launch on schedule — and built to still work a year after that.',
+      'services.ops.title':'Managed services','services.ops.desc':"Hosting, updates, monitoring, and the maintenance work most teams don't have time for — handled continuously, not just at launch.",
+      'process.eyebrow':'How we work','process.h2':'From first call to ongoing upkeep.',
+      'process.s1.title':'Discover','process.s1.desc':'We start with a short call to understand what you actually need — not a lengthy, hourly-billed discovery phase.',
+      'process.s2.title':'Build','process.s2.desc':"We design and build what's needed — marketing, website, or app, alone or combined.",
+      'process.s3.title':'Run','process.s3.desc':'We stay on after launch: updating, maintaining, and continuously improving.',
+      'work.eyebrow':'In the lab','work.h2':'We build our own product too.',
+      'work.lede':"Alongside client work, we're building our own product — proof we're willing to bet on the things we build. The real thing lands here once it's live.",
+      'work.status':'In development','work.title':'Our first in-house build','work.desc':'Details, screenshots, and a link go here once this one ships.',
+      'work.mocklabel':'Screenshot coming soon',
+      'about.eyebrow':'About','about.h2':'Two founders. One team for everything digital.',
+      'about.p1':'Noviram Digital started with a simple frustration: businesses end up hiring one agency for marketing, another for the website, a freelancer for the app, and no one for what happens after launch.',
+      'about.p2':"We built Noviram to close those gaps. One team plans the strategy, builds the product, and stays on to run it afterward — so nothing gets lost between vendors, and nothing gets abandoned once it ships.",
+      'stat.1':'Founders, personally on every project','stat.2':'Disciplines under one roof','stat.3':'Point of contact, start to finish',
+      'contact.eyebrow':'Get in touch','contact.h2':"Tell us what you're building.",
+      'contact.lede':"Send a note to info@noviram.com and we'll get back to you with how we'd approach it — no discovery-call runaround.",
+      'contact.primary':'Email us','contact.secondary':'Copy email address',
+      'contact.copied':'Copied {email} to your clipboard.',
+      'footer.bottom':'© 2026 Noviram Digital Kft. All rights reserved.',
+      'footer.legal.title':'Company details','footer.legal.regno':'Reg. No.','footer.legal.taxid':'Tax ID',
+      'footer.legal.court':'Court','footer.legal.court.value':'Metropolitan Court of Registration',
+      'footer.legal.activity':'Activity','footer.legal.activity.value':'6210 – Computer Programming',
+      'footer.hq.title':'Headquarters','footer.hq.address':'1068 Budapest, Városligeti fasor 24., Hungary',
+      'footer.hosting.title':'Infrastructure & hosting',
+      'contact.callbtn':'Call us','footer.hq.callbtn':'Call us',
+      'navtoggle.aria':'Open menu',
+      'orbit.aria':'Diagram of four service disciplines — marketing, websites, apps, and managed services — orbiting the Noviram core',
+      'doc.title':'Noviram Digital — Marketing, websites, apps, managed end to end'
+    },
+    hu: {
+      'nav.services':'Szolgáltatások','nav.work':'Munkáink','nav.about':'Rólunk','nav.contact':'Kapcsolat',
+      'nav.cta':'Projekt indítása',
+      'hero.eyebrow':'Noviram Digital · Állapot: Üzemel',
+      'hero.h1':'Megtervezzük. Megépítjük. Üzemeltetjük.',
+      'hero.lede':'A Noviram Digital egy két alapító vezette stúdió: marketinget, weboldalakat és alkalmazásokat épít — és üzemelteti is őket, amit a legtöbb ügynökség indulás után otthagy.',
+      'hero.primary':'Projekt indítása','hero.secondary':'Munkáink megtekintése',
+      'trust.line':'Közvetlen kapcsolat mindkét alapítóval · Egy szerződés mind a négy szakterületre',
+      'ticker.1':'Marketingstratégia','ticker.2':'Weboldal tervezés és fejlesztés','ticker.3':'Alkalmazásfejlesztés','ticker.4':'Üzemeltetési szolgáltatások','ticker.5':'Termékindítások','ticker.6':'Növekedési kampányok',
+      'services.eyebrow':'Képességek','services.h2':'Négy szakterület. Egy csapat.',
+      'services.lede':'A legtöbb vállalkozás egy ügynökséget, egy szabadúszót és egy fejlesztőcsapatot rak össze — plusz valakit, aki felveszi a telefont, ha baj van. A Noviram mind a négyet egyben adja.',
+      'services.mkt.title':'Marketing','services.mkt.desc':'Pozicionálás, kampányok és tartalom, ami arra épül, amit a vállalkozása ténylegesen elad — nem sablonos növekedési trükkökre.',
+      'services.web.title':'Weboldalak','services.web.desc':'Gyors, modern weboldalak, amelyek látogatóból vásárlót csinálnak — nem csak portfólióba valók.',
+      'services.app.title':'Alkalmazásfejlesztés','services.app.desc':'Web- és mobilalkalmazások, amelyek időben elkészülnek — és egy év múlva is működnek.',
+      'services.ops.title':'Üzemeltetés','services.ops.desc':'Tárhely, frissítések, monitorozás és karbantartás — mindaz, amire a legtöbb csapatnak nincs ideje. Folyamatosan, nem csak induláskor.',
+      'process.eyebrow':'Hogyan dolgozunk','process.h2':'Az első hívástól a folyamatos üzemeltetésig.',
+      'process.s1.title':'Felmérés','process.s1.desc':'Egy rövid beszélgetéssel kezdünk, hogy megértsük, mire van valóban szüksége — nem egy elhúzódó, óradíjas felméréssel.',
+      'process.s2.title':'Építés','process.s2.desc':'Megtervezzük és megépítjük, amire szükség van — marketing, weboldal vagy alkalmazás, önállóan vagy kombinálva.',
+      'process.s3.title':'Üzemeltetés','process.s3.desc':'Indulás után is maradunk: frissítünk, karbantartunk és folyamatosan fejlesztünk.',
+      'work.eyebrow':'A laborban','work.h2':'A saját termékünket is mi építjük.',
+      'work.lede':'Az ügyfélmunkák mellett a saját termékünkön is dolgozunk — bizonyítva, hogy hiszünk abban, amit építünk. A végleges verzió itt jelenik meg, amint elindul.',
+      'work.status':'Fejlesztés alatt','work.title':'Első saját fejlesztésünk','work.desc':'A részletek, képernyőképek és a link itt jelennek meg, amint elindul.',
+      'work.mocklabel':'Hamarosan képernyőkép',
+      'about.eyebrow':'Rólunk','about.h2':'Két alapító. Egy csapat mindenre, ami digitális.',
+      'about.p1':'A Noviram Digital egy egyszerű frusztrációból indult: a vállalkozások egy ügynökséget bíznak meg a marketinggel, egy másikat a weboldallal, egy szabadúszót az alkalmazással — és senkit azzal, ami indulás után történik.',
+      'about.p2':'Ezért hoztuk létre a Noviramot, hogy betöltsük ezeket a réseket. Egy csapat tervezi a stratégiát, építi a terméket, és marad is, hogy utána üzemeltesse — így semmi nem vész el a szolgáltatók között, és semmi nem marad gazdátlanul indulás után.',
+      'stat.1':'Alapító, személyesen minden projektben','stat.2':'Szakterület egy fedél alatt','stat.3':'Kapcsolattartó, elejétől a végéig',
+      'contact.eyebrow':'Kapcsolatfelvétel','contact.h2':'Mesélje el, min dolgozik.',
+      'contact.lede':'Írjon az info@noviram.com címre, és válaszolunk, hogyan állnánk neki — felesleges egyeztető hívások nélkül.',
+      'contact.primary':'E-mail küldése','contact.secondary':'E-mail cím másolása',
+      'contact.copied':'A(z) {email} a vágólapra másolva.',
+      'footer.bottom':'© 2026 Noviram Digital Kft. Minden jog fenntartva.',
+      'footer.legal.title':'Cégadatok','footer.legal.regno':'Cégjegyzékszám','footer.legal.taxid':'Adószám',
+      'footer.legal.court':'Cégbíróság','footer.legal.court.value':'Fővárosi Törvényszék Cégbírósága',
+      'footer.legal.activity':'Főtevékenység','footer.legal.activity.value':'6210 – Számítógépes programozás',
+      'footer.hq.title':'Székhely','footer.hq.address':'1068 Budapest, Városligeti fasor 24., Magyarország',
+      'footer.hosting.title':'Tárhely és infrastruktúra',
+      'contact.callbtn':'Hívjon minket','footer.hq.callbtn':'Hívjon minket',
+      'navtoggle.aria':'Menü megnyitása',
+      'orbit.aria':'Diagram a négy szakterületről — marketing, weboldalak, alkalmazások és üzemeltetés —, amelyek a Noviram magja körül keringenek',
+      'doc.title':'Noviram Digital — Marketing, weboldalak, alkalmazások, teljes körű üzemeltetés'
+    }
+  };
 
-        const translations = {
-            en: {
-                'nav-services': 'Services',
-                'nav-products': 'Our App',
-                'nav-about': 'About Us',
-                'nav-contact': 'Contact',
-                'btn-work': 'Work With Us',
-                'hero-badge': 'Digital Agency & App Studio',
-                'hero-title-1': 'We scale businesses & build',
-                'hero-title-2': 'next-generation digital apps.',
-                'hero-desc': 'Noviram Digital Kft. combines full-suite agency services with in-house product creation. We engineer high-performance web platforms, scale marketing, and develop proprietary apps.',
-                'hero-cta-primary': 'Schedule a Strategy Call',
-                'hero-cta-secondary': 'Explore Our Expertise',
-                'services-subtitle': 'Our Core Offerings',
-                'services-title': 'Full-spectrum digital capabilities.',
-                's1-title': 'Digital Marketing',
-                's1-desc': 'Performance campaigns, growth strategies, and brand positioning designed for high ROI.',
-                's2-title': 'Website Building',
-                's2-desc': 'High-converting, responsive, and ultra-fast websites tailored for modern brands.',
-                's3-title': 'App Engineering',
-                's3-desc': 'Custom iOS, Android, and web app development built with scalable architecture.',
-                's4-title': 'Managed Services',
-                's4-desc': 'End-to-end technical support, maintenance, hosting, and operational oversight.',
-                'portfolio-subtitle': 'In-House Products',
-                'portfolio-title': 'Flagship Mobile Application',
-                'app-status': 'Coming Soon',
-                'app-title': 'Proprietary Mobile App',
-                'app-desc': 'We are currently engineering our flagship digital application. Full details, features, and public release schedules will be featured here upon launch.',
-                'app-note': 'Currently in Active Development',
-                'about-subtitle': 'Behind Noviram',
-                'about-title': 'Digital Execution Built with Precision.',
-                'about-p1': 'Noviram Digital Kft. was established on the principle that digital execution should be seamless, data-backed, and beautifully engineered.',
-                'about-p2': 'Our dual approach—scaling partners through agency expertise while building our own digital products—ensures we operate with skin in the game.',
-                'stat-1-val': '100%',
-                'stat-1-lbl': 'In-House Execution',
-                'stat-2-val': 'Full-Stack',
-                'stat-2-lbl': 'Software Architecture & Growth',
-                'quote-title': 'Leadership Philosophy',
-                'quote-text': '"We don\'t build software just to launch it; we build software to solve actual market friction. That same mentality applies to every client strategy we execute."',
-                'quote-signer': 'The Founders',
-                'quote-signer-sub': 'Noviram Digital Kft.',
-                'contact-subtitle': 'Get In Touch',
-                'contact-title': "Let's build something remarkable.",
-                'contact-desc': 'Ready to elevate your digital presence or explore a potential partnership? Reach out directly.',
-                'c-email-label': 'Company Email',
-                'c-hq-label': 'Headquarters',
-                'c-company-name': 'Noviram Digital Ltd.',
-                'c-address': '1068 Budapest, Városligeti fasor 24., Hungary',
-                'c-phone-label': 'Direct Line',
-                'c-phone-btn': 'Call Us Now',
-                'f-name': 'Your Name',
-                'f-email': 'Email Address',
-                'f-service': 'Service Needed',
-                'f-brief': 'Project Brief',
-                'f-submit': 'Send Message',
-                'f-placeholder-text': 'Tell us about your project or growth goals...',
-                'footer-head-hq': 'Headquarters & Contact',
-                'footer-head-host': 'Infrastructure & Hosting',
-                'footer-reg': 'Company Reg. No.:',
-                'footer-tax': 'Tax ID:',
-                'footer-court': 'Court of Registration:',
-                'footer-court-name': 'Metropolitan Court of Registration',
-                'footer-activity': 'Primary Activity:',
-                'footer-activity-val': '6210 - Computer Programming',
-                'footer-company-legal': 'Noviram Digital Private Limited Company',
-                'footer-address': '1068 Budapest, Városligeti fasor 24., Hungary',
-                'footer-rights': '© 2026 Noviram Digital Kft. All rights reserved.',
-                'privacy-link': 'Privacy Policy',
-                'privacy-modal-title': 'Privacy Policy',
-                'cookie-text': 'We use essential and performance cookies to optimize site performance and analyze web traffic in compliance with GDPR.',
-                'cookie-learn-more': 'Learn more in Privacy Policy',
-                'cookie-decline': 'Decline',
-                'cookie-accept': 'Accept All',
-                'opt-1': 'Digital Marketing & Growth',
-                'opt-2': 'Website Building & Design',
-                'opt-3': 'Custom App Engineering',
-                'opt-4': 'Managed Infrastructure & Tech Support',
-                'opt-5': 'Strategic Partnership / Advisory'
-            },
-            hu: {
-                'nav-services': 'Szolgáltatások',
-                'nav-products': 'Saját Applikáció',
-                'nav-about': 'Rólunk',
-                'nav-contact': 'Kapcsolat',
-                'btn-work': 'Dolgozz Velünk',
-                'hero-badge': 'Digitális Ügynökség & App Stúdió',
-                'hero-title-1': 'Vállalkozásokat skálázunk és',
-                'hero-title-2': 'újgenerációs alkalmazásokat építünk.',
-                'hero-desc': 'A Noviram Digital Kft. ötvözi a teljes körű ügynökségi szolgáltatásokat a saját termékfejlesztéssel. Nagy teljesítményű webes platformokat, marketing rendszereket és egyedi applikációkat építünk.',
-                'hero-cta-primary': 'Kérj Stratégiai Konzulációt',
-                'hero-cta-secondary': 'Szolgáltatásaink',
-                'services-subtitle': 'Fő Területeink',
-                'services-title': 'Teljes körű digitális megoldások.',
-                's1-title': 'Digitális Marketing',
-                's1-desc': 'Teljesítményalapú kampányok, növekedési stratégiák és márkabővítés magas megtérüléssel.',
-                's2-title': 'Weboldal Készítés',
-                's2-desc': 'Magas konverziójú, reszponzív és rendkívül gyors weboldalak modern vállalkozásoknak.',
-                's3-title': 'App Fejlesztés',
-                's3-desc': 'Egyedi iOS, Android és webalkalmazások fejlesztése skálázható architektúrára építve.',
-                's4-title': 'Üzemeltetés & Support',
-                's4-desc': 'Teljes körű technikai támogatás, karbantartás, tárhely- és működési felügyelet.',
-                'portfolio-subtitle': 'Saját Termékek',
-                'portfolio-title': 'Zászlóshajó Mobilalkalmazás',
-                'app-status': 'Hamarosan',
-                'app-title': 'Saját Fejlesztésű App',
-                'app-desc': 'Jelenleg gőzerővel fejlesszük saját mobilalkalmazásunkat. A részletes funkciók és az indulási időpont a megjelenéskor itt lesznek elérhetőek.',
-                'app-note': 'Aktív Fejlesztés Alatt',
-                'about-subtitle': 'A Noviram Mögött',
-                'about-title': 'Precizitással Megtervezett Digitális Megvalósítás.',
-                'about-p1': 'A Noviram Digital Kft. azon az elven alakult, hogy a digitális megvalósításnak zökkenőmentesnek, adatalapúnak és mérnökien precíznek kell lennie.',
-                'about-p2': 'Kettős megközelítésünk—partnereink skálázása és saját digitális termékeink építése—garantálja a gyakorlati tapasztalatot és elkötelezettséget.',
-                'stat-1-val': '100%',
-                'stat-1-lbl': 'Saját Csapatos Kivitelezés',
-                'stat-2-val': 'Full-Stack',
-                'stat-2-lbl': 'Szoftverarchitektúra & Növekedés',
-                'quote-title': 'Vezetői Filozófia',
-                'quote-text': '"Nem azért építünk szoftvereket, hogy egyszerűen közzétegyük őket; valódi piaci problémákat oldunk meg. Ugyanezt a szemléletet alkalmazzuk minden ügyfélstratégiánál."',
-                'quote-signer': 'Az Alapítók',
-                'quote-signer-sub': 'Noviram Digital Kft.',
-                'contact-subtitle': 'Lépj Kapcsolatba',
-                'contact-title': 'Építsünk valami kiemelkedőt.',
-                'contact-desc': 'Készen állsz a digitális jelenléted emelésére vagy egy partnerség feltárására? Keress minket közvetlenül.',
-                'c-email-label': 'Céges Email',
-                'c-hq-label': 'Székhely',
-                'c-company-name': 'Noviram Digital Kft.',
-                'c-address': '1068 Budapest, Városligeti fasor 24., Magyarország',
-                'c-phone-label': 'Közvetlen Vonál',
-                'c-phone-btn': 'Hívjon Minket Most',
-                'f-name': 'Az Ön Neve',
-                'f-email': 'Email Cím',
-                'f-service': 'Kívánt Szolgáltatás',
-                'f-brief': 'Projekt Rövid Leírása',
-                'f-submit': 'Üzenet Küldése',
-                'f-placeholder-text': 'Írja le projektjét vagy növekedési céljait...',
-                'footer-head-hq': 'Székhely & Elérhetőség',
-                'footer-head-host': 'Tárhelyszolgáltató / Hosting',
-                'footer-reg': 'Cégjegyzékszám:',
-                'footer-tax': 'Adószám:',
-                'footer-court': 'Cégbíróság:',
-                'footer-court-name': 'Fővárosi Törvényszék Cégbírósága',
-                'footer-activity': 'Főtevékenység:',
-                'footer-activity-val': '6210 - Számítógépes programozás',
-                'footer-company-legal': 'Noviram Digital Korlátolt Felelősségű Társaság',
-                'footer-address': '1068 Budapest, Városligeti fasor 24., Magyarország',
-                'footer-rights': '© 2026 Noviram Digital Kft. Minden jog fenntartva.',
-                'privacy-link': 'Adatvédelmi Tájékoztató',
-                'privacy-modal-title': 'Adatkezelési Tájékoztató',
-                'cookie-text': 'Weboldalunk sütiket (cookie) használ a felhasználói élmény javítása és elemzések készítése céljából a GDPR előírásainak megfelelően.',
-                'cookie-learn-more': 'Részletek az Adatkezelési Tájékoztatóban',
-                'cookie-decline': 'Elutasítom',
-                'cookie-accept': 'Elfogadom',
-                'opt-1': 'Digitális Marketing & Növekedés',
-                'opt-2': 'Weboldal Készítés & Design',
-                'opt-3': 'Egyedi App Fejlesztés',
-                'opt-4': 'Üzemeltetés & Technikai Support',
-                'opt-5': 'Stratégiai Partnerség / Tanácsadás'
-            }
-        };
+  let currentLang = 'en';
 
-        const privacyTexts = {
-            en: `
-                <p><strong>1. Data Controller Details</strong><br>
-                Noviram Digital Kft. (Headquarters: 1068 Budapest, Városligeti fasor 24., Hungary; Tax ID: 33101787-1-42; Company Reg #: 01-09-459181; Registering Court: Metropolitan Court of Registration; Email: info@noviram.com).</p>
-                <p><strong>2. Scope of Collected Data</strong><br>
-                When submitting contact inquiries through our website, we collect your Name, Email address, selected service interest, and any project brief details provided voluntarily.</p>
-                <p><strong>3. Purpose and Legal Basis of Processing</strong><br>
-                Processing is necessary to take steps at your request prior to entering into a contract or responding to business inquiries (Article 6(1)(b) GDPR).</p>
-                <p><strong>4. Data Retention</strong><br>
-                Inquiry data is retained strictly for as long as necessary to process your business inquiry, or as required under applicable statutory compliance obligations.</p>
-                <p><strong>5. Hosting & Infrastructure</strong><br>
-                This website is hosted on GitHub Pages, provided by GitHub, Inc. (88 Colin P Kelly Jr St, San Francisco, CA 94107, USA).</p>
-                <p><strong>6. Your Rights & Complaints</strong><br>
-                Under the GDPR, you have the right to request access to, rectification, or erasure of your personal data by contacting us at info@noviram.com. You also have the right to lodge a complaint with the National Authority for Data Protection and Freedom of Information (NAIH - <a href="https://naih.hu" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:underline">naih.hu</a>).</p>
-            `,
-            hu: `
-                <p><strong>1. Az Adatkezelő Adatai</strong><br>
-                Noviram Digital Kft. (Székhely: 1068 Budapest, Városligeti fasor 24., Magyarország; Adószám: 33101787-1-42; Cégjegyzékszám: 01-09-459181; Cégbíróság: Fővárosi Törvényszék Cégbírósága; Email: info@noviram.com).</p>
-                <p><strong>2. Kezelt Adatok Körük</strong><br>
-                A weboldalon található kapcsolati űrlap kitöltésekor az Ön által megadott nevet, email címet, választott szolgáltatási kört és az üzenet tartalmát kezeljük.</p>
-                <p><strong>3. Az Adatkezelés Célja és Jogalapja</strong><br>
-                Az adatkezelés célja az Ön megkeresésének megválaszolása és üzleti ajánlatkérés feldolgozása (GDPR 6. cikk (1) bekezdés b) pontja).</p>
-                <p><strong>4. Adatmegőrzési Idő</strong><br>
-                A megadott adatokat a megkeresés megválaszolásához és a kapcsolat tartásához szükséges ideig, illetve a jogszabályban előírt kötelezettségekig tároljuk.</p>
-                <p><strong>5. Tárhelyszolgáltató</strong><br>
-                A weboldal infrastruktúráját a GitHub Pages (GitHub, Inc.) biztosítja (88 Colin P Kelly Jr St, San Francisco, CA 94107, USA).</p>
-                <p><strong>6. Az Ön Jogai & Jogorvoslat</strong><br>
-                Ön bármikor kérheti személyes adatainak hozzáférését, helyesbítését vagy törlését az info@noviram.com címen. Jogainak megsértése esetén panasszal fordulhat a Nemzeti Adatvédelmi és Információszabadság Hatóasághoz (NAIH - <a href="https://naih.hu" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:underline">naih.hu</a>).</p>
-            `
-        };
+  function applyLang(lang){
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang][key] !== undefined) el.textContent = translations[lang][key];
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(function(el){
+      const key = el.getAttribute('data-i18n-aria');
+      if (translations[lang][key] !== undefined) el.setAttribute('aria-label', translations[lang][key]);
+    });
+    document.title = translations[lang]['doc.title'];
+    document.documentElement.lang = lang;
+    document.querySelectorAll('.lang-btn').forEach(function(btn){
+      btn.setAttribute('aria-pressed', String(btn.getAttribute('data-lang') === lang));
+    });
+    currentLang = lang;
+  }
 
-        function populateServiceDropdown(lang) {
-            const select = document.getElementById('service-select');
-            if (!select) return;
-            select.innerHTML = `
-                <option value="marketing">${translations[lang]['opt-1']}</option>
-                <option value="website">${translations[lang]['opt-2']}</option>
-                <option value="app">${translations[lang]['opt-3']}</option>
-                <option value="managed">${translations[lang]['opt-4']}</option>
-                <option value="partnership">${translations[lang]['opt-5']}</option>
-            `;
+  document.querySelectorAll('.lang-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){ applyLang(btn.getAttribute('data-lang')); });
+  });
+
+  // ---------- Click-to-call (number assembled only on click, kept out of static HTML) ----------
+  function goToPhone(){
+    var parts = ['+36', '30', '173', '4105'];
+    window.location.href = 'tel:' + parts.join('');
+  }
+  var callUsBtn = document.getElementById('callUsBtn');
+  var footerCallBtn = document.getElementById('footerCallBtn');
+  if (callUsBtn) callUsBtn.addEventListener('click', goToPhone);
+  if (footerCallBtn) footerCallBtn.addEventListener('click', goToPhone);
+
+  // ---------- Mobile nav toggle ----------
+  const navToggle = document.getElementById('navToggle');
+  const mobilePanel = document.getElementById('mobilePanel');
+  navToggle.addEventListener('click', function(){
+    const isOpen = mobilePanel.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+  mobilePanel.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      mobilePanel.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // ---------- Copy email ----------
+  const copyBtn = document.getElementById('copyEmailBtn');
+  const copyFeedback = document.getElementById('copyFeedback');
+  copyBtn.addEventListener('click', async function(){
+    const email = 'info@noviram.com';
+    try {
+      await navigator.clipboard.writeText(email);
+      copyFeedback.textContent = translations[currentLang]['contact.copied'].replace('{email}', email);
+    } catch (err) {
+      copyFeedback.textContent = email;
+    }
+    setTimeout(function(){ copyFeedback.textContent = ''; }, 3000);
+  });
+
+  // ---------- Scroll reveal ----------
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
         }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
 
-        function setLanguage(lang) {
-            currentLang = lang;
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if (translations[lang] && translations[lang][key]) {
-                    element.innerText = translations[lang][key];
-                }
-            });
+  // ---------- Scroll progress bar ----------
+  const progressBar = document.getElementById('scrollProgress');
+  function updateProgress(){
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop;
+    const scrollHeight = (doc.scrollHeight || document.body.scrollHeight) - doc.clientHeight;
+    const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    progressBar.style.width = pct + '%';
+  }
+  document.addEventListener('scroll', function(){ window.requestAnimationFrame(updateProgress); }, { passive: true });
+  updateProgress();
 
-            const textarea = document.getElementById('f-textarea');
-            if (textarea && translations[lang]['f-placeholder-text']) {
-                textarea.placeholder = translations[lang]['f-placeholder-text'];
-            }
+  applyLang('en');
+</script>
 
-            populateServiceDropdown(lang);
-
-            const btnEn = document.getElementById('lang-en');
-            const btnHu = document.getElementById('lang-hu');
-            const btnEnMob = document.getElementById('lang-en-mob');
-            const btnHuMob = document.getElementById('lang-hu-mob');
-
-            const activeClass = "px-3 py-1 rounded-full transition-all bg-indigo-600 text-white shadow-sm";
-            const inactiveClass = "px-3 py-1 rounded-full transition-all text-slate-400 hover:text-white";
-
-            const activeMobClass = "px-2.5 py-1 rounded-full transition-all bg-indigo-600 text-white shadow-sm";
-            const inactiveMobClass = "px-2.5 py-1 rounded-full transition-all text-slate-400 hover:text-white";
-
-            if (lang === 'en') {
-                if(btnEn) btnEn.className = activeClass;
-                if(btnHu) btnHu.className = inactiveClass;
-                if(btnEnMob) btnEnMob.className = activeMobClass;
-                if(btnHuMob) btnHuMob.className = inactiveMobClass;
-            } else {
-                if(btnHu) btnHu.className = activeClass;
-                if(btnEn) btnEn.className = inactiveClass;
-                if(btnHuMob) btnHuMob.className = activeMobClass;
-                if(btnEnMob) btnEnMob.className = inactiveMobClass;
-            }
-
-            document.documentElement.lang = lang;
-        }
-
-        function checkCookieConsent() {
-            const consent = localStorage.getItem('noviram_cookie_consent');
-            if (consent) {
-                document.getElementById('cookie-banner').classList.add('hidden');
-            }
-        }
-
-        function acceptCookies() {
-            localStorage.setItem('noviram_cookie_consent', 'accepted');
-            document.getElementById('cookie-banner').classList.add('hidden');
-        }
-
-        function declineCookies() {
-            localStorage.setItem('noviram_cookie_consent', 'declined');
-            document.getElementById('cookie-banner').classList.add('hidden');
-        }
-
-        function openPrivacyModal() {
-            const modalBody = document.getElementById('privacy-modal-body');
-            modalBody.innerHTML = privacyTexts[currentLang];
-            document.getElementById('privacy-modal').classList.remove('hidden');
-        }
-
-        function closePrivacyModal() {
-            document.getElementById('privacy-modal').classList.add('hidden');
-            if (window.location.hash === '#privacy') {
-                history.pushState("", document.title, window.location.pathname + window.location.search);
-            }
-        }
-
-        function checkHashRoute() {
-            if (window.location.hash === '#privacy') {
-                openPrivacyModal();
-            }
-        }
-
-        document.getElementById('menu-btn').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
-
-        window.addEventListener('hashchange', checkHashRoute);
-
-        document.addEventListener("DOMContentLoaded", function() {
-            lucide.createIcons();
-            populateServiceDropdown('en');
-            checkCookieConsent();
-            checkHashRoute();
-        });
-    </script>
 </body>
 </html>
