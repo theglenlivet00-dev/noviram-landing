@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Általános Szerződési Feltételek — Noviram Digital Kft.</title>
+<meta name="description" content="Noviram Digital Kft. Általános Szerződési Feltételei.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #0A0E1A;
+    --paper: #F4F6F9;
+    --paper-2: #E9ECF2;
+    --signal: #FF4D2E;
+    --signal-2: #FF8A63;
+    --slate: #363c4a;
+    --slate-soft: #6b7280;
+    --mist: #9aa3b8;
+    --wire-light: #DCE1EA;
+    --wire-dark: #212a42;
+    --white: #ffffff;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  *{ box-sizing: border-box; }
+  body{
+    margin:0;
+    font-family: var(--font-body);
+    color: var(--slate);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+  }
+  a{ color: var(--signal); text-decoration: none; }
+  a:hover{ text-decoration: underline; }
+  h1,h2{ font-family: var(--font-display); color: var(--ink); margin:0; }
+  .wrap{ max-width: 760px; margin: 0 auto; padding: 0 28px; }
+
+  :focus-visible{ outline: 2px solid var(--signal); outline-offset: 3px; }
+
+  header{
+    border-bottom: 1px solid var(--wire-light);
+    background: rgba(244,246,249,0.9);
+    position: sticky; top:0; z-index: 10;
+  }
+  .doc-header-inner{ display:flex; align-items:center; justify-content:space-between; height:72px; }
+  .logo{ display:flex; align-items:center; gap:9px; font-family: var(--font-display); font-weight:700; font-size:17px; color: var(--ink); }
+  .back-link{ font-size:14px; font-weight:500; color: var(--slate-soft); }
+  .back-link:hover{ color: var(--signal); }
+
+  .doc-title{ padding: 56px 0 28px; }
+  .eyebrow{
+    font-family: var(--font-mono); font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+    color: var(--signal); display:flex; align-items:center; gap:8px; margin-bottom:14px;
+  }
+  .eyebrow::before{ content:""; width:7px; height:7px; background: var(--signal); border-radius:2px; }
+  .doc-title h1{ font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight:700; line-height:1.1; }
+  .doc-meta{ margin-top:14px; font-size:14px; color: var(--slate-soft); }
+
+  .doc-toc{ padding: 20px 0 40px; border-bottom:1px solid var(--wire-light); margin-bottom: 48px; }
+  .doc-toc h2{ font-family: var(--font-mono); font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color: var(--slate-soft); margin-bottom:16px; font-weight:500; }
+  .doc-toc ol{ columns: 2; column-gap: 32px; margin:0; padding-left: 20px; font-size:14px; line-height:2; }
+  .doc-toc a{ color: var(--slate); }
+  .doc-toc a:hover{ color: var(--signal); }
+
+  .doc-body{ padding-bottom: 80px; }
+  .doc-body section{ margin-bottom: 44px; scroll-margin-top: 90px; }
+  .doc-body h2{
+    font-size: 20px; font-weight:600; display:flex; align-items:baseline; gap:12px;
+    padding-bottom: 12px; margin-bottom: 18px; border-bottom: 1px solid var(--wire-light);
+  }
+  .sec-num{ font-family: var(--font-mono); font-size:13px; color: var(--signal); flex-shrink:0; }
+  .doc-body p{ font-size:15px; line-height:1.75; color: var(--slate); margin: 0 0 14px; }
+  .doc-body ul{ margin: 0 0 14px; padding-left: 22px; font-size:15px; line-height:1.75; color: var(--slate); }
+  .doc-body li{ margin-bottom: 8px; }
+  .doc-body strong{ color: var(--ink); }
+
+  .impresszum{ margin: 20px 0; border-top:1px solid var(--wire-light); }
+  .impresszum div{ display:grid; grid-template-columns: 160px 1fr; gap:16px; padding: 11px 0; border-bottom:1px solid var(--wire-light); font-size:14px; }
+  .impresszum dt{ font-family: var(--font-mono); font-size:12.5px; color: var(--slate-soft); }
+  .impresszum dd{ margin:0; color: var(--ink); }
+  @media (max-width:600px){ .impresszum div{ grid-template-columns: 1fr; gap:2px; } }
+
+  .doc-note{
+    background: var(--paper-2); border-radius:10px; padding:16px 18px;
+    font-size:13.5px; color: var(--slate-soft); margin: 24px 0;
+  }
+
+  footer{ border-top:1px solid var(--wire-light); padding: 28px 0; }
+  footer .wrap{ font-size:13px; color: var(--slate-soft); display:flex; flex-wrap:wrap; gap:8px 16px; justify-content:space-between; }
+  footer a{ color: var(--slate-soft); }
+  footer a:hover{ color: var(--signal); }
+
+  @media (max-width:600px){ .doc-toc ol{ columns: 1; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap doc-header-inner">
+    <a class="logo" href="index.html">
+      <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <circle cx="16" cy="17" r="10.5" stroke="currentColor" stroke-width="1.6"/>
+        <line x1="16" y1="17" x2="16" y2="6.3" stroke="currentColor" stroke-width="1.6"/>
+        <circle cx="16" cy="6.3" r="3" fill="var(--signal)"/>
+        <circle cx="16" cy="17" r="1.6" fill="currentColor"/>
+      </svg>
+      NOVIRAM
+    </a>
+    <a class="back-link" href="index.html">← Vissza a főoldalra</a>
+  </div>
+</header>
+
+<div class="wrap doc-title">
+  <p class="eyebrow">Jogi dokumentum</p>
+  <h1>Általános Szerződési Feltételek</h1>
+  <p class="doc-meta">Noviram Digital Kft. · Hatályos: 2026. augusztus 30. napjától · Verzió: 1.0</p>
+</div>
+
+<nav class="doc-toc wrap" aria-label="Tartalomjegyzék">
+  <h2>Tartalom</h2>
+  <ol>
+    <li><a href="#szolgaltato">A Szolgáltató adatai</a></li>
+    <li><a href="#hatalya">Az ÁSZF hatálya, fogalmak</a></li>
+    <li><a href="#szolgaltatasok">A szolgáltatások</a></li>
+    <li><a href="#szerzodeskotes">A szerződés létrejötte</a></li>
+    <li><a href="#dijak">Díjak és fizetési feltételek</a></li>
+    <li><a href="#teljesites">Teljesítés és közreműködés</a></li>
+    <li><a href="#havidijas">Havidíjas szolgáltatások</a></li>
+    <li><a href="#szellemi">Szellemi tulajdon</a></li>
+    <li><a href="#ai">AI-alapú szolgáltatásokra vonatkozó különös feltételek</a></li>
+    <li><a href="#felelosseg">Felelősség</a></li>
+    <li><a href="#titok">Titoktartás</a></li>
+    <li><a href="#adatvedelem">Adatvédelem</a></li>
+    <li><a href="#fogyaszto">Fogyasztókra vonatkozó rendelkezések</a></li>
+    <li><a href="#panasz">Panaszkezelés, jogérvényesítés</a></li>
+    <li><a href="#vismaior">Vis maior</a></li>
+    <li><a href="#zaro">Záró rendelkezések</a></li>
+  </ol>
+</nav>
+
+<main class="doc-body wrap">
+
+<section id="szolgaltato">
+  <h2><span class="sec-num">1</span> A Szolgáltató adatai (impresszum)</h2>
+  <p>A jelen Általános Szerződési Feltételek (a továbbiakban: <strong>ÁSZF</strong>) az elektronikus kereskedelmi szolgáltatások, valamint az információs társadalommal összefüggő szolgáltatások egyes kérdéseiről szóló 2001. évi CVIII. törvény (Ekertv.) 4. §-a szerinti adatközlést is tartalmazzák.</p>
+  <dl class="impresszum">
+    <div><dt>Cégnév</dt><dd><strong>Noviram Digital Korlátolt Felelősségű Társaság</strong></dd></div>
+    <div><dt>Székhely</dt><dd>1068 Budapest, Városligeti fasor 24.</dd></div>
+    <div><dt>Cégjegyzékszám</dt><dd>01-09-459181, nyilvántartja a Fővárosi Törvényszék Cégbírósága</dd></div>
+    <div><dt>Adószám</dt><dd>33101787-1-42</dd></div>
+    <div><dt>Képviseli</dt><dd>Czine Christopher József ügyvezető</dd></div>
+    <div><dt>E-mail</dt><dd><a href="mailto:info@noviram.com">info@noviram.com</a></dd></div>
+    <div><dt>Honlap</dt><dd>noviram.com</dd></div>
+    <div><dt>Tárhelyszolgáltató</dt><dd>GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA · <a href="mailto:privacy@github.com">privacy@github.com</a></dd></div>
+  </dl>
+  <p>(a továbbiakban: <strong>Szolgáltató</strong>)</p>
+</section>
+
+<section id="hatalya">
+  <h2><span class="sec-num">2</span> Az ÁSZF hatálya, fogalmak</h2>
+  <p><strong>2.1.</strong> A jelen ÁSZF a Szolgáltató által nyújtott, a 3. pontban meghatározott szolgáltatásokra vonatkozó szerződések általános feltételeit tartalmazza. Az ÁSZF rendelkezései valamennyi, a Szolgáltató és a megrendelő (a továbbiakban: <strong>Megrendelő</strong>; a Szolgáltató és a Megrendelő együtt: <strong>Felek</strong>) között létrejövő szerződés részét képezik, kivéve, ha a Felek egyedi szerződésben (ajánlatban, megrendelésben) kifejezetten eltérően állapodnak meg. Eltérés esetén az egyedi szerződés rendelkezései irányadók.</p>
+  <p><strong>2.2.</strong> A Szolgáltató szolgáltatásait elsősorban vállalkozások (a Polgári Törvénykönyvről szóló 2013. évi V. törvény — <strong>Ptk.</strong> — 8:1. § (1) bekezdés 4. pontja szerinti vállalkozások) részére nyújtja (<strong>B2B</strong> jogviszony). Amennyiben a Megrendelő a Ptk. 8:1. § (1) bekezdés 3. pontja szerinti fogyasztó, rá a 13. pontban foglalt különös rendelkezések is alkalmazandók.</p>
+  <p><strong>2.3.</strong> A jelen ÁSZF-re a magyar jog, különösen a Ptk., az Ekertv., a szerzői jogról szóló 1999. évi LXXVI. törvény (Szjt.), fogyasztói szerződés esetén továbbá a fogyasztó és a vállalkozás közötti szerződések részletes szabályairól szóló 45/2014. (II. 26.) Korm. rendelet, valamint az Európai Unió közvetlenül alkalmazandó jogi aktusai — így különösen a (EU) 2016/679 rendelet (GDPR) és a mesterséges intelligenciáról szóló (EU) 2024/1689 rendelet (AI Act) vonatkozó rendelkezései — irányadók.</p>
+  <p><strong>2.4.</strong> A szerződés nyelve a magyar (a Felek megállapodása alapján angol). Az elektronikus úton kötött szerződés írásba foglalt szerződésnek minősül, ha annak tartalmát a Felek visszakereshető módon (pl. e-mailben) rögzítik; a Szolgáltató a szerződéseket iktatja és a jogszabályban előírt ideig megőrzi.</p>
+</section>
+
+<section id="szolgaltatasok">
+  <h2><span class="sec-num">3</span> A szolgáltatások</h2>
+  <p><strong>3.1.</strong> A Szolgáltató az alábbi szolgáltatásokat nyújtja:</p>
+  <ul>
+    <li><strong>AI-automatizációs rendszerek</strong> tervezése, kiépítése és havidíjas üzemeltetése (pl. ügyfélszolgálati chatbotok, elhagyottkosár-visszahozó rendszerek, lead-utánkövetés, e-mail- és CRM-automatizáció, hangalapú ügynökök);</li>
+    <li><strong>weboldalak, landing oldalak és webalkalmazások</strong> tervezése és fejlesztése;</li>
+    <li><strong>AI-alapú tartalom- és videógyártás</strong>, egyszeri projektként vagy havi előfizetéses csomagban;</li>
+    <li>a fentiekhez kapcsolódó <strong>tanácsadás, audit, karbantartás és support</strong>.</li>
+  </ul>
+  <p><strong>3.2.</strong> Az egyes szolgáltatások pontos tartalmát, terjedelmét, a teljesítési határidőket és a díjazást a Felek egyedi ajánlatban, megrendelésben vagy szerződésben rögzítik. A honlapon feltüntetett árak és csomagleírások tájékoztató jellegűek, ajánlattételi felhívásnak minősülnek, és nem kötelezik a Szolgáltatót szerződéskötésre.</p>
+</section>
+
+<section id="szerzodeskotes">
+  <h2><span class="sec-num">4</span> A szerződés létrejötte</h2>
+  <p><strong>4.1.</strong> A Megrendelő a honlapon, e-mailben vagy egyéb csatornán ajánlatot kérhet. A Szolgáltató az igényfelmérést (audit) követően írásbeli ajánlatot küld, amely tartalmazza a szolgáltatás leírását, a díjat, a fizetési ütemezést és a teljesítés várható határidejét. Az ajánlat — eltérő rendelkezés hiányában — a keltétől számított <strong>30 napig</strong> érvényes.</p>
+  <p><strong>4.2.</strong> A szerződés az ajánlat Megrendelő általi, változtatás nélküli, írásbeli (e-mailes) elfogadásával, vagy a Felek által aláírt egyedi szerződéssel jön létre. Az ajánlat módosításokkal történő elfogadása új ajánlatnak minősül.</p>
+  <p><strong>4.3.</strong> A Szolgáltató a honlapon keresztül érkező megkeresés beérkezését elektronikus úton, késedelem nélkül, de legkésőbb 48 órán belül visszaigazolja. A kapcsolatfelvétel önmagában nem hoz létre szerződést.</p>
+  <p><strong>4.4.</strong> Adatbeviteli hibák javítása: a Megrendelő a megrendelés elküldése előtt bármikor javíthatja a megadott adatokat; az elküldést követően észlelt hibát a <a href="mailto:info@noviram.com">info@noviram.com</a> címen jelezheti, amelyet a Szolgáltató haladéktalanul javít.</p>
+</section>
+
+<section id="dijak">
+  <h2><span class="sec-num">5</span> Díjak és fizetési feltételek</h2>
+  <p><strong>5.1.</strong> A díjak típusai: <strong>egyszeri díj</strong> (projekt- vagy beállítási/setup díj) és <strong>havidíj</strong> (üzemeltetés, karbantartás, előfizetéses csomagok). A díjak — eltérő megállapodás hiányában — az általános forgalmi adót nem tartalmazzák.</p>
+  <p><strong>5.2.</strong> Eltérő megállapodás hiányában az egyszeri díjak fizetési ütemezése: <strong>50% előleg</strong> a szerződéskötéskor, <strong>50%</strong> az átadás-átvételkor. A havidíj számlázása tárgyhónapra előre, havonta történik.</p>
+  <p><strong>5.3.</strong> A Szolgáltató a számlát elektronikus úton állítja ki. A fizetési határidő — eltérő megállapodás hiányában — a számla kézhezvételétől számított <strong>8 nap</strong>, banki átutalással.</p>
+  <p><strong>5.4.</strong> Késedelmes fizetés esetén a Szolgáltató a Ptk. 6:155. §-a szerinti késedelmi kamatra, vállalkozások közötti szerződés esetén ezen felül a behajtási költségátalányról szóló 2016. évi IX. törvény szerinti <strong>40 eurónak megfelelő behajtási költségátalányra</strong> jogosult. 15 napot meghaladó fizetési késedelem esetén a Szolgáltató jogosult a szolgáltatás (ideértve a futó AI-rendszerek működését is) felfüggesztésére a hátralék rendezéséig, előzetes írásbeli figyelmeztetést követően.</p>
+  <p><strong>5.5.</strong> A havidíjat a Szolgáltató évente egy alkalommal, legfeljebb a KSH által közzétett előző évi fogyasztóiár-index mértékével jogosult módosítani, a módosítás hatálybalépése előtt legalább 30 nappal küldött írásbeli értesítéssel. Ha a Megrendelő a módosítást nem fogadja el, a szerződést a módosítás hatálybalépésének napjára felmondhatja.</p>
+</section>
+
+<section id="teljesites">
+  <h2><span class="sec-num">6</span> Teljesítés és a Megrendelő közreműködése</h2>
+  <p><strong>6.1.</strong> A Szolgáltató a szolgáltatást a szakmai gondosság követelményei szerint, az egyedi szerződésben rögzített ütemezésben teljesíti. A határidők a Megrendelő közreműködési kötelezettségének teljesítésétől függenek.</p>
+  <p><strong>6.2.</strong> A Megrendelő köteles a teljesítéshez szükséges anyagokat, adatokat, hozzáféréseket (pl. szövegek, arculati elemek, termékadatok, rendszer-hozzáférések) a Szolgáltató által kért határidőben rendelkezésre bocsátani. A Megrendelő szavatolja, hogy az általa átadott anyagok tekintetében rendelkezik a szükséges jogosultságokkal, és azok harmadik személy jogát nem sértik; az ennek megsértéséből eredő igényekért a Megrendelő helytállni köteles.</p>
+  <p><strong>6.3.</strong> A Megrendelő közreműködésének elmaradása vagy késedelme esetén a teljesítési határidő a késedelem idejével meghosszabbodik; 30 napot meghaladó megrendelői késedelem esetén a Szolgáltató a szerződéstől elállhat vagy azt felmondhatja, és az addig elvégzett munka arányos díjára jogosult.</p>
+  <p><strong>6.4.</strong> <strong>Átadás-átvétel:</strong> a Szolgáltató a kész munkát (weboldal, rendszer, videó stb.) bemutatja, a Megrendelő <strong>5 munkanapon belül</strong> jogosult észrevételeket tenni. Az egyedi szerződésben rögzített számú (eltérő megállapodás hiányában <strong>2</strong>) módosítási kör a díj részét képezi; a további vagy a specifikáción túli módosítások külön díjazás ellenében történnek. Ha a Megrendelő a határidőn belül nem tesz észrevételt, vagy a teljesítést használatba veszi (pl. az oldalt élesíti), a teljesítés elfogadottnak minősül.</p>
+  <p><strong>6.5.</strong> A Szolgáltató jogosult a teljesítéshez alvállalkozót, közreműködőt igénybe venni, akinek magatartásáért úgy felel, mintha maga járt volna el.</p>
+</section>
+
+<section id="havidijas">
+  <h2><span class="sec-num">7</span> Havidíjas szolgáltatások, a szerződés megszűnése</h2>
+  <p><strong>7.1.</strong> A havidíjas (üzemeltetési, karbantartási, előfizetéses) szerződés — eltérő megállapodás hiányában — <strong>határozatlan időre</strong> jön létre, és azt bármelyik Fél <strong>30 napos felmondási idővel</strong>, a hónap végére, írásban, indokolás nélkül felmondhatja (rendes felmondás).</p>
+  <p><strong>7.2.</strong> Bármelyik Fél jogosult a szerződést azonnali hatállyal felmondani (rendkívüli felmondás), ha a másik Fél a szerződést súlyosan megszegi, és a szerződésszegést írásbeli felszólítás ellenére, a felszólítás kézhezvételétől számított 15 napon belül sem orvosolja. Súlyos szerződésszegésnek minősül különösen a 30 napot meghaladó fizetési késedelem, valamint a titoktartási kötelezettség megsértése.</p>
+  <p><strong>7.3.</strong> A szerződés megszűnése esetén a Szolgáltató a megszűnésig nyújtott szolgáltatások díjára jogosult. A Szolgáltató a megszűnést követően — a Megrendelő kérésére, ésszerű együttműködési díj ellenében — közreműködik a rendszerek, hozzáférések és adatok átadásában (exit-támogatás), az adatok tekintetében az Adatkezelési tájékoztatóban és az adatfeldolgozási megállapodásban foglaltak szerint.</p>
+  <p><strong>7.4.</strong> A havidíjas AI-rendszerek működéséhez harmadik fél szolgáltatásai (pl. AI-modellek, tárhely, automatizációs platformok) szükségesek. E harmadik felek díjait — eltérő megállapodás hiányában — a havidíj nem tartalmazza, illetve azok változása a havidíj arányos módosítását vonhatja maga után, amelyről a Szolgáltató előzetesen tájékoztatást ad.</p>
+</section>
+
+<section id="szellemi">
+  <h2><span class="sec-num">8</span> Szellemi tulajdon</h2>
+  <p><strong>8.1.</strong> A Szolgáltató által létrehozott, szerzői jogi védelem alatt álló művek (weboldal-dizájn, forráskód, videó, grafika stb.) tekintetében a Megrendelő — a teljes díj megfizetésével — <strong>kizárólagos, területi korlátozás nélküli, határozatlan időre szóló felhasználási jogot</strong> szerez a mű rendeltetésszerű üzleti célú felhasználására, ideértve az átdolgozás jogát is, kivéve, ha az egyedi szerződés eltérően rendelkezik. A felhasználási jog a teljes díj megfizetéséig nem száll át.</p>
+  <p><strong>8.2.</strong> Nem terjed ki a felhasználási jog a Szolgáltató előre elkészített, több projektben felhasznált elemeire (keretrendszerek, sablonok, belső eszközök, know-how, automatizációs sémák); ezekre a Megrendelő a szolgáltatás rendeltetésszerű használatához szükséges, nem kizárólagos felhasználási jogot kap.</p>
+  <p><strong>8.3.</strong> A harmadik féltől származó komponensekre (nyílt forráskódú szoftverek, betűtípusok, stockelemek, AI-platformok) az adott harmadik fél licencfeltételei irányadók, amelyekről a Szolgáltató kérésre tájékoztatást ad.</p>
+  <p><strong>8.4.</strong> A Szolgáltató jogosult a Megrendelő nevének és az elkészült munkának referenciaként történő feltüntetésére (honlapon, portfólióban), kivéve, ha a Megrendelő ezt írásban megtiltja.</p>
+</section>
+
+<section id="ai">
+  <h2><span class="sec-num">9</span> AI-alapú szolgáltatásokra vonatkozó különös feltételek</h2>
+  <p><strong>9.1.</strong> A Felek tudomásul veszik, hogy a mesterséges intelligencián alapuló rendszerek (chatbotok, generatív tartalom, automatizációk) <strong>valószínűségi alapon működnek</strong>: kimeneteik nem determinisztikusak, és esetenként pontatlan, hiányos vagy nem kívánt eredményt adhatnak. A Szolgáltató a rendszereket a szakma szabályai szerint, tesztelve és felügyelve állítja be, de az AI-kimenetek hibátlanságáért nem vállal felelősséget; a Megrendelő felelőssége a kimenetek üzleti felhasználás előtti ellenőrzése ott, ahol azt az egyedi szerződés a Megrendelő feladataként rögzíti.</p>
+  <p><strong>9.2.</strong> A Szolgáltató az (EU) 2024/1689 rendelet (AI Act) átláthatósági követelményeivel összhangban a chatbotokat úgy állítja be, hogy a végfelhasználók tájékoztatást kapjanak arról, hogy AI-rendszerrel kommunikálnak, a mesterségesen generált tartalmak pedig — ahol a rendelet előírja — ekként kerüljenek megjelölésre. A Megrendelő vállalja, hogy e beállításokat nem távolítja el.</p>
+  <p><strong>9.3.</strong> A Megrendelő az AI-rendszereket kizárólag jogszerű célra használhatja, és nem használhatja azokat az AI Act által tiltott gyakorlatokra. A Megrendelő általi jogellenes felhasználásból eredő következményekért a Megrendelő felel.</p>
+  <p><strong>9.4.</strong> Amennyiben az AI-rendszer a Megrendelő ügyfeleinek személyes adatait kezeli, a Szolgáltató <strong>adatfeldolgozóként</strong> jár el; ilyen esetben a Felek a GDPR 28. cikkének megfelelő adatfeldolgozási megállapodást kötnek, amely a szerződés elválaszthatatlan mellékletét képezi.</p>
+</section>
+
+<section id="felelosseg">
+  <h2><span class="sec-num">10</span> Felelősség</h2>
+  <p><strong>10.1.</strong> A Szolgáltató a szerződésszegéssel okozott károkért a Ptk. 6:142. §-a szerint felel. A Szolgáltató kártérítési felelőssége — a szándékosan okozott, továbbá az emberi életet, testi épséget vagy egészséget megkárosító szerződésszegésért való felelősség kivételével — <strong>a szerződésszegéssel érintett szolgáltatásért a megelőző 12 hónapban ténylegesen megfizetett díj összegére korlátozott</strong>, és nem terjed ki az elmaradt haszonra, üzleti hírnévben bekövetkezett hátrányra és a következményi károkra. Fogyasztói szerződés esetén e korlátozás nem alkalmazandó annyiban, amennyiben az jogszabályba ütközne.</p>
+  <p><strong>10.2.</strong> A Szolgáltató nem felel az olyan hibákért és károkért, amelyek harmadik fél szolgáltatásának (tárhely, AI-platform, fizetési szolgáltató, közösségimédia-platform stb.) kimaradásából, módosításából vagy megszüntetéséből, a Megrendelő által átadott anyagok hibájából, a Megrendelő vagy harmadik személy általi módosításból, vagy a Megrendelő közreműködésének elmulasztásából erednek.</p>
+  <p><strong>10.3.</strong> A honlapon elérhető tartalmak (blogbejegyzések, esettanulmányok, kalkulációk) tájékoztató jellegűek, nem minősülnek ajánlatnak vagy szakmai tanácsadásnak; a rájuk alapított üzleti döntésekért a Szolgáltató felelősséget nem vállal.</p>
+</section>
+
+<section id="titok">
+  <h2><span class="sec-num">11</span> Titoktartás</h2>
+  <p><strong>11.1.</strong> A Felek a szerződés teljesítése során tudomásukra jutott üzleti titkot (az üzleti titok védelméről szóló 2018. évi LIV. törvény szerint) és bizalmas információt kötelesek megőrizni, azt harmadik személlyel — a teljesítéshez szükséges közreműködők kivételével — csak a másik Fél előzetes írásbeli hozzájárulásával közölhetik. A titoktartási kötelezettség a szerződés megszűnését követően is, időbeli korlátozás nélkül fennmarad.</p>
+</section>
+
+<section id="adatvedelem">
+  <h2><span class="sec-num">12</span> Adatvédelem</h2>
+  <p><strong>12.1.</strong> A Szolgáltató a személyes adatokat a GDPR és az információs önrendelkezési jogról és az információszabadságról szóló 2011. évi CXII. törvény (Infotv.) rendelkezéseinek megfelelően kezeli. A részletes tájékoztatást az <a href="adatkezeles.html">Adatkezelési tájékoztató</a> tartalmazza, amely a jelen ÁSZF elválaszthatatlan részét képezi.</p>
+</section>
+
+<section id="fogyaszto">
+  <h2><span class="sec-num">13</span> Fogyasztókra vonatkozó különös rendelkezések</h2>
+  <p><strong>13.1.</strong> A jelen pont kizárólag akkor alkalmazandó, ha a Megrendelő fogyasztó (a szakmája, önálló foglalkozása vagy üzleti tevékenysége körén kívül eljáró természetes személy).</p>
+  <p><strong>13.2.</strong> <strong>Elállási jog:</strong> a fogyasztót a 45/2014. (II. 26.) Korm. rendelet 20. §-a alapján a szerződés megkötésének napjától számított <strong>14 napon belül</strong> indokolás nélküli elállási, illetve felmondási jog illeti meg. A fogyasztó e jogát a Szolgáltatónak küldött egyértelmű nyilatkozattal vagy a Korm. rendelet 2. melléklete szerinti nyilatkozatminta útján gyakorolhatja.</p>
+  <p><strong>13.3.</strong> Ha a fogyasztó kifejezetten kéri, hogy a Szolgáltató a teljesítést az elállási határidő lejárta előtt kezdje meg, felmondás esetén köteles a felmondás közléséig arányosan teljesített szolgáltatás díját megtéríteni. A fogyasztó elveszti elállási/felmondási jogát a szolgáltatás egészének teljesítését követően, ha a Szolgáltató a teljesítést a fogyasztó kifejezett, előzetes beleegyezésével kezdte meg, és a fogyasztó tudomásul vette, hogy a teljesítés egészét követően e jogát elveszíti.</p>
+  <p><strong>13.4.</strong> <strong>Kellékszavatosság, termékszavatosság:</strong> a fogyasztót a Ptk. és — digitális tartalom szolgáltatása, illetve digitális elemeket tartalmazó szolgáltatás esetén — a 373/2021. (VI. 30.) Korm. rendelet szerinti szavatossági jogok illetik meg.</p>
+</section>
+
+<section id="panasz">
+  <h2><span class="sec-num">14</span> Panaszkezelés és jogérvényesítés</h2>
+  <p><strong>14.1.</strong> A Megrendelő panaszát az <a href="mailto:info@noviram.com">info@noviram.com</a> címen vagy a Szolgáltató székhelyére küldött levélben teheti meg. A Szolgáltató az írásbeli panaszt 30 napon belül, érdemben, írásban megválaszolja; elutasítás esetén álláspontját indokolja.</p>
+  <p><strong>14.2.</strong> Fogyasztói jogvita esetén a fogyasztó a lakóhelye vagy tartózkodási helye szerint illetékes <strong>békéltető testülethez</strong> fordulhat. A Szolgáltató székhelye szerint illetékes testület: <strong>Budapesti Békéltető Testület</strong> (1016 Budapest, Krisztina krt. 99.; e-mail: bekelteto.testulet@bkik.hu). A Szolgáltatót a békéltető testületi eljárásban együttműködési kötelezettség terheli.</p>
+  <p><strong>14.3.</strong> A fogyasztó fogyasztóvédelmi hatósági eljárást is kezdeményezhet a fogyasztóvédelmi hatóságnál (a kormányhivataloknál), továbbá igényét bírósági úton is érvényesítheti.</p>
+  <p><strong>14.4.</strong> Online vitarendezés: az Európai Bizottság online vitarendezési platformja a <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">ec.europa.eu/consumers/odr</a> címen érhető el.</p>
+</section>
+
+<section id="vismaior">
+  <h2><span class="sec-num">15</span> Vis maior</h2>
+  <p><strong>15.1.</strong> Egyik Fél sem felel a szerződés megszegéséért, ha azt a hatókörén kívül eső, előre nem látható és el nem hárítható körülmény (vis maior — pl. természeti katasztrófa, háború, járvány, hatósági intézkedés, széles körű internet- vagy energiakimaradás, harmadik fél kritikus szolgáltatásának leállása) okozta. A vis maiorról az érintett Fél a másik Felet haladéktalanul értesíti. Ha a vis maior 60 napot meghaladóan fennáll, bármelyik Fél jogosult a szerződést felmondani.</p>
+</section>
+
+<section id="zaro">
+  <h2><span class="sec-num">16</span> Záró rendelkezések</h2>
+  <p><strong>16.1.</strong> A Szolgáltató jogosult az ÁSZF-et egyoldalúan módosítani; a módosítást a hatálybalépése előtt legalább 15 nappal a honlapján közzéteszi, a havidíjas Megrendelőket pedig e-mailben értesíti. A módosítás a folyamatban lévő, egyszeri projektekre nem hat ki. Ha a havidíjas Megrendelő a módosítást nem fogadja el, a szerződést a módosítás hatálybalépésének napjára felmondhatja.</p>
+  <p><strong>16.2.</strong> Ha az ÁSZF valamely rendelkezése érvénytelen, az a többi rendelkezés érvényességét nem érinti; az érvénytelen rendelkezés helyébe a hozzá legközelebb álló, érvényes rendelkezés lép.</p>
+  <p><strong>16.3.</strong> A jelen ÁSZF-ben nem szabályozott kérdésekben a magyar jog, különösen a Ptk. rendelkezései irányadók. A Felek a jogvitáikat elsősorban egyeztetés útján rendezik; ennek eredménytelensége esetén — fogyasztói szerződés kivételével — kikötik a Szolgáltató székhelye szerint hatáskörrel rendelkező bíróság illetékességét.</p>
+  <p><strong>16.4.</strong> A jelen ÁSZF 2026. augusztus 30. napján lép hatályba, és visszavonásig, illetve módosításig hatályos. Letölthető és kinyomtatható a honlapról.</p>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Noviram Digital Kft. · Budapest</span>
+    <span><a href="index.html">Főoldal</a> · <a href="adatkezeles.html">Adatkezelési tájékoztató</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

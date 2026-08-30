@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adatkezelési tájékoztató — Noviram Digital Kft.</title>
+<meta name="description" content="Noviram Digital Kft. adatkezelési tájékoztatója a GDPR és az Infotv. alapján.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #0A0E1A;
+    --paper: #F4F6F9;
+    --paper-2: #E9ECF2;
+    --signal: #FF4D2E;
+    --signal-2: #FF8A63;
+    --slate: #363c4a;
+    --slate-soft: #6b7280;
+    --mist: #9aa3b8;
+    --wire-light: #DCE1EA;
+    --wire-dark: #212a42;
+    --white: #ffffff;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+  *{ box-sizing: border-box; }
+  body{
+    margin:0; font-family: var(--font-body); color: var(--slate);
+    background: var(--paper); -webkit-font-smoothing: antialiased;
+  }
+  a{ color: var(--signal); text-decoration: none; }
+  a:hover{ text-decoration: underline; }
+  h1,h2,h3{ font-family: var(--font-display); color: var(--ink); margin:0; }
+  .wrap{ max-width: 760px; margin: 0 auto; padding: 0 28px; }
+  :focus-visible{ outline: 2px solid var(--signal); outline-offset: 3px; }
+
+  header{ border-bottom: 1px solid var(--wire-light); background: rgba(244,246,249,0.9); position: sticky; top:0; z-index: 10; }
+  .doc-header-inner{ display:flex; align-items:center; justify-content:space-between; height:72px; }
+  .logo{ display:flex; align-items:center; gap:9px; font-family: var(--font-display); font-weight:700; font-size:17px; color: var(--ink); }
+  .back-link{ font-size:14px; font-weight:500; color: var(--slate-soft); }
+  .back-link:hover{ color: var(--signal); }
+
+  .doc-title{ padding: 56px 0 28px; }
+  .eyebrow{
+    font-family: var(--font-mono); font-size:12px; letter-spacing:0.14em; text-transform:uppercase;
+    color: var(--signal); display:flex; align-items:center; gap:8px; margin-bottom:14px;
+  }
+  .eyebrow::before{ content:""; width:7px; height:7px; background: var(--signal); border-radius:2px; }
+  .doc-title h1{ font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight:700; line-height:1.1; }
+  .doc-meta{ margin-top:14px; font-size:14px; color: var(--slate-soft); }
+  .doc-meta-2{ margin-top:6px; font-size:13px; color: var(--slate-soft); }
+
+  .doc-toc{ padding: 20px 0 40px; border-bottom:1px solid var(--wire-light); margin-bottom: 48px; }
+  .doc-toc h2{ font-family: var(--font-mono); font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color: var(--slate-soft); margin-bottom:16px; font-weight:500; }
+  .doc-toc ol{ columns: 2; column-gap: 32px; margin:0; padding-left: 20px; font-size:14px; line-height:2; }
+  .doc-toc a{ color: var(--slate); }
+  .doc-toc a:hover{ color: var(--signal); }
+
+  .doc-body{ padding-bottom: 80px; }
+  .doc-body section{ margin-bottom: 44px; scroll-margin-top: 90px; }
+  .doc-body h2{
+    font-size: 20px; font-weight:600; display:flex; align-items:baseline; gap:12px;
+    padding-bottom: 12px; margin-bottom: 18px; border-bottom: 1px solid var(--wire-light);
+  }
+  .doc-body h3{ font-size:16px; font-weight:600; margin: 26px 0 12px; }
+  .sec-num{ font-family: var(--font-mono); font-size:13px; color: var(--signal); flex-shrink:0; }
+  .doc-body p{ font-size:15px; line-height:1.75; color: var(--slate); margin: 0 0 14px; }
+  .doc-body ul{ margin: 0 0 14px; padding-left: 22px; font-size:15px; line-height:1.75; color: var(--slate); }
+  .doc-body li{ margin-bottom: 10px; }
+  .doc-body strong{ color: var(--ink); }
+
+  .kv-table{ margin: 14px 0 22px; border-top:1px solid var(--wire-light); }
+  .kv-table div{ display:grid; grid-template-columns: 170px 1fr; gap:16px; padding: 11px 0; border-bottom:1px solid var(--wire-light); font-size:14px; }
+  .kv-table dt{ font-family: var(--font-mono); font-size:12.5px; color: var(--slate-soft); }
+  .kv-table dd{ margin:0; color: var(--ink); line-height:1.6; }
+  @media (max-width:600px){ .kv-table div{ grid-template-columns: 1fr; gap:2px; } }
+
+  table.data-table{ width:100%; border-collapse: collapse; margin: 14px 0 22px; font-size:13.5px; }
+  table.data-table th{
+    font-family: var(--font-mono); font-size:11.5px; letter-spacing:0.05em; text-transform:uppercase;
+    color: var(--slate-soft); text-align:left; padding: 9px 10px; border-bottom: 2px solid var(--wire-light);
+  }
+  table.data-table td{ padding: 11px 10px; border-bottom: 1px solid var(--wire-light); color: var(--slate); vertical-align:top; line-height:1.55; }
+  table.data-table td strong{ color: var(--ink); }
+  .pending{ color: var(--signal); font-style: italic; }
+
+  .doc-note{ background: var(--paper-2); border-radius:10px; padding:16px 18px; font-size:13.5px; color: var(--slate-soft); margin: 20px 0; }
+
+  footer{ border-top:1px solid var(--wire-light); padding: 28px 0; }
+  footer .wrap{ font-size:13px; color: var(--slate-soft); display:flex; flex-wrap:wrap; gap:8px 16px; justify-content:space-between; }
+  footer a{ color: var(--slate-soft); }
+  footer a:hover{ color: var(--signal); }
+
+  @media (max-width:600px){ .doc-toc ol{ columns: 1; } table.data-table{ font-size:12.5px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap doc-header-inner">
+    <a class="logo" href="index.html">
+      <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <circle cx="16" cy="17" r="10.5" stroke="currentColor" stroke-width="1.6"/>
+        <line x1="16" y1="17" x2="16" y2="6.3" stroke="currentColor" stroke-width="1.6"/>
+        <circle cx="16" cy="6.3" r="3" fill="var(--signal)"/>
+        <circle cx="16" cy="17" r="1.6" fill="currentColor"/>
+      </svg>
+      NOVIRAM
+    </a>
+    <a class="back-link" href="index.html">← Vissza a főoldalra</a>
+  </div>
+</header>
+
+<div class="wrap doc-title">
+  <p class="eyebrow">Jogi dokumentum</p>
+  <h1>Adatkezelési tájékoztató</h1>
+  <p class="doc-meta">Noviram Digital Kft. · Hatályos: 2026. augusztus 30. napjától · Verzió: 1.0</p>
+  <p class="doc-meta-2">Az (EU) 2016/679 rendelet (GDPR) 13–14. cikke és a 2011. évi CXII. törvény (Infotv.) alapján</p>
+</div>
+
+<nav class="doc-toc wrap" aria-label="Tartalomjegyzék">
+  <h2>Tartalom</h2>
+  <ol>
+    <li><a href="#adatkezelo">Az adatkezelő</a></li>
+    <li><a href="#alapelvek">Alapelvek, fogalmak</a></li>
+    <li><a href="#adatkezelesek">Az egyes adatkezelések</a></li>
+    <li><a href="#cimzettek">Címzettek, adatfeldolgozók</a></li>
+    <li><a href="#harmadikorszag">Adattovábbítás harmadik országba</a></li>
+    <li><a href="#adatbiztonsag">Adatbiztonság</a></li>
+    <li><a href="#jogok">Az érintettek jogai</a></li>
+    <li><a href="#jogorvoslat">Jogorvoslat</a></li>
+    <li><a href="#sutik">Sütik (cookie-k)</a></li>
+    <li><a href="#adatfeldolgozo">A Szolgáltató mint adatfeldolgozó</a></li>
+    <li><a href="#modositas">A tájékoztató módosítása</a></li>
+  </ol>
+</nav>
+
+<main class="doc-body wrap">
+
+<section id="adatkezelo">
+  <h2><span class="sec-num">1</span> Az adatkezelő</h2>
+  <dl class="kv-table">
+    <div><dt>Adatkezelő</dt><dd><strong>Noviram Digital Korlátolt Felelősségű Társaság</strong></dd></div>
+    <div><dt>Székhely</dt><dd>1068 Budapest, Városligeti fasor 24.</dd></div>
+    <div><dt>Cégjegyzékszám</dt><dd>01-09-459181</dd></div>
+    <div><dt>Adószám</dt><dd>33101787-1-42</dd></div>
+    <div><dt>Képviseli</dt><dd>Czine Christopher József ügyvezető</dd></div>
+    <div><dt>E-mail (adatvédelmi ügyekben is)</dt><dd><a href="mailto:info@noviram.com">info@noviram.com</a></dd></div>
+    <div><dt>Honlap</dt><dd><a href="https://noviram.com">https://noviram.com</a></dd></div>
+  </dl>
+  <p>(a továbbiakban: <strong>Adatkezelő</strong>)</p>
+  <p>Az Adatkezelő adatvédelmi tisztviselő kijelölésére a GDPR 37. cikke alapján nem köteles, ezért adatvédelmi tisztviselőt nem jelölt ki. Adatvédelmi kérdésekben a fenti e-mail-címen fogad megkereséseket.</p>
+</section>
+
+<section id="alapelvek">
+  <h2><span class="sec-num">2</span> Alapelvek, fogalmak</h2>
+  <p><strong>2.1.</strong> Az Adatkezelő a személyes adatokat jogszerűen, tisztességesen és átláthatóan, meghatározott célból, a cél eléréséhez szükséges mértékben és ideig, pontosan, valamint megfelelő biztonsági intézkedések mellett kezeli (GDPR 5. cikk).</p>
+  <p><strong>2.2. Személyes adat:</strong> azonosított vagy azonosítható természetes személyre (<strong>érintett</strong>) vonatkozó bármely információ. <strong>Adatkezelés:</strong> a személyes adatokon végzett bármely művelet (gyűjtés, tárolás, felhasználás, továbbítás, törlés stb.). <strong>Adatfeldolgozó:</strong> aki az adatkezelő nevében személyes adatokat kezel.</p>
+  <p><strong>2.3.</strong> Az Adatkezelő szolgáltatásai üzleti ügyfeleknek szólnak; az Adatkezelő 16. életévét be nem töltött személyek adatait tudatosan nem gyűjti.</p>
+</section>
+
+<section id="adatkezelesek">
+  <h2><span class="sec-num">3</span> Az egyes adatkezelések</h2>
+
+  <h3>3.1. Kapcsolatfelvétel, ajánlatkérés, ingyenes AI-audit</h3>
+  <dl class="kv-table">
+    <div><dt>Kezelt adatok</dt><dd>név, e-mail-cím, telefonszám (ha megadja), cégnév, beosztás, az üzenet tartalma</dd></div>
+    <div><dt>Cél</dt><dd>a megkeresés megválaszolása, ajánlat készítése, kapcsolattartás</dd></div>
+    <div><dt>Jogalap</dt><dd>GDPR 6. cikk (1) b) — szerződés megkötését megelőző lépések az érintett kérésére; céges kapcsolattartó adatai esetén 6. cikk (1) f) — az Adatkezelő és a képviselt cég jogos érdeke (üzleti kapcsolat létesítése)</dd></div>
+    <div><dt>Megőrzési idő</dt><dd>szerződéskötés hiányában az utolsó kapcsolatfelvételtől számított <strong>1 év</strong>; szerződéskötés esetén a 3.2. pont szerint</dd></div>
+  </dl>
+
+  <h3>3.2. Szerződéses partnerek és kapcsolattartóik adatai</h3>
+  <dl class="kv-table">
+    <div><dt>Kezelt adatok</dt><dd>a szerződő fél, illetve kapcsolattartója neve, beosztása, e-mail-címe, telefonszáma; a szerződés teljesítésével összefüggő kommunikáció</dd></div>
+    <div><dt>Cél</dt><dd>a szerződés megkötése, teljesítése, kapcsolattartás, igényérvényesítés</dd></div>
+    <div><dt>Jogalap</dt><dd>GDPR 6. cikk (1) b) — szerződés teljesítése (természetes személy szerződő fél esetén); 6. cikk (1) f) — jogos érdek (céges kapcsolattartók adatai, igényérvényesítés)</dd></div>
+    <div><dt>Megőrzési idő</dt><dd>a szerződés megszűnésétől számított <strong>5 év</strong> (általános elévülési idő, Ptk. 6:22. §)</dd></div>
+  </dl>
+
+  <h3>3.3. Számlázás</h3>
+  <dl class="kv-table">
+    <div><dt>Kezelt adatok</dt><dd>számlázási név, cím, adószám, a számla kötelező adattartalma</dd></div>
+    <div><dt>Cél</dt><dd>számviteli és adójogi kötelezettségek teljesítése</dd></div>
+    <div><dt>Jogalap</dt><dd>GDPR 6. cikk (1) c) — jogi kötelezettség teljesítése (Áfa tv. 169. §, Számv. tv. 169. §)</dd></div>
+    <div><dt>Megőrzési idő</dt><dd>a Számv. tv. 169. § (2) bekezdése szerint <strong>8 év</strong></dd></div>
+  </dl>
+
+  <h3>3.4. Hírlevél, üzleti célú megkeresés (ha van)</h3>
+  <dl class="kv-table">
+    <div><dt>Kezelt adatok</dt><dd>név, e-mail-cím, feliratkozás időpontja</dd></div>
+    <div><dt>Cél</dt><dd>szakmai tartalmak, ajánlatok küldése</dd></div>
+    <div><dt>Jogalap</dt><dd>GDPR 6. cikk (1) a) — az érintett hozzájárulása (a gazdasági reklámtevékenységről szóló 2008. évi XLVIII. törvény 6. §-ával összhangban); a hozzájárulás bármikor, korlátozás nélkül visszavonható a levelek végén található leiratkozási linkkel vagy e-mailben</dd></div>
+    <div><dt>Megőrzési idő</dt><dd>a hozzájárulás visszavonásáig</dd></div>
+  </dl>
+
+  <h3>3.5. A honlap működtetése, szerver-naplózás</h3>
+  <dl class="kv-table">
+    <div><dt>Kezelt adatok</dt><dd>IP-cím, a látogatás időpontja, a megtekintett oldal, böngésző- és eszközadatok (szerver-naplófájlok)</dd></div>
+    <div><dt>Cél</dt><dd>a honlap biztonságos és rendeltetésszerű működtetése, hibák és visszaélések felderítése</dd></div>
+    <div><dt>Jogalap</dt><dd>GDPR 6. cikk (1) f) — az Adatkezelő jogos érdeke (a szolgáltatás biztonsága)</dd></div>
+    <div><dt>Megőrzési idő</dt><dd>legfeljebb <strong>30 nap</strong></dd></div>
+  </dl>
+
+  <h3>3.6. Panaszkezelés</h3>
+  <dl class="kv-table">
+    <div><dt>Kezelt adatok</dt><dd>a panaszos neve, elérhetősége, a panasz tartalma, az arra adott válasz</dd></div>
+    <div><dt>Cél</dt><dd>a panasz kivizsgálása és megválaszolása</dd></div>
+    <div><dt>Jogalap</dt><dd>GDPR 6. cikk (1) c) — jogi kötelezettség (fogyasztói panasz esetén Fgytv. 17/A. §); egyébként 6. cikk (1) f) — jogos érdek</dd></div>
+    <div><dt>Megőrzési idő</dt><dd>fogyasztói panasz esetén <strong>5 év</strong> (Fgytv. 17/A. § (7)); egyébként az elévülési idő</dd></div>
+  </dl>
+
+  <p><strong>3.7.</strong> Ahol az adatkezelés jogalapja jogos érdek, az Adatkezelő érdekmérlegelési tesztet végzett; annak eredményéről az érintett a fenti elérhetőségeken tájékoztatást kérhet. Az érintett a jogos érdeken alapuló adatkezelés ellen bármikor <strong>tiltakozhat</strong> (GDPR 21. cikk).</p>
+  <p><strong>3.8.</strong> Az adatszolgáltatás önkéntes, de a kapcsolattartáshoz és a szerződéskötéshez szükséges adatok hiányában az Adatkezelő a megkeresést megválaszolni, illetve a szerződést megkötni nem tudja. Az Adatkezelő <strong>automatizált döntéshozatalt és profilalkotást</strong> (GDPR 22. cikk) nem alkalmaz.</p>
+</section>
+
+<section id="cimzettek">
+  <h2><span class="sec-num">4</span> Címzettek, adatfeldolgozók</h2>
+  <p><strong>4.1.</strong> A személyes adatokat az Adatkezelő munkatársai a feladataik ellátásához szükséges mértékben ismerhetik meg. Az Adatkezelő az alábbi adatfeldolgozókat veszi igénybe:</p>
+  <table class="data-table">
+    <tr><th>Adatfeldolgozó</th><th>Tevékenység</th></tr>
+    <tr><td><strong>GitHub, Inc.</strong><br>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA</td><td>tárhely- és szerverszolgáltatás</td></tr>
+    <tr><td class="pending">[megerősítésre vár]</td><td>e-mail és irodai alkalmazások</td></tr>
+    <tr><td class="pending">[megerősítésre vár]</td><td>könyvelés, bérszámfejtés</td></tr>
+    <tr><td class="pending">[megerősítésre vár]</td><td>elektronikus számlázás</td></tr>
+    <tr><td class="pending">[megerősítésre vár — ha van]</td><td>hírlevélküldés</td></tr>
+    <tr><td class="pending">[megerősítésre vár — ha van]</td><td>weboldal-analitika, automatizáció</td></tr>
+  </table>
+  <div class="doc-note">A táblázat csak a ténylegesen igénybe vett szolgáltatókkal együtt jogszerű. A GitHubon kívüli sorokat a valódi szolgáltatókkal kell kitölteni — vagy törölni, ha az adott szolgáltatás nincs használatban — a közzététel előtt.</div>
+  <p><strong>4.2.</strong> Az Adatkezelő személyes adatot hatóság, bíróság részére kizárólag jogszabályon alapuló, hivatalos megkeresésre továbbít. Az adatokat az Adatkezelő harmadik személynek marketingcélra nem adja át, és nem értékesíti.</p>
+</section>
+
+<section id="harmadikorszag">
+  <h2><span class="sec-num">5</span> Adattovábbítás harmadik országba</h2>
+  <p><strong>5.1.</strong> Az Adatkezelő törekszik arra, hogy az adatokat az Európai Gazdasági Térségen (EGT) belül kezelje. Amennyiben valamely igénybe vett szolgáltató (pl. felhő- vagy AI-szolgáltató) EGT-n kívüli — jellemzően egyesült államokbeli — adatkezelést végez, az adattovábbítás a GDPR V. fejezetének megfelelően történik: az Európai Bizottság <strong>megfelelőségi határozata</strong> (EU–USA adatvédelmi keretrendszer, Data Privacy Framework) alapján, vagy a Bizottság által elfogadott <strong>általános szerződési feltételek</strong> (SCC) alkalmazásával. A garanciák másolatáról az érintett a fenti elérhetőségeken tájékoztatást kérhet.</p>
+</section>
+
+<section id="adatbiztonsag">
+  <h2><span class="sec-num">6</span> Adatbiztonság</h2>
+  <p><strong>6.1.</strong> Az Adatkezelő a GDPR 32. cikke szerinti, a kockázatokkal arányos technikai és szervezési intézkedéseket alkalmaz, így különösen: titkosított (HTTPS) kapcsolat, hozzáférés-kezelés és jogosultsági szintek, kétfaktoros hitelesítés a kritikus rendszerekben, rendszeres biztonsági mentés, valamint a munkatársak és közreműködők titoktartási kötelezettsége.</p>
+  <p><strong>6.2.</strong> Adatvédelmi incidens esetén az Adatkezelő a GDPR 33–34. cikke szerint jár el: az incidenst nyilvántartja, a kockázattal járó incidenst indokolatlan késedelem nélkül, lehetőség szerint 72 órán belül bejelenti a felügyeleti hatóságnak, a magas kockázatú incidensről pedig az érintetteket is tájékoztatja.</p>
+</section>
+
+<section id="jogok">
+  <h2><span class="sec-num">7</span> Az érintettek jogai</h2>
+  <p>Az érintett az <a href="mailto:info@noviram.com">info@noviram.com</a> címen bármikor gyakorolhatja az alábbi jogait. Az Adatkezelő a kérelmet indokolatlan késedelem nélkül, de legfeljebb <strong>a beérkezéstől számított egy hónapon belül</strong> teljesíti (ez a határidő indokolt esetben, tájékoztatás mellett két hónappal meghosszabbítható). A joggyakorlás díjmentes, kivéve az egyértelműen megalapozatlan vagy túlzó kérelmeket.</p>
+  <ul>
+    <li><strong>Hozzáférés (15. cikk):</strong> visszajelzést kérhet arról, hogy folyamatban van-e adatainak kezelése, és másolatot kérhet a kezelt adatokról.</li>
+    <li><strong>Helyesbítés (16. cikk):</strong> kérheti a pontatlan adatok helyesbítését és a hiányos adatok kiegészítését.</li>
+    <li><strong>Törlés — „elfeledtetés” (17. cikk):</strong> kérheti adatai törlését, ha pl. az adatkezelés célja megszűnt, hozzájárulását visszavonta, vagy az adatkezelés jogellenes. A törlés nem teljesíthető, ha az adatkezelést jogszabály írja elő (pl. számviteli megőrzés) vagy az jogi igények érvényesítéséhez szükséges.</li>
+    <li><strong>Korlátozás (18. cikk):</strong> kérheti az adatkezelés korlátozását, pl. az adatok pontosságának vitatása esetén, a pontosság ellenőrzésének idejére.</li>
+    <li><strong>Adathordozhatóság (20. cikk):</strong> a hozzájáruláson vagy szerződésen alapuló, automatizált módon kezelt adatait tagolt, széles körben használt, géppel olvasható formátumban megkaphatja, illetve kérheti azok továbbítását másik adatkezelőnek.</li>
+    <li><strong>Tiltakozás (21. cikk):</strong> a jogos érdeken alapuló adatkezelés ellen a saját helyzetével kapcsolatos okokból bármikor tiltakozhat; közvetlen üzletszerzési célú adatkezelés ellen korlátozás nélkül.</li>
+    <li><strong>Hozzájárulás visszavonása (7. cikk):</strong> a hozzájáruláson alapuló adatkezeléshez adott hozzájárulását bármikor visszavonhatja; a visszavonás a korábbi adatkezelés jogszerűségét nem érinti.</li>
+  </ul>
+</section>
+
+<section id="jogorvoslat">
+  <h2><span class="sec-num">8</span> Jogorvoslat</h2>
+  <p><strong>8.1.</strong> Az érintett javasolt első lépésként az Adatkezelőhöz fordulhat az <a href="mailto:info@noviram.com">info@noviram.com</a> címen — a panaszokat az Adatkezelő soron kívül kivizsgálja.</p>
+  <p><strong>8.2.</strong> Az érintett panaszt tehet a felügyeleti hatóságnál:</p>
+  <dl class="kv-table">
+    <div><dt>Hatóság</dt><dd><strong>Nemzeti Adatvédelmi és Információszabadság Hatóság (NAIH)</strong></dd></div>
+    <div><dt>Cím</dt><dd>1055 Budapest, Falk Miksa utca 9–11.</dd></div>
+    <div><dt>Postacím</dt><dd>1363 Budapest, Pf. 9.</dd></div>
+    <div><dt>Telefon</dt><dd>+36 (1) 391-1400</dd></div>
+    <div><dt>E-mail / web</dt><dd>ugyfelszolgalat@naih.hu · <a href="https://naih.hu" target="_blank" rel="noopener noreferrer">naih.hu</a></dd></div>
+  </dl>
+  <p><strong>8.3.</strong> Az érintett bírósághoz is fordulhat (GDPR 79. cikk, Infotv. 23. §); a per — az érintett választása szerint — a lakóhelye vagy tartózkodási helye szerinti törvényszék előtt is megindítható.</p>
+</section>
+
+<section id="sutik">
+  <h2><span class="sec-num">9</span> Sütik (cookie-k)</h2>
+  <p><strong>9.1.</strong> A süti a honlap által az érintett eszközén elhelyezett kis adatfájl. A jelen honlap jelenleg <strong>nem használ sütiket</strong> — sem a működéshez szükséges, sem statisztikai, sem marketingcélú sütiket.</p>
+  <p><strong>9.2.</strong> Amennyiben ez a jövőben megváltozik (pl. látogatottsági statisztika, mint a Google Analytics, vagy hirdetési célú követés bevezetésével), az Adatkezelő a jelen tájékoztatót előzetesen frissíti, és a nem feltétlenül szükséges sütik elhelyezéséhez a honlapon hozzájárulás-kezelő sávot (cookie banner) épít be, az Ekertv. 13/A. § (3) bekezdésével és a GDPR-ral összhangban.</p>
+</section>
+
+<section id="adatfeldolgozo">
+  <h2><span class="sec-num">10</span> A Szolgáltató mint adatfeldolgozó</h2>
+  <p><strong>10.1.</strong> Amennyiben az Adatkezelő az ügyfelei részére olyan AI-rendszereket üzemeltet (pl. chatbot, elhagyottkosár-automatizáció, ügyfél-utánkövetés), amelyek az ügyfél saját vásárlóinak, felhasználóinak személyes adatait kezelik, e tekintetben az adatkezelő <strong>az ügyfél</strong>, a Noviram Digital Kft. pedig <strong>adatfeldolgozóként</strong> jár el a GDPR 28. cikke szerint. Ilyen esetben a Felek írásbeli adatfeldolgozási megállapodást (DPA) kötnek, és a Noviram Digital Kft. az adatokat kizárólag az ügyfél dokumentált utasításai szerint kezeli, al-adatfeldolgozót csak az ügyfél előzetes engedélyével von be, és a megbízás megszűnésekor az adatokat az ügyfél választása szerint visszaszolgáltatja vagy törli.</p>
+</section>
+
+<section id="modositas">
+  <h2><span class="sec-num">11</span> A tájékoztató módosítása</h2>
+  <p><strong>11.1.</strong> Az Adatkezelő a jelen tájékoztatót jogosult módosítani, különösen jogszabályváltozás vagy az adatkezelési gyakorlat változása esetén. A mindenkor hatályos tájékoztató a honlapon érhető el; lényeges módosításról az Adatkezelő a honlapon feltűnő módon, szerződéses partnereit e-mailben is tájékoztatja.</p>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Noviram Digital Kft. · Budapest</span>
+    <span><a href="index.html">Főoldal</a> · <a href="aszf.html">ÁSZF</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
