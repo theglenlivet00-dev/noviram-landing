@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="hu" class="i18n-pending">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Noviram Lead Engine — Érdeklődőből minősített értékesítési lehetőség</title>
+<meta id="metaDescription" name="description" content="A Noviram Lead Engine azonnal válaszol, minősíti az érdeklődőket, időpontot foglal, és automatizálja az utánkövetést.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0A0E1A;--ink-2:#121a30;--paper:#F4F6F9;--paper-2:#E9ECF2;--signal:#FF4D2E;--signal-2:#FF8A63;--slate:#363c4a;--slate-soft:#6b7280;--mist:#9aa3b8;--wire-light:#DCE1EA;--wire-dark:#212a42;--white:#fff;--display:'Space Grotesk',sans-serif;--body:'Inter',sans-serif;--mono:'JetBrains Mono',monospace;--container:1180px;--radius:14px}html.i18n-pending body{visibility:hidden}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--slate);font-family:var(--body);-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit}h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.05}p{margin:0}ul{list-style:none;margin:0;padding:0}:focus-visible{outline:2px solid var(--signal);outline-offset:3px}.wrap{max-width:var(--container);margin:auto;padding:0 28px}.progress{position:fixed;z-index:80;top:0;left:0;height:3px;width:0;background:var(--signal)}
+.eyebrow{display:flex;align-items:center;gap:8px;margin-bottom:16px;color:var(--signal);font:12.5px var(--mono);letter-spacing:.14em;text-transform:uppercase}.eyebrow:before{content:"";width:7px;height:7px;background:var(--signal);border-radius:2px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 26px;border:1px solid transparent;border-radius:999px;font-weight:600;font-size:15px;cursor:pointer;transition:.18s ease}.btn:hover{transform:translateY(-2px)}.btn-primary{background:var(--signal);color:#fff;box-shadow:0 10px 30px -8px rgba(255,77,46,.55)}.btn-ghost{border-color:var(--wire-light);background:transparent}.section-dark .btn-ghost{border-color:var(--wire-dark);color:var(--paper)}
+header{position:sticky;top:0;z-index:50;background:rgba(244,246,249,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--wire-light)}nav.wrap{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}.logo{display:flex;align-items:center;gap:10px;color:var(--ink);font:700 18px var(--display)}.brand-sub{padding-left:12px;border-left:1px solid var(--wire-light);color:var(--slate-soft);font:500 11px var(--mono);letter-spacing:.04em}.nav-links{display:flex;align-items:center;gap:28px;margin-left:auto;font-size:14px}.nav-links a:hover{color:var(--signal)}.lang-switch{display:flex;padding:3px;border:1px solid var(--wire-light);border-radius:999px;font:12px var(--mono)}.lang-btn{padding:6px 10px;border:0;border-radius:999px;background:none;color:var(--slate-soft);cursor:pointer}.lang-btn[aria-pressed=true]{background:var(--ink);color:var(--paper)}.nav-cta{display:flex;gap:12px;align-items:center}.nav-toggle{display:none;width:42px;height:42px;border:1px solid var(--wire-light);border-radius:10px;background:#fff}.nav-toggle .close{display:none}.nav-toggle[aria-expanded=true] .menu{display:none}.nav-toggle[aria-expanded=true] .close{display:block}.mobile-panel{display:none;position:fixed;inset:76px 0 0;background:var(--paper);z-index:49;padding:32px 28px;flex-direction:column;gap:25px}.mobile-panel.open{display:flex}.mobile-panel a{font:600 25px var(--display)}
+.hero{padding:88px 0 82px}.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:58px;align-items:center}.hero h1{max-width:720px;color:var(--ink);font-size:clamp(2.6rem,5vw,4.6rem);letter-spacing:-.025em}.hero h1 span{color:var(--signal)}.hero .lede{max-width:52ch;margin-top:24px;color:var(--slate-soft);font-size:18px;line-height:1.65}.actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}.micro{margin-top:18px;color:var(--slate-soft);font:12px var(--mono)}
+.hero-system{padding:18px;border:1px solid var(--wire-light);border-radius:var(--radius);background:#fff;box-shadow:0 30px 60px -36px rgba(10,14,26,.35)}.system-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:15px;border-bottom:1px solid var(--wire-light)}.system-head strong{font-size:14px;color:var(--ink)}.demo-badge{padding:5px 8px;border-radius:99px;background:rgba(255,77,46,.09);color:var(--signal);font:10px var(--mono);letter-spacing:.08em}.system-chat{display:flex;flex-direction:column;gap:12px;padding:25px 4px}.bubble{max-width:84%;padding:13px 15px;border:1px solid var(--wire-light);border-radius:13px;background:var(--paper);font-size:13px;line-height:1.55;overflow-wrap:anywhere}.bubble.user{align-self:flex-end;background:var(--ink);border-color:var(--ink);color:var(--paper)}.ai-tag{display:block;margin-bottom:6px;color:var(--signal);font:9px var(--mono);letter-spacing:.08em}.system-result{display:flex;align-items:center;gap:12px;padding:14px;border-radius:9px;background:var(--ink);color:var(--paper)}.system-result b{margin-left:auto;color:var(--signal-2);font:700 14px var(--mono)}
+.ticker{overflow:hidden;border-block:1px solid var(--wire-light);background:#fff}.ticker-track{display:flex;width:max-content;padding:20px 0;animation:marquee 32s linear infinite}.ticker-item{display:flex;gap:28px;padding-right:28px;color:var(--slate-soft);font:13px var(--mono);letter-spacing:.07em;text-transform:uppercase;white-space:nowrap}.ticker-item:after{content:"·";color:var(--signal)}@keyframes marquee{to{transform:translateX(-50%)}}
+.section{padding:108px 0}.section-dark{background:var(--ink);color:var(--paper)}.section-head{max-width:680px;margin-bottom:56px}.section-head h2{color:var(--ink);font-size:clamp(2rem,3.5vw,3.3rem)}.section-head p:last-child{margin-top:18px;color:var(--slate-soft);font-size:16px;line-height:1.65}.section-dark .section-head h2{color:var(--paper)}.section-dark .section-head p:last-child{color:var(--mist)}
+.flow-wrap{overflow-x:auto;padding-bottom:10px}.flow{display:grid;grid-template-columns:repeat(7,minmax(150px,1fr));min-width:980px}.flow li{min-height:145px;padding:20px 18px;border:1px solid var(--wire-light);border-right:0;display:flex;flex-direction:column;justify-content:space-between;background:#fff}.flow li:last-child{border-right:1px solid var(--wire-light);background:var(--ink);color:#fff}.flow span{color:var(--signal);font:11px var(--mono)}.flow strong{font-size:14px}.scroll-hint{display:none;margin-top:10px;color:var(--slate-soft);font:11px var(--mono);text-align:right}
+.demo-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr);gap:20px;align-items:stretch}.chat,.summary{overflow:hidden;border:1px solid var(--wire-light);border-radius:var(--radius);background:#fff;box-shadow:0 24px 54px -38px rgba(10,14,26,.35)}.chat{display:flex;min-height:680px;flex-direction:column}.chat-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--wire-light)}.chat-identity{display:flex;align-items:center;gap:11px}.avatar{display:grid;width:38px;height:38px;place-items:center;border-radius:50%;background:var(--ink);color:var(--signal-2);font-weight:700}.chat-identity span{display:grid;gap:2px}.chat-identity small{color:var(--slate-soft);font-size:10px}.reset{padding:7px 10px;border:1px solid var(--wire-light);border-radius:999px;background:none;color:var(--slate-soft);cursor:pointer;font-size:11px}.chat-progress{height:3px;background:var(--paper-2)}.chat-progress span{display:block;height:100%;background:var(--signal);transition:width .2s}.chat-body{flex:1;max-height:570px;overflow:auto;padding:24px 20px;background:var(--paper)}.notice{width:fit-content;margin:0 auto 22px;padding:7px 10px;border-radius:99px;background:var(--paper-2);color:var(--slate-soft);font-size:9px;text-align:center}.msg-row{display:flex;margin-bottom:13px}.msg-row.user{justify-content:flex-end}.msg-row .bubble{font-size:12px;background:#fff}.msg-row.user .bubble{background:var(--ink);border-color:var(--ink);color:var(--paper);overflow-wrap:anywhere}.msg-row.user .bubble a{color:inherit}.options{display:flex;flex-wrap:wrap;gap:8px;margin:3px 0 18px}.options button{max-width:100%;padding:9px 12px;border:1px solid #bdc5d2;border-radius:999px;background:#fff;color:var(--ink);font-size:11px;font-weight:600;cursor:pointer;overflow-wrap:anywhere}.options button:hover{border-color:var(--signal);color:var(--signal)}.chat-foot{display:flex;justify-content:space-between;gap:12px;padding:12px 20px;border-top:1px solid var(--wire-light);color:var(--slate-soft);font:10px var(--mono)}
+.summary{min-height:680px;padding:25px;display:flex;flex-direction:column}.score-head{display:flex;align-items:center;gap:12px;padding-bottom:20px;border-bottom:1px solid var(--wire-light)}.score-head small{display:block;color:var(--slate-soft);font:9px var(--mono)}.score-head strong{font-size:14px;color:var(--ink)}.score-num{margin-left:auto;color:var(--signal);font:700 30px var(--display)}.summary h3{margin:24px 0 16px;color:var(--ink);font-size:20px}.summary dl{margin:0}.summary dl div{display:flex;justify-content:space-between;gap:15px;padding:11px 0;border-top:1px solid var(--wire-light);font-size:11px}.summary dt{color:var(--slate-soft)}.summary dd{margin:0;max-width:62%;text-align:right;color:var(--ink);font-weight:600;overflow-wrap:anywhere}.pill{display:block;width:fit-content;margin:4px 0 0 auto;padding:3px 6px;border-radius:99px;background:rgba(255,77,46,.08);color:var(--signal);font:8px var(--mono)}.next-action{margin-top:auto;padding:14px;border-radius:9px;background:var(--paper-2)}.next-action small{display:block;margin-bottom:5px;color:var(--slate-soft);font:9px var(--mono)}.next-action strong{color:var(--ink);font-size:11px;line-height:1.4;overflow-wrap:anywhere}.demo-note{margin-top:12px;color:var(--slate-soft);font-size:10px;text-align:center}
+.module-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--wire-dark);border-left:1px solid var(--wire-dark)}.module{min-height:250px;padding:28px;border-right:1px solid var(--wire-dark);border-bottom:1px solid var(--wire-dark)}.module-num{color:var(--signal-2);font:11px var(--mono)}.module h3{margin:50px 0 12px;font-size:19px}.module p{color:var(--mist);font-size:13px;line-height:1.65}.handoff{grid-column:span 3;min-height:auto;display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:center}.handoff h3{margin:0}.handoff-callout{padding:18px;border:1px solid var(--wire-dark);border-radius:10px;color:var(--paper);font-size:13px;line-height:1.6}.handoff-callout strong{display:block;margin-bottom:6px;color:var(--signal-2);font:11px var(--mono)}
+.dashboard{padding:18px;border:1px solid var(--wire-light);border-radius:var(--radius);background:var(--paper-2);box-shadow:0 28px 60px -40px rgba(10,14,26,.4)}.dash-head{display:flex;align-items:center;justify-content:space-between;padding:3px 3px 18px}.dash-head strong{color:var(--ink)}.dash-badge{padding:5px 8px;border-radius:99px;background:#fff1ca;color:#735718;font:9px var(--mono)}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}.metric{padding:16px;border:1px solid var(--wire-light);border-radius:9px;background:#fff}.metric small{display:block;color:var(--slate-soft);font-size:9px}.metric strong{display:block;margin-top:6px;color:var(--ink);font-size:22px}.pipeline-scroll{overflow-x:auto}.pipeline{display:grid;grid-template-columns:repeat(4,minmax(190px,1fr));min-width:790px;border:1px solid var(--wire-light);border-radius:9px;overflow:hidden}.column{min-height:300px;padding:12px;border-right:1px solid var(--wire-light);background:#fff}.column:last-child{border-right:0}.column h4{margin:0 0 12px;color:var(--slate-soft);font:10px var(--mono);text-transform:uppercase}.lead{padding:12px;border:1px solid var(--wire-light);border-radius:8px;background:var(--paper);font-size:10px}.lead+.lead{margin-top:8px}.lead strong{display:block;margin-bottom:5px;color:var(--ink)}.lead em{float:right;padding:2px 5px;border-radius:4px;background:rgba(255,77,46,.1);color:var(--signal);font:normal 8px var(--mono)}
+.use-case{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:center}.use-card{padding:34px;border:1px solid var(--wire-light);border-radius:var(--radius);background:#fff}.use-card small{color:var(--signal);font:11px var(--mono)}.use-card h3{margin:18px 0 14px;color:var(--ink);font-size:26px}.use-card p{color:var(--slate-soft);line-height:1.7}.use-list li{padding:16px 0;border-top:1px solid var(--wire-light);font-size:14px}.use-list b{display:block;margin-bottom:5px;color:var(--ink)}
+.contact{text-align:center;position:relative;overflow:hidden}.contact:before{content:"";position:absolute;width:650px;height:650px;left:50%;top:-420px;transform:translateX(-50%);background:radial-gradient(circle,rgba(255,77,46,.22),transparent 70%)}.contact-inner{position:relative;max-width:680px;margin:auto}.contact h2{color:var(--paper);font-size:clamp(2rem,3.4vw,3rem)}.contact p{margin-top:18px;color:var(--mist);line-height:1.65}.contact .actions{justify-content:center}.contact .fine{font-size:11px}.footer{padding:38px 0;background:var(--ink);border-top:1px solid var(--wire-dark);color:var(--mist)}.footer-inner{display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap;font:12px var(--mono)}.footer a:hover{color:var(--paper)}
+.reveal{opacity:0;transform:translateY(18px);transition:.6s ease}.reveal.in{opacity:1;transform:none}
+@media(max-width:900px){.nav-links,.nav-cta>.btn{display:none}.nav-toggle{display:grid;place-items:center}.hero-grid,.demo-grid,.use-case{grid-template-columns:1fr}.hero-system{max-width:620px}.module-grid{grid-template-columns:repeat(2,1fr)}.handoff{grid-column:span 2}.metrics{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.wrap{padding-inline:20px}.brand-sub{display:none}.hero{padding:58px 0 64px}.hero h1{font-size:clamp(2.5rem,12vw,3.5rem)}.section{padding:80px 0}.scroll-hint{display:block}.chat{min-height:640px}.summary{min-height:610px}.module-grid{grid-template-columns:1fr}.handoff{grid-column:auto;grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}.metric strong{font-size:18px}.footer-inner{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.btn:hover{transform:none}}
+</style>
+<noscript><style>html.i18n-pending body{visibility:visible}</style></noscript>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<header>
+  <nav class="wrap" aria-label="Primary navigation" data-i18n-aria="a11y.primaryNav">
+    <a class="logo" href="index.html" data-local-href="index.html"><svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="17" r="10.5" stroke="currentColor" stroke-width="1.6"/><line x1="16" y1="17" x2="16" y2="6.3" stroke="currentColor" stroke-width="1.6"/><circle cx="16" cy="6.3" r="3" fill="var(--signal)"/><circle cx="16" cy="17" r="1.6" fill="currentColor"/></svg>NOVIRAM</a>
+    <span class="brand-sub">LEAD ENGINE</span>
+    <div class="nav-links"><a href="#how" data-i18n="nav.how">How it works</a><a href="#demo" data-i18n="nav.demo">Demo</a><a href="#system" data-i18n="nav.system">System</a><a href="index.html" data-local-href="index.html" data-i18n="nav.company">Noviram</a></div>
+    <div class="nav-cta"><div class="lang-switch" role="group" aria-label="Language" data-i18n-aria="a11y.language"><button class="lang-btn" data-lang="en" aria-pressed="true">EN</button><button class="lang-btn" data-lang="hu" aria-pressed="false">HU</button></div><a class="btn btn-primary" href="#contact" data-i18n="nav.cta">Book a demo</a><button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobilePanel" aria-label="Open menu"><svg class="menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg><svg class="close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>
+  </nav>
+</header>
+<div class="mobile-panel" id="mobilePanel"><a href="#how" data-i18n="nav.how">How it works</a><a href="#demo" data-i18n="nav.demo">Demo</a><a href="#system" data-i18n="nav.system">System</a><a href="index.html" data-local-href="index.html" data-i18n="nav.company">Noviram</a><a class="btn btn-primary" href="#contact" data-i18n="nav.cta">Book a demo</a></div>
+<main>
+  <section class="hero"><div class="wrap hero-grid"><div><p class="eyebrow" data-i18n="hero.eyebrow">Noviram Lead Engine</p><h1 data-i18n="hero.h1">Turn more enquiries into qualified, booked opportunities.</h1><p class="lede" data-i18n="hero.lede">Respond in seconds, qualify intent, book the right next step and keep follow-up moving automatically.</p><div class="actions"><a class="btn btn-primary" href="#demo" data-i18n="hero.primary">Open the demo</a><a class="btn btn-ghost" href="#contact" data-i18n="hero.secondary">Discuss a pilot</a></div><p class="micro" data-i18n="hero.micro">First use case: HVAC and high-value local services</p></div><div class="hero-system" aria-label="Lead Engine product preview" data-i18n-aria="a11y.preview"><div class="system-head"><strong>Lead Engine</strong><span class="demo-badge" data-i18n="demo.badge">DEMO</span></div><div class="system-chat"><div class="bubble user" data-i18n="preview.customer">How much would it cost to install AC in a 30 m² living room?</div><div class="bubble"><span class="ai-tag" data-i18n="demo.aiTag">NOVIRAM AI · DEMO</span><span data-i18n="preview.ai">Hi! I’ve already picked up the 30 m² room size from your message. Which city would the installation be in?</span></div></div><div class="system-result"><span data-i18n="hero.result">Qualified lead</span><b data-i18n="preview.status">QUALIFIED · HOT</b></div></div></div></section>
+  <div class="ticker" aria-hidden="true"><div class="ticker-track"><span class="ticker-item" data-i18n="ticker.1">Instant response</span><span class="ticker-item" data-i18n="ticker.2">Qualification</span><span class="ticker-item" data-i18n="ticker.3">Lead scoring</span><span class="ticker-item" data-i18n="ticker.4">Booking</span><span class="ticker-item" data-i18n="ticker.5">Follow-up</span><span class="ticker-item" data-i18n="ticker.6">Human handoff</span><span class="ticker-item" data-i18n="ticker.1">Instant response</span><span class="ticker-item" data-i18n="ticker.2">Qualification</span><span class="ticker-item" data-i18n="ticker.3">Lead scoring</span><span class="ticker-item" data-i18n="ticker.4">Booking</span><span class="ticker-item" data-i18n="ticker.5">Follow-up</span><span class="ticker-item" data-i18n="ticker.6">Human handoff</span></div></div>
+  <section class="section" id="how"><div class="wrap"><div class="section-head reveal"><p class="eyebrow" data-i18n="flow.eye">One connected flow</p><h2 data-i18n="flow.title">Every lead gets a clear next step.</h2><p data-i18n="flow.copy">Lead Engine connects the moments between a new inquiry and a human sales conversation.</p></div><div class="flow-wrap"><ol class="flow reveal"><li><span>01</span><strong data-i18n="flow.1">Incoming lead</strong></li><li><span>02</span><strong data-i18n="flow.2">AI conversation</strong></li><li><span>03</span><strong data-i18n="flow.3">Qualification</strong></li><li><span>04</span><strong data-i18n="flow.4">Lead scoring</strong></li><li><span>05</span><strong data-i18n="flow.5">Booking</strong></li><li><span>06</span><strong data-i18n="flow.6">CRM / follow-up</strong></li><li><span>07</span><strong data-i18n="flow.7">Qualified opportunity</strong></li></ol></div><p class="scroll-hint" data-i18n="scroll">Swipe sideways →</p></div></section>
+  <section class="section" id="demo" style="background:#fff;border-block:1px solid var(--wire-light)"><div class="wrap"><div class="section-head reveal"><p class="eyebrow" data-i18n="demo.eye">Interactive product demo</p><h2 data-i18n="demo.title">See the system understand, qualify, and route a lead.</h2><p data-i18n="demo.copy">This self-contained simulation uses sample data only. It does not send or store personal information.</p></div><div class="demo-grid reveal"><section class="chat" aria-label="Interactive lead conversation" data-i18n-aria="a11y.conversation"><div class="chat-head"><div class="chat-identity"><span class="avatar">N</span><span><strong data-i18n="demo.name">AC Demo</strong><small data-i18n="demo.ai">AI assistant · demo</small></span></div><button class="reset" id="reset" type="button" data-i18n="demo.reset">Reset</button></div><div class="chat-progress"><span id="chatProgress" style="width:20%"></span></div><div class="chat-body" id="chatBody"><p class="notice" data-i18n="demo.notice">Simulation · No quote is given and no data is saved</p><div id="messages" role="log" aria-live="polite" aria-relevant="additions text"></div><div class="options" id="options" aria-label="Response options" data-i18n-aria="a11y.options"></div></div><div class="chat-foot"><span id="stepLabel">Minősítés · 1/5</span><strong id="stepName">HELYSZÍN</strong></div></section><aside class="summary" aria-label="Lead summary" data-i18n-aria="a11y.summary"><div class="score-head"><div><small data-i18n="summary.score">LEAD SCORE</small><strong id="temperature">FOLYAMATBAN</strong></div><span class="score-num" id="score">10</span></div><h3 data-i18n="summary.title">Air-conditioning installation inquiry</h3><dl><div><dt data-i18n="summary.service">Service</dt><dd id="sService">Klímatelepítés</dd></div><div><dt data-i18n="summary.room">Room</dt><dd>30 m²<span class="pill" data-i18n="summary.extracted">Extracted from first message</span></dd></div><div><dt data-i18n="summary.location">Location</dt><dd id="sLocation">—</dd></div><div><dt data-i18n="summary.property">Property</dt><dd id="sProperty">—</dd></div><div><dt data-i18n="summary.timing">Timing</dt><dd id="sTiming">—</dd></div><div><dt data-i18n="summary.contact">Contact</dt><dd id="sContact">—</dd></div><div><dt id="nextLabel">Következő lépés</dt><dd id="sNext">—</dd></div></dl><div class="next-action"><small data-i18n="summary.action">NEXT SYSTEM ACTION</small><strong id="disposition">Minősítésre vár</strong></div><p class="demo-note" data-i18n="summary.note">DEMO · SAMPLE DATA · NO INTEGRATIONS</p></aside></div></div></section>
+  <section class="section section-dark" id="system"><div class="wrap"><div class="section-head reveal"><p class="eyebrow" data-i18n="system.eye">The product system</p><h2 data-i18n="system.title">Automation for repetition. People for judgement.</h2><p data-i18n="system.copy">Modules work together around the lead, while technical questions, complaints, exceptions, and special requests are handed to a person.</p></div><div class="module-grid reveal"><article class="module"><span class="module-num">01</span><h3 data-i18n="m1.t">Instant response</h3><p data-i18n="m1.d">A new inquiry receives a relevant response immediately, including outside working hours.</p></article><article class="module"><span class="module-num">02</span><h3 data-i18n="m2.t">Qualification &amp; scoring</h3><p data-i18n="m2.d">Known details are extracted, missing details are asked, and sales readiness is scored.</p></article><article class="module"><span class="module-num">03</span><h3 data-i18n="m3.t">Booking</h3><p data-i18n="m3.d">Qualified leads can move directly to an appropriate appointment or human next step.</p></article><article class="module"><span class="module-num">04</span><h3 data-i18n="m4.t">Follow-up</h3><p data-i18n="m4.d">Open inquiries, quotes, missed calls, and older leads can follow distinct workflows.</p></article><article class="module"><span class="module-num">05</span><h3 data-i18n="m5.t">Pipeline visibility</h3><p data-i18n="m5.d">Source, status, score, owner, and next action remain visible in one process.</p></article><article class="module"><span class="module-num">06</span><h3 data-i18n="m6.t">Review requests</h3><p data-i18n="m6.d">After completed work, the system can request a review at an appropriate moment.</p></article><article class="module handoff"><div><span class="module-num" data-i18n="handoff.eye">HUMAN HANDOFF</span><h3 data-i18n="handoff.t">The system knows when to stop.</h3></div><div class="handoff-callout"><strong data-i18n="handoff.label">EXAMPLE ROUTING RULE</strong><span data-i18n="handoff.d">“The outdoor unit needs a listed-building approval.” → Do not improvise a technical answer. Capture the context and route it to a specialist for confirmation.</span></div></article></div></div></section>
+  <section class="section"><div class="wrap"><div class="section-head reveal"><p class="eyebrow" data-i18n="dash.eye">Pipeline visibility</p><h2 data-i18n="dash.title">A measurable process, not a hidden inbox.</h2><p data-i18n="dash.copy">This sample board illustrates how leads and next actions could be presented. All values below are demo data.</p></div><div class="dashboard reveal"><div class="dash-head"><strong data-i18n="dash.board">Lead Pipeline</strong><span class="dash-badge" data-i18n="dash.badge">DEMO · SAMPLE DATA</span></div><div class="metrics"><div class="metric"><small data-i18n="metric.1">Visible sample leads</small><strong>4</strong></div><div class="metric"><small data-i18n="metric.2">Waiting for action</small><strong>2</strong></div><div class="metric"><small data-i18n="metric.3">Booked</small><strong>1</strong></div><div class="metric"><small data-i18n="metric.4">Human review</small><strong>1</strong></div></div><div class="pipeline-scroll" aria-label="Sample lead pipeline" data-i18n-aria="a11y.pipeline"><div class="pipeline"><div class="column"><h4 data-i18n="col.1">New</h4><div class="lead"><em>HOT</em><strong>Nagy Anna</strong><span data-i18n="lead.1">Air conditioning · 30 m²</span></div></div><div class="column"><h4 data-i18n="col.2">Qualification</h4><div class="lead"><em>WARM</em><strong>Kiss Péter</strong><span data-i18n="lead.2">Heat-pump survey</span></div></div><div class="column"><h4 data-i18n="col.3">Appointment</h4><div class="lead"><em>HOT</em><strong>Varga Dóra</strong><span data-i18n="lead.3">Replacement · 2 units</span></div></div><div class="column"><h4 data-i18n="col.4">Human review</h4><div class="lead"><strong>Tóth Gábor</strong><span data-i18n="lead.4">Service-area confirmation</span></div></div></div></div><p class="scroll-hint" data-i18n="scroll">Swipe sideways →</p></div></div></section>
+  <section class="section" style="background:var(--paper-2)"><div class="wrap use-case"><div class="section-head reveal"><p class="eyebrow" data-i18n="use.eye">First vertical</p><h2 data-i18n="use.title">Starting with HVAC. Designed to expand.</h2><p data-i18n="use.copy">The first pilot focuses on air-conditioning and heat-pump companies, where speed, location, timing, and technical handoff matter. The underlying product is designed for high-value local services more broadly.</p></div><div class="use-card reveal"><small data-i18n="use.card.eye">TYPICAL LEAD PATH</small><h3 data-i18n="use.card.title">From “how much?” to a useful sales conversation.</h3><ul class="use-list"><li><b data-i18n="use.1t">Understand what is already known</b><span data-i18n="use.1d">Do not ask for the 30 m² room size twice.</span></li><li><b data-i18n="use.2t">Qualify what changes the next step</b><span data-i18n="use.2d">Location, property type, timing, contact, and intent.</span></li><li><b data-i18n="use.3t">Route responsibly</b><span data-i18n="use.3d">Book, follow up, nurture, or hand off — without pretending every lead is HOT.</span></li></ul></div></div></section>
+  <section class="section section-dark contact" id="contact"><div class="wrap contact-inner"><p class="eyebrow" data-i18n="contact.eye">Lead Engine pilot</p><h2 data-i18n="contact.title">Let’s map the journey from first message to the next sales step.</h2><p data-i18n="contact.copy">In a short conversation, we will cover your lead sources, qualification rules, handoff points, and current systems.</p><div class="actions"><a class="btn btn-primary" id="demoMailLink" href="mailto:info@noviram.com?subject=Noviram%20Lead%20Engine%20demo" data-i18n="contact.cta">Request a demo</a><a class="btn btn-ghost" href="index.html#contact" data-local-href="index.html#contact" data-i18n="contact.custom">Start a custom project</a></div><p class="fine" data-i18n="contact.fine">No form or booking backend is connected on this page.</p></div></section>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><span>© 2026 Noviram Digital Kft.</span><span><a href="index.html" data-local-href="index.html" data-i18n="foot.home">Noviram</a> · <a href="aszf.html" data-i18n="foot.terms">Terms (HU)</a> · <a href="adatkezeles.html" data-i18n="foot.privacy">Privacy (HU)</a></span><span>info@noviram.com</span></div></footer>
+<script>
+const T = {
+  en: {
+    'nav.how':'How it works','nav.demo':'Demo','nav.system':'System','nav.company':'Noviram','nav.cta':'Book a demo',
+    'hero.eyebrow':'Noviram Lead Engine',
+    'hero.h1':'Turn more enquiries into qualified, booked opportunities.',
+    'hero.lede':'Respond in seconds, qualify intent, book the right next step and keep follow-up moving automatically.',
+    'hero.primary':'Open the demo','hero.secondary':'Discuss a pilot',
+    'hero.micro':'First use case: HVAC and high-value local services','hero.result':'Qualified lead',
+    'preview.customer':'How much would it cost to install AC in a 30 m² living room?',
+    'preview.ai':'Hi! I’ve already picked up the 30 m² room size from your message. Which city would the installation be in?',
+    'preview.status':'QUALIFIED · HOT',
+    'ticker.1':'Instant response','ticker.2':'Qualification','ticker.3':'Lead scoring','ticker.4':'Booking','ticker.5':'Follow-up','ticker.6':'Human handoff',
+    'flow.eye':'One connected flow','flow.title':'Every lead gets a clear next step.',
+    'flow.copy':'Lead Engine connects the first enquiry with qualification, booking, and sales handoff.',
+    'flow.1':'Incoming lead','flow.2':'AI conversation','flow.3':'Qualification','flow.4':'Lead scoring','flow.5':'Booking','flow.6':'CRM / follow-up','flow.7':'Qualified sales opportunity',
+    'scroll':'Swipe sideways →',
+    'demo.eye':'Interactive product demo','demo.title':'See how the system understands, qualifies, and routes a lead.',
+    'demo.copy':'This self-contained simulation uses sample data only. It does not send or store personal information.',
+    'demo.badge':'DEMO','demo.name':'AC Demo','demo.ai':'AI assistant · demo','demo.aiTag':'NOVIRAM AI · DEMO','demo.reset':'Reset',
+    'demo.notice':'Simulation · No quote is given and no data is saved',
+    'demo.serviceValue':'Air-conditioning installation',
+    'summary.score':'LEAD SCORE','summary.title':'Air-conditioning installation enquiry','summary.service':'Service',
+    'summary.room':'Room','summary.extracted':'Extracted from first message','summary.location':'Location',
+    'summary.property':'Property','summary.timing':'Timing','summary.contact':'Contact',
+    'summary.next':'Next step','summary.appointment':'Appointment','summary.action':'NEXT SYSTEM ACTION',
+    'summary.waiting':'Waiting for qualification','summary.note':'DEMO · SAMPLE DATA · NO INTEGRATIONS',
+    'summary.contactSample':'Sample contact supplied','summary.contactNone':'No contact supplied','summary.outside':'Outside demo service area',
+    'system.eye':'The product system','system.title':'Automation for repetition. People for judgement.',
+    'system.copy':'The system automates repetitive steps while technical questions, complaints, exceptions, and special requests are routed to a person.',
+    'm1.t':'Instant response','m1.d':'A new enquiry receives a relevant response immediately, including outside working hours.',
+    'm2.t':'Qualification & scoring','m2.d':'Known details are extracted, missing details are asked, and sales readiness is scored.',
+    'm3.t':'Booking','m3.d':'Appropriately qualified leads can move directly to booking or a team member.',
+    'm4.t':'Follow-up','m4.d':'Open leads, quotes, missed calls, and older enquiries can receive distinct follow-up workflows.',
+    'm5.t':'Pipeline visibility','m5.d':'Source, status, score, owner, and next action remain visible in one place.',
+    'm6.t':'Review requests','m6.d':'After completed work, the system can request a review at an appropriate moment.',
+    'handoff.eye':'HUMAN HANDOFF','handoff.t':'Automatic handoff when human judgement is needed.',
+    'handoff.label':'EXAMPLE ROUTING RULE',
+    'handoff.d':'“The outdoor unit may require listed-building approval.” → Do not improvise a technical answer. Capture the context and route it to a specialist for confirmation.',
+    'dash.eye':'Sales pipeline','dash.title':'A measurable process, not scattered messages.',
+    'dash.copy':'This sample board illustrates how leads and next actions could be presented. All values below are demo data.',
+    'dash.board':'Lead Pipeline','dash.badge':'DEMO · SAMPLE DATA',
+    'metric.1':'Sample leads','metric.2':'Waiting for action','metric.3':'Booked','metric.4':'Human review',
+    'col.1':'New','col.2':'Qualification','col.3':'Appointment','col.4':'Human review',
+    'lead.1':'Air conditioning · 30 m²','lead.2':'Heat-pump survey','lead.3':'Replacement · 2 units','lead.4':'Service-area confirmation',
+    'use.eye':'First target market','use.title':'Starting with HVAC, designed to expand to other services.',
+    'use.copy':'The first pilot focuses on air-conditioning and heat-pump companies, where fast responses, location, timing, and technical handoff matter. The underlying system can expand to other high-value local services.',
+    'use.card.eye':'TYPICAL LEAD PATH','use.card.title':'From “how much?” to a useful sales conversation.',
+    'use.1t':'Recognise what is already known','use.1d':'The system should not ask again for information already supplied, such as the 30 m² room size.',
+    'use.2t':'Capture what determines the next step','use.2d':'Location, property type, timing, contact, and intent.',
+    'use.3t':'Route to the right outcome','use.3d':'Booking, follow-up, or human handoff — according to the lead’s intent.',
+    'contact.eye':'Lead Engine pilot','contact.title':'Let’s map the journey from first message to the next sales step.',
+    'contact.copy':'In a short conversation, we will cover your lead sources, qualification rules, handoff points, and current systems.',
+    'contact.cta':'Request a demo','contact.custom':'Start a custom project',
+    'contact.fine':'No form or booking backend is connected on this page.',
+    'foot.home':'Noviram','foot.terms':'Terms (HU)','foot.privacy':'Privacy (HU)',
+    'doc.title':'Noviram Lead Engine — From enquiry to qualified opportunity',
+    'meta.description':'Noviram Lead Engine responds instantly, qualifies incoming leads, books the right next step, and keeps follow-up moving.',
+    'mail.subject':'Noviram Lead Engine demo',
+    'a11y.primaryNav':'Primary navigation','a11y.language':'Language','a11y.preview':'Lead Engine product preview',
+    'a11y.conversation':'Interactive lead conversation','a11y.options':'Response options','a11y.summary':'Lead summary',
+    'a11y.pipeline':'Sample lead pipeline','a11y.menuOpen':'Open menu','a11y.menuClose':'Close menu',
+    'step.location':'LOCATION','step.property':'PROPERTY','step.timing':'TIMING','step.contact':'CONTACT','step.next':'NEXT STEP',
+    'progress.active':'Qualification','progress.complete':'Qualification complete','progress.inProgress':'IN PROGRESS',
+    'question.location':'Hi! I’ve already picked up the 30 m² room size from your message. Which city would the installation be in?',
+    'question.property':'What type of property is it?','question.timing':'When would you like the installation?',
+    'question.contact':'Would you like to use sample contact details for the next step? Nothing is stored.',
+    'question.next':'Choose the most appropriate next step.',
+    'question.noContact':'Without contact details, no appointment or follow-up can be recorded.',
+    'question.outside':'Debrecen is outside the demo service area. Installation is not promised; a team member can confirm availability.',
+    'question.researching':'Since you are still researching, the demo will not push an appointment.',
+    'disposition.booked':'Expert consultation · booked appointment',
+    'disposition.noContact':'No follow-up · contact details unavailable',
+    'disposition.noAction':'No further automated action',
+    'disposition.outside':'Human service-area confirmation',
+    'disposition.later':'Later, low-intensity follow-up',
+    'disposition.short':'Short automated follow-up',
+    'completion.booked':'Thank you — the sample appointment is booked. A specialist consultation is the next step.',
+    'completion.noContact':'The demo is complete. Without contact details, no follow-up or appointment can be arranged.',
+    'completion.noAction':'Understood. No further automated action will be taken.',
+    'completion.outside':'The demo is complete. A team member would need to confirm service-area availability before any installation is promised.',
+    'completion.later':'The demo is complete. A later, low-intensity follow-up would be the next step.',
+    'completion.short':'The demo is complete. A short automated follow-up sequence would be the next step.'
+  },
+  hu: {
+    'nav.how':'Hogyan működik','nav.demo':'Demó','nav.system':'Rendszer','nav.company':'Noviram','nav.cta':'Demó kérése',
+    'hero.eyebrow':'Noviram Lead Engine',
+    'hero.h1':'Alakítsa az érdeklődőket minősített, időpontra foglalt értékesítési lehetőségekké.',
+    'hero.lede':'Válaszoljon másodperceken belül, minősítse az érdeklődőket, foglaljon időpontot, és automatizálja az utánkövetést.',
+    'hero.primary':'Demó megnyitása','hero.secondary':'Pilot egyeztetése',
+    'hero.micro':'Első alkalmazási terület: klíma-, hőszivattyú- és más magas értékű helyi szolgáltatások','hero.result':'Minősített érdeklődő',
+    'preview.customer':'Mennyibe kerülne egy klíma egy 30 m²-es nappaliba?',
+    'preview.ai':'Szia! A 30 m²-es helyiségméretet már rögzítettem az üzenetedből. Melyik településen lenne a telepítés?',
+    'preview.status':'MINŐSÍTETT · HOT',
+    'ticker.1':'Azonnali válasz','ticker.2':'Minősítés','ticker.3':'Pontozás','ticker.4':'Időpontfoglalás','ticker.5':'Utánkövetés','ticker.6':'Emberi átadás',
+    'flow.eye':'Egy összekapcsolt folyamat','flow.title':'Minden érdeklődő egyértelmű következő lépést kap.',
+    'flow.copy':'A Lead Engine összeköti az első megkeresést a minősítéssel, időpontfoglalással és az értékesítőhöz történő átadással.',
+    'flow.1':'Beérkező érdeklődő','flow.2':'AI-beszélgetés','flow.3':'Minősítés','flow.4':'Pontozás','flow.5':'Időpontfoglalás','flow.6':'CRM / utánkövetés','flow.7':'Minősített értékesítési lehetőség',
+    'scroll':'Oldalra húzható →',
+    'demo.eye':'Interaktív termékdemó','demo.title':'Nézze meg, hogyan értelmezi, minősíti és irányítja tovább a rendszer az érdeklődőt.',
+    'demo.copy':'Ez az önálló szimuláció kizárólag mintaadatokat használ. Személyes adatot nem küld és nem tárol.',
+    'demo.badge':'DEMÓ','demo.name':'Klíma Demo','demo.ai':'AI-asszisztens · demó','demo.aiTag':'NOVIRAM AI · DEMÓ','demo.reset':'Újrakezdés',
+    'demo.notice':'Szimuláció · Nem ad árajánlatot és nem ment adatot',
+    'demo.serviceValue':'Klímatelepítés',
+    'summary.score':'PONTSZÁM','summary.title':'Klímatelepítési érdeklődés','summary.service':'Szolgáltatás',
+    'summary.room':'Helyiség','summary.extracted':'Az első üzenetből felismerve','summary.location':'Helyszín',
+    'summary.property':'Ingatlan','summary.timing':'Időzítés','summary.contact':'Elérhetőség',
+    'summary.next':'Következő lépés','summary.appointment':'Időpont','summary.action':'KÖVETKEZŐ RENDSZERLÉPÉS',
+    'summary.waiting':'Minősítésre vár','summary.note':'DEMÓ · MINTAADAT · NINCS INTEGRÁCIÓ',
+    'summary.contactSample':'Mintaelérhetőség megadva','summary.contactNone':'Nincs megadott elérhetőség','summary.outside':'A demó szolgáltatási területén kívül',
+    'system.eye':'A termékrendszer','system.title':'Automatizáció a rutinfeladatokra. Emberi döntés, amikor szükséges.',
+    'system.copy':'A rendszer automatizálja az ismétlődő lépéseket, a műszaki kérdéseket, panaszokat és kivételeket pedig munkatárshoz irányítja.',
+    'm1.t':'Azonnali válasz','m1.d':'Az új érdeklődő azonnal releváns választ kap, akár munkaidőn kívül is.',
+    'm2.t':'Minősítés és pontozás','m2.d':'A rendszer felismeri a már megadott adatokat, rákérdez a hiányzókra, és pontozza az értékesítési készséget.',
+    'm3.t':'Időpontfoglalás','m3.d':'A megfelelően minősített érdeklődő közvetlenül időpontfoglalásra vagy munkatárshoz irányítható.',
+    'm4.t':'Utánkövetés','m4.d':'A folyamatban lévő érdeklődők, ajánlatok, nem fogadott hívások és korábbi megkeresések külön utánkövetési folyamatot kaphatnak.',
+    'm5.t':'Átlátható értékesítési folyamat','m5.d':'A forrás, státusz, pontszám, felelős és következő lépés egy helyen látható.',
+    'm6.t':'Értékeléskérés','m6.d':'A munka lezárása után a rendszer a megfelelő pillanatban kérhet értékelést.',
+    'handoff.eye':'EMBERI ÁTADÁS','handoff.t':'Automatikus átadás, amikor emberi döntés kell.',
+    'handoff.label':'PÉLDA EGY TOVÁBBÍTÁSI SZABÁLYRA',
+    'handoff.d':'„A kültéri egységhez műemléki engedélyre lehet szükség.” → A rendszer nem rögtönöz műszaki választ: rögzíti a helyzetet, és megerősítésre szakértőhöz irányítja.',
+    'dash.eye':'Értékesítési folyamat','dash.title':'Mérhető folyamat, nem szétszórt üzenetek.',
+    'dash.copy':'Ez a mintatábla azt szemlélteti, hogyan jelenhetnek meg az érdeklődők és a következő lépések. Minden alábbi érték demóadat.',
+    'dash.board':'Értékesítési folyamat','dash.badge':'DEMÓ · MINTAADAT',
+    'metric.1':'Mintaérdeklődők','metric.2':'Teendőre vár','metric.3':'Lefoglalt időpont','metric.4':'Emberi ellenőrzés',
+    'col.1':'Új','col.2':'Minősítés','col.3':'Időpont','col.4':'Emberi ellenőrzés',
+    'lead.1':'Klíma · 30 m²','lead.2':'Hőszivattyú-felmérés','lead.3':'Csere · 2 készülék','lead.4':'Területi elérhetőség ellenőrzése',
+    'use.eye':'Első célpiac','use.title':'Klímás cégekkel indul, más szolgáltatásokra is bővíthető.',
+    'use.copy':'Az első pilot klíma- és hőszivattyús cégekre fókuszál, ahol különösen fontos a gyors válasz, a helyszín, az időzítés és a műszaki kérdések megfelelő továbbítása. Az alap rendszer más magas értékű helyi szolgáltatásokra is bővíthető.',
+    'use.card.eye':'TIPIKUS ÉRDEKLŐDŐI ÚT','use.card.title':'A „mennyibe kerül?” kérdéstől a hasznos értékesítési beszélgetésig.',
+    'use.1t':'A már ismert adatok felismerése','use.1d':'A rendszer ne kérdezze meg újra azt, amit az érdeklődő már megadott — például a 30 m²-es helyiségméretet.',
+    'use.2t':'A következő lépést meghatározó adatok','use.2d':'Helyszín, ingatlantípus, időzítés, elérhetőség és vásárlási szándék.',
+    'use.3t':'Megfelelő továbbirányítás','use.3d':'Időpontfoglalás, utánkövetés vagy emberi átadás — az érdeklődő szándékának megfelelően.',
+    'contact.eye':'Lead Engine pilot','contact.title':'Tervezzük meg az érdeklődő útját az első üzenettől a következő értékesítési lépésig.',
+    'contact.copy':'Egy rövid egyeztetésen átbeszéljük, honnan érkeznek az érdeklődők, hogyan történik a minősítés, mikor kell munkatárshoz kerülniük, és milyen rendszereket használ már a cég.',
+    'contact.cta':'Demó kérése','contact.custom':'Egyedi projekt indítása',
+    'contact.fine':'Az oldalon nincs valódi űrlap vagy időpontfoglaló háttérrendszer.',
+    'foot.home':'Noviram','foot.terms':'ÁSZF','foot.privacy':'Adatkezelés',
+    'doc.title':'Noviram Lead Engine — Érdeklődőből minősített értékesítési lehetőség',
+    'meta.description':'A Noviram Lead Engine azonnal válaszol, minősíti az érdeklődőket, időpontot foglal, és automatizálja az utánkövetést.',
+    'mail.subject':'Noviram Lead Engine demó',
+    'a11y.primaryNav':'Elsődleges navigáció','a11y.language':'Nyelv','a11y.preview':'A Lead Engine termék előnézete',
+    'a11y.conversation':'Interaktív érdeklődői beszélgetés','a11y.options':'Válaszlehetőségek','a11y.summary':'Érdeklődő összegzése',
+    'a11y.pipeline':'Minta értékesítési folyamat','a11y.menuOpen':'Menü megnyitása','a11y.menuClose':'Menü bezárása',
+    'step.location':'HELYSZÍN','step.property':'INGATLAN','step.timing':'IDŐZÍTÉS','step.contact':'ELÉRHETŐSÉG','step.next':'KÖVETKEZŐ LÉPÉS',
+    'progress.active':'Minősítés','progress.complete':'Minősítés befejezve','progress.inProgress':'FOLYAMATBAN',
+    'question.location':'Szia! A 30 m²-es helyiségméretet már rögzítettem az üzenetedből. Melyik településen lenne a telepítés?',
+    'question.property':'Milyen típusú ingatlanról van szó?','question.timing':'Mikorra szeretnéd a telepítést?',
+    'question.contact':'Szeretnél mintaelérhetőséget használni a következő lépéshez? A demó semmit nem tárol.',
+    'question.next':'Válaszd ki a megfelelő következő lépést.',
+    'question.noContact':'Elérhetőség nélkül nem tudunk időpontot vagy utánkövetést rögzíteni.',
+    'question.outside':'Debrecen a demó szolgáltatási területén kívül van. A telepítés lehetőségét nem ígérjük; ezt munkatárs tudja ellenőrizni.',
+    'question.researching':'Mivel most még csak tájékozódsz, a demó nem sürgeti az időpontfoglalást.',
+    'disposition.booked':'Szakértői egyeztetés · lefoglalt időpont',
+    'disposition.noContact':'Nincs utánkövetés · elérhetőség nem áll rendelkezésre',
+    'disposition.noAction':'Nincs további automatikus lépés',
+    'disposition.outside':'Területi elérhetőség emberi ellenőrzése',
+    'disposition.later':'Későbbi, alacsony intenzitású utánkövetés',
+    'disposition.short':'Rövid automatikus utánkövetési folyamat',
+    'completion.booked':'Köszönöm — a mintaidőpontot lefoglaltuk. A következő lépés a szakértői egyeztetés.',
+    'completion.noContact':'A demó befejeződött. Elérhetőség nélkül nem indítható utánkövetés, és időpont sem rögzíthető.',
+    'completion.noAction':'Rendben. Nem indul további automatikus lépés.',
+    'completion.outside':'A demó befejeződött. A területi elérhetőséget munkatársnak kell ellenőriznie, mielőtt a telepítés lehetőségéről visszajelzés adható.',
+    'completion.later':'A demó befejeződött. A következő lépés egy későbbi, alacsony intenzitású utánkövetés.',
+    'completion.short':'A demó befejeződött. A következő lépés egy rövid automatikus utánkövetési folyamat.'
+  }
+};
+
+const CHOICE_LABELS = {
+  location: {
+    budapest:{en:'Budapest',hu:'Budapest'},budaors:{en:'Budaörs',hu:'Budaörs'},
+    erd:{en:'Érd',hu:'Érd'},debrecen:{en:'Debrecen',hu:'Debrecen'}
+  },
+  property: {
+    apartment:{en:'Apartment',hu:'Társasházi lakás'},
+    house:{en:'Detached house',hu:'Családi ház'},
+    office:{en:'Office',hu:'Iroda'}
+  },
+  timing: {
+    within_2_weeks:{en:'Within 2 weeks',hu:'2 héten belül'},
+    within_1_month:{en:'Within 1 month',hu:'1 hónapon belül'},
+    researching:{en:'I’m only researching',hu:'Csak tájékozódom'}
+  },
+  contact: {
+    sample_contact:{en:'Use sample contact details',hu:'Mintaszám használata'},
+    no_contact:{en:'Continue without contact details',hu:'Elérhetőség nélkül folytatom'}
+  },
+  next: {
+    book_tue_1030:{en:'Tuesday 10:30',hu:'Kedd 10:30'},
+    book_wed_1400:{en:'Wednesday 14:00',hu:'Szerda 14:00'},
+    book_fri_0900:{en:'Friday 09:00',hu:'Péntek 09:00'},
+    no_booking:{en:'I don’t want to book now',hu:'Most nem foglalok időpontot'},
+    service_area_review:{en:'Request service-area confirmation',hu:'Területi elérhetőség ellenőrzését kérem'},
+    later_followup:{en:'Request follow-up later',hu:'Későbbi utánkövetést kérek'},
+    no_action:{en:'No further action for now',hu:'Most nem kérek további lépést'},
+    close_without_save:{en:'Finish without saving',hu:'Lezárom mentés nélkül'}
+  }
+};
+
+const STEP_DEFINITIONS = [
+  {key:'location',labelKey:'step.location',questionKey:'question.location',group:'location',options:['budapest','budaors','erd','debrecen']},
+  {key:'property',labelKey:'step.property',questionKey:'question.property',group:'property',options:['apartment','house','office']},
+  {key:'timing',labelKey:'step.timing',questionKey:'question.timing',group:'timing',options:['within_2_weeks','within_1_month','researching']},
+  {key:'contact',labelKey:'step.contact',questionKey:'question.contact',group:'contact',options:['sample_contact','no_contact']},
+  {key:'next',labelKey:'step.next',questionKey:'question.next',group:'next',options:[]}
+];
+
+const LANGUAGE_KEY = 'noviramLang';
+const VALID_LANGUAGES = ['en','hu'];
+const SERVICE_AREA = new Set(['budapest','budaors','erd']);
+const BOOKING_CHOICES = new Set(['book_tue_1030','book_wed_1400','book_fri_0900']);
+let lang = 'en';
+let stepIndex = 0;
+let answers = {};
+let messages = [];
+
+const $ = function(id){ return document.getElementById(id); };
+const t = function(key){ return T[lang][key]; };
+
+function escapeHtml(value){
+  return String(value).replace(/[&<>"']/g, function(character){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[character];
+  });
+}
+
+function labelFor(group, value){
+  return value && CHOICE_LABELS[group] && CHOICE_LABELS[group][value] ? CHOICE_LABELS[group][value][lang] : '—';
+}
+
+function hasContact(){ return answers.contact === 'sample_contact'; }
+function isInServiceArea(){ return SERVICE_AREA.has(answers.location); }
+function isBooked(){ return BOOKING_CHOICES.has(answers.next); }
+
+function calculateScore(){
+  let score = 10;
+  if (isInServiceArea()) score += 15;
+  if (answers.property) score += 5;
+  if (answers.timing === 'within_2_weeks') score += 25;
+  if (answers.timing === 'within_1_month') score += 15;
+  if (hasContact()) score += 15;
+  if (isBooked()) score += 25;
+  return score;
+}
+
+function temperatureFor(score){
+  if (score >= 80) return 'HOT';
+  if (score >= 55) return 'WARM';
+  return 'NURTURE';
+}
+
+function dispositionKey(){
+  if (isBooked()) return 'booked';
+  if (!hasContact()) return 'noContact';
+  if (answers.next === 'no_action') return 'noAction';
+  if (!isInServiceArea()) return 'outside';
+  if (answers.timing === 'researching' && answers.next === 'later_followup') return 'later';
+  return 'short';
+}
+
+function currentOptions(){
+  if (stepIndex < 4) return STEP_DEFINITIONS[stepIndex].options;
+  if (!hasContact()) return ['close_without_save'];
+  if (!isInServiceArea()) return ['service_area_review','no_action'];
+  if (answers.timing === 'researching') return ['later_followup','no_action'];
+  return ['book_tue_1030','book_wed_1400','book_fri_0900','no_booking'];
+}
+
+function nextAssistantText(){
+  if (stepIndex === 4 && !hasContact()) return t('question.noContact');
+  if (stepIndex === 4 && !isInServiceArea()) return t('question.outside');
+  if (stepIndex === 4 && answers.timing === 'researching') return t('question.researching');
+  return t(STEP_DEFINITIONS[stepIndex].questionKey);
+}
+
+function renderMessages(){
+  $('messages').innerHTML = messages.map(function(message){
+    const tag = message.who === 'ai' ? '<span class="ai-tag">' + escapeHtml(t('demo.aiTag')) + '</span>' : '';
+    return '<div class="msg-row ' + message.who + '"><div class="bubble">' + tag + escapeHtml(message.text) + '</div></div>';
+  }).join('');
+}
+
+function renderOptions(complete){
+  const options = complete ? [] : currentOptions();
+  $('options').innerHTML = options.map(function(value){
+    return '<button type="button" data-option="' + value + '">' + escapeHtml(labelFor(STEP_DEFINITIONS[stepIndex].group, value)) + '</button>';
+  }).join('');
+}
+
+function renderSummary(complete){
+  const score = calculateScore();
+  $('score').textContent = score;
+  $('temperature').textContent = complete ? temperatureFor(score) : t('progress.inProgress');
+  $('sService').textContent = t('demo.serviceValue');
+
+  if (answers.location) {
+    $('sLocation').innerHTML = escapeHtml(labelFor('location', answers.location)) +
+      (!isInServiceArea() ? '<span class="pill">' + escapeHtml(t('summary.outside')) + '</span>' : '');
+  } else {
+    $('sLocation').textContent = '—';
+  }
+
+  $('sProperty').textContent = answers.property ? labelFor('property', answers.property) : '—';
+  $('sTiming').textContent = answers.timing ? labelFor('timing', answers.timing) : '—';
+  $('sContact').textContent = answers.contact ? t(hasContact() ? 'summary.contactSample' : 'summary.contactNone') : '—';
+  $('sNext').textContent = answers.next ? labelFor('next', answers.next) : '—';
+  $('nextLabel').textContent = t(isBooked() ? 'summary.appointment' : 'summary.next');
+  $('disposition').textContent = complete ? t('disposition.' + dispositionKey()) : t('summary.waiting');
+}
+
+function render(){
+  const complete = stepIndex >= STEP_DEFINITIONS.length;
+  renderMessages();
+  renderOptions(complete);
+  $('chatProgress').style.width = (complete ? 100 : (stepIndex + 1) * 20) + '%';
+  $('stepLabel').textContent = complete ? t('progress.complete') : t('progress.active') + ' · ' + (stepIndex + 1) + '/5';
+  $('stepName').textContent = complete ? temperatureFor(calculateScore()) : t(STEP_DEFINITIONS[stepIndex].labelKey);
+  renderSummary(complete);
+  $('chatBody').scrollTop = $('chatBody').scrollHeight;
+}
+
+function resetDemo(){
+  stepIndex = 0;
+  answers = {service:'ac_installation',roomSize:30};
+  messages = [
+    {who:'user',text:t('preview.customer')},
+    {who:'ai',text:t('question.location')}
+  ];
+  render();
+}
+
+function choose(value){
+  const step = STEP_DEFINITIONS[stepIndex];
+  answers[step.key] = value;
+  messages.push({who:'user',text:labelFor(step.group, value)});
+  stepIndex += 1;
+  if (stepIndex < STEP_DEFINITIONS.length) {
+    messages.push({who:'ai',text:nextAssistantText()});
+  } else {
+    messages.push({who:'ai',text:t('completion.' + dispositionKey())});
+  }
+  render();
+}
+
+function resolveInitialLanguage(){
+  const parameter = new URLSearchParams(window.location.search).get('lang');
+  if (VALID_LANGUAGES.includes(parameter)) return parameter;
+  try {
+    const stored = localStorage.getItem(LANGUAGE_KEY);
+    if (VALID_LANGUAGES.includes(stored)) return stored;
+  } catch (error) {
+    // Language selection still works when browser storage is unavailable.
+  }
+  return 'hu';
+}
+
+function updateLanguageUrl(language){
+  try {
+    const url = new URL(window.location.href);
+    url.searchParams.set('lang', language);
+    history.replaceState(null, '', url.pathname + url.search + url.hash);
+  } catch (error) {
+    // Ignore history restrictions in unusual local-file previews.
+  }
+}
+
+function localizeCrossPageLinks(language){
+  document.querySelectorAll('[data-local-href]').forEach(function(link){
+    const target = link.getAttribute('data-local-href');
+    const hashIndex = target.indexOf('#');
+    const path = hashIndex === -1 ? target : target.slice(0, hashIndex);
+    const hash = hashIndex === -1 ? '' : target.slice(hashIndex);
+    link.setAttribute('href', path + '?lang=' + language + hash);
+  });
+}
+
+const toggle = $('navToggle');
+const panel = $('mobilePanel');
+
+function updateMenuLabel(){
+  const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+  toggle.setAttribute('aria-label', t(isOpen ? 'a11y.menuClose' : 'a11y.menuOpen'));
+}
+
+function applyLang(language, persistPreference = true){
+  if (!VALID_LANGUAGES.includes(language)) language = 'en';
+  lang = language;
+  document.documentElement.lang = language;
+  document.querySelectorAll('[data-i18n]').forEach(function(element){
+    const value = T[language][element.getAttribute('data-i18n')];
+    if (value !== undefined) element.textContent = value;
+  });
+  document.querySelectorAll('[data-i18n-aria]').forEach(function(element){
+    const value = T[language][element.getAttribute('data-i18n-aria')];
+    if (value !== undefined) element.setAttribute('aria-label', value);
+  });
+  document.querySelectorAll('.lang-btn').forEach(function(button){
+    button.setAttribute('aria-pressed', String(button.getAttribute('data-lang') === language));
+  });
+  document.title = t('doc.title');
+  $('metaDescription').setAttribute('content', t('meta.description'));
+  $('demoMailLink').setAttribute('href', 'mailto:info@noviram.com?subject=' + encodeURIComponent(t('mail.subject')));
+  localizeCrossPageLinks(language);
+  updateMenuLabel();
+  updateLanguageUrl(language);
+  if (persistPreference) {
+    try { localStorage.setItem(LANGUAGE_KEY, language); } catch (error) {}
+  }
+  document.documentElement.classList.remove('i18n-pending');
+  resetDemo();
+}
+
+document.querySelectorAll('.lang-btn').forEach(function(button){
+  button.addEventListener('click', function(){ applyLang(button.getAttribute('data-lang')); });
+});
+$('reset').addEventListener('click', resetDemo);
+$('options').addEventListener('click', function(event){
+  const button = event.target.closest('button[data-option]');
+  if (button) choose(button.getAttribute('data-option'));
+});
+
+toggle.addEventListener('click', function(){
+  const open = panel.classList.toggle('open');
+  toggle.setAttribute('aria-expanded', String(open));
+  updateMenuLabel();
+});
+panel.querySelectorAll('a').forEach(function(link){
+  link.addEventListener('click', function(){
+    panel.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    updateMenuLabel();
+  });
+});
+
+const reveals = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window) {
+  const observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold:.12});
+  reveals.forEach(function(element){ observer.observe(element); });
+} else {
+  reveals.forEach(function(element){ element.classList.add('in'); });
+}
+
+document.addEventListener('scroll', function(){
+  requestAnimationFrame(function(){
+    const documentElement = document.documentElement;
+    const available = documentElement.scrollHeight - documentElement.clientHeight;
+    $('progress').style.width = (available > 0 ? documentElement.scrollTop / available * 100 : 0) + '%';
+  });
+}, {passive:true});
+
+applyLang(resolveInitialLanguage(), false);
+</script>
+</body>
+</html>
