@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="hu" data-legal-kind="privacy">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -96,12 +96,15 @@
 
   @media (max-width:600px){ .doc-toc ol{ columns: 1; } table.data-table{ font-size:12.5px; } }
 </style>
+<link rel="stylesheet" href="legal.css">
+<script src="site-language.js"></script><script src="legal-page.js"></script>
 </head>
 <body>
+<a class="skip-link" href="#adatkezelo">Ugrás a tartalomhoz</a>
 
 <header>
   <div class="wrap doc-header-inner">
-    <a class="logo" href="index.html">
+    <a class="logo" href="index.html?lang=hu" data-local-href="index.html">
       <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden="true">
         <circle cx="16" cy="17" r="10.5" stroke="currentColor" stroke-width="1.6"/>
         <line x1="16" y1="17" x2="16" y2="6.3" stroke="currentColor" stroke-width="1.6"/>
@@ -110,15 +113,16 @@
       </svg>
       NOVIRAM
     </a>
-    <a class="back-link" href="index.html">← Vissza a főoldalra</a>
+    <div class="doc-navigation"><a class="back-link" href="index.html?lang=hu" data-local-href="index.html">← Vissza a főoldalra</a><nav class="doc-languages" aria-label="Nyelv"><a href="adatkezeles.html?lang=hu" lang="hu" data-legal-language="hu">HU</a><a href="privacy.html?lang=en" lang="en" data-legal-language="en">EN</a></nav></div>
   </div>
 </header>
 
 <div class="wrap doc-title">
   <p class="eyebrow">Jogi dokumentum</p>
   <h1>Adatkezelési tájékoztató</h1>
-  <p class="doc-meta">Noviram Digital Kft. · Hatályos: 2026. augusztus 30. napjától · Verzió: 1.0</p>
+  <p class="doc-meta">Noviram Digital Kft. · Jogi felülvizsgálati tervezet: 2026. szeptember 7. · Verzió: 1.1</p>
   <p class="doc-meta-2">Az (EU) 2016/679 rendelet (GDPR) 13–14. cikke és a 2011. évi CXII. törvény (Infotv.) alapján</p>
+  <div class="doc-note"><strong>Élesítés előtti felülvizsgálati tervezet.</strong> A 2026. augusztus 30-i, 1.0 verziójú tájékoztató technikai adatfolyamokkal frissített változata. Az új AI- és e-mail-adatkezelés végleges jogalapját, megőrzési idejét, szolgáltatóit és nemzetközi adattovábbítási garanciáit a Noviramnak az éles működés előtt jóvá kell hagynia. Ez a megjelölés nem helyettesíti a teljes, jóváhagyott tájékoztatót.</div>
 </div>
 
 <nav class="doc-toc wrap" aria-label="Tartalomjegyzék">
@@ -132,7 +136,7 @@
     <li><a href="#adatbiztonsag">Adatbiztonság</a></li>
     <li><a href="#jogok">Az érintettek jogai</a></li>
     <li><a href="#jogorvoslat">Jogorvoslat</a></li>
-    <li><a href="#sutik">Sütik (cookie-k)</a></li>
+    <li><a href="#sutik">Böngészőtárolás és sütik</a></li>
     <li><a href="#adatfeldolgozo">A Szolgáltató mint adatfeldolgozó</a></li>
     <li><a href="#modositas">A tájékoztató módosítása</a></li>
   </ol>
@@ -146,13 +150,13 @@
     <div><dt>Adatkezelő</dt><dd><strong>Noviram Digital Korlátolt Felelősségű Társaság</strong></dd></div>
     <div><dt>Székhely</dt><dd>1068 Budapest, Városligeti fasor 24.</dd></div>
     <div><dt>Cégjegyzékszám</dt><dd>01-09-459181</dd></div>
-    <div><dt>Adószám</dt><dd>33101787-1-42</dd></div>
+    <div><dt>Adószám</dt><dd>33101787-2-42</dd></div>
     <div><dt>Képviseli</dt><dd>Czine Christopher József ügyvezető</dd></div>
     <div><dt>E-mail (adatvédelmi ügyekben is)</dt><dd><a href="mailto:info@noviram.com">info@noviram.com</a></dd></div>
     <div><dt>Honlap</dt><dd><a href="https://noviram.com">https://noviram.com</a></dd></div>
   </dl>
   <p>(a továbbiakban: <strong>Adatkezelő</strong>)</p>
-  <p>Az Adatkezelő adatvédelmi tisztviselő kijelölésére a GDPR 37. cikke alapján nem köteles, ezért adatvédelmi tisztviselőt nem jelölt ki. Adatvédelmi kérdésekben a fenti e-mail-címen fogad megkereséseket.</p>
+  <p>Adatvédelmi kérdésekben a fenti e-mail-címen fogadunk megkereséseket. Az adatvédelmi tisztviselő kijelölésének szükségességét a tényleges adatkezelések alapján az élesítés előtti felülvizsgálatban kell megerősíteni.</p>
 </section>
 
 <section id="alapelvek">
@@ -165,13 +169,16 @@
 <section id="adatkezelesek">
   <h2><span class="sec-num">3</span> Az egyes adatkezelések</h2>
 
-  <h3>3.1. Kapcsolatfelvétel, ajánlatkérés, ingyenes AI-audit</h3>
+  <h3>3.1. Önkéntes üzleti megkeresés és e-mailes kapcsolatfelvétel</h3>
   <dl class="kv-table">
-    <div><dt>Kezelt adatok</dt><dd>név, e-mail-cím, telefonszám (ha megadja), cégnév, beosztás, az üzenet tartalma</dd></div>
-    <div><dt>Cél</dt><dd>a megkeresés megválaszolása, ajánlat készítése, kapcsolattartás</dd></div>
-    <div><dt>Jogalap</dt><dd>GDPR 6. cikk (1) b) — szerződés megkötését megelőző lépések az érintett kérésére; céges kapcsolattartó adatai esetén 6. cikk (1) f) — az Adatkezelő és a képviselt cég jogos érdeke (üzleti kapcsolat létesítése)</dd></div>
-    <div><dt>Megőrzési idő</dt><dd>szerződéskötés hiányában az utolsó kapcsolatfelvételtől számított <strong>1 év</strong>; szerződéskötés esetén a 3.2. pont szerint</dd></div>
+    <div><dt>Kezelt adatok</dt><dd>név, e-mail-cím, önkéntesen megadott telefonszám és cégnév, projektösszefoglaló és kapcsolódó strukturált üzleti tények (például szolgáltatási érdeklődés, iparág, cél, probléma, időzítés), számított minősítés, nyelv, beküldés ideje és forrásoldala</dd></div>
+    <div><dt>Cél</dt><dd>a kért üzleti kapcsolatfelvétel, a projektigény megértése, emberi áttekintés, válaszadás és ajánlat előkészítése; nem hírlevél-feliratkozás</dd></div>
+    <div><dt>Jogalap tervezete</dt><dd>a korábbi tájékoztató szerinti GDPR 6. cikk (1) b) — szerződéskötést megelőző lépések az érintett kérésére; céges kapcsolattartónál 6. cikk (1) f) — az üzleti kapcsolat létesítéséhez fűződő jogos érdek. Az új űrlapra és minősítésre való alkalmazhatóság jogi jóváhagyást igényel.</dd></div>
+    <div><dt>Megőrzés</dt><dd>az új beküldési folyamat, az e-mail-fiók és a levelezési szolgáltató végleges törlési szabályai jóváhagyásra várnak; szerződéskötés esetén a 3.2–3.3. pont is irányadó. A korábbi, általános megkeresésekre megjelölt egyéves időtartam az új folyamatra nem tekinthető automatikusan jóváhagyottnak.</dd></div>
   </dl>
+  <p>A vállalati AI-beszélgetés önmagában nem küld e-mailt. A látogató a megkeresést ellenőrizheti és javíthatja, majd az <strong>„Elküldöm a Noviramnak”</strong> gombbal kifejezetten beküldi. A szerver a megadott kapcsolatfelvételi adatokat és a tömör üzleti összefoglalót a beállított SMTP-szolgáltatón keresztül Noviram kijelölt üzleti e-mail-címére továbbítja (alapértelmezetten: info@noviram.com). A teljes beszélgetési napló nem része a kiküldött levélnek.</p>
+  <p>Az élő küldés visszaigazolása azt jelzi, hogy az SMTP-szolgáltató átvette az üzenetet; a címzett postafiókjába kerülését vagy elolvasását nem igazolja. A külön jelölt tesztüzemmód (<code>EMAIL_MODE=mock</code>) nem küld e-mailt. A másolás és az e-mail-program megnyitása külön, önkéntes tartalék lehetőség. Az űrlap az AI használata nélkül is elérhető.</p>
+  <p>Az űrlap külön megadott kapcsolati mezői és szerkesztett összefoglalója az oldal nyitvatartása alatt a memóriában maradnak, nem kerülnek külön a böngésző tartós tárolójába. A korábban az AI-beszélgetésbe írt tények az asszisztens munkamenetében továbbra is szerepelhetnek.</p>
 
   <h3>3.2. Szerződéses partnerek és kapcsolattartóik adatai</h3>
   <dl class="kv-table">
@@ -189,20 +196,15 @@
     <div><dt>Megőrzési idő</dt><dd>a Számv. tv. 169. § (2) bekezdése szerint <strong>8 év</strong></dd></div>
   </dl>
 
-  <h3>3.4. Hírlevél, üzleti célú megkeresés (ha van)</h3>
-  <dl class="kv-table">
-    <div><dt>Kezelt adatok</dt><dd>név, e-mail-cím, feliratkozás időpontja</dd></div>
-    <div><dt>Cél</dt><dd>szakmai tartalmak, ajánlatok küldése</dd></div>
-    <div><dt>Jogalap</dt><dd>GDPR 6. cikk (1) a) — az érintett hozzájárulása (a gazdasági reklámtevékenységről szóló 2008. évi XLVIII. törvény 6. §-ával összhangban); a hozzájárulás bármikor, korlátozás nélkül visszavonható a levelek végén található leiratkozási linkkel vagy e-mailben</dd></div>
-    <div><dt>Megőrzési idő</dt><dd>a hozzájárulás visszavonásáig</dd></div>
-  </dl>
+  <h3>3.4. Hírlevél</h3>
+  <p>A jelen kiadásban nincs működő hírlevélküldő vagy feliratkozást rögzítő háttérrendszer. Üzleti megkeresés beküldése nem jelent marketing-hozzájárulást. Hírlevél bevezetése előtt annak külön adatkezelését és szükséges hozzájárulását rendezni kell.</p>
 
   <h3>3.5. A honlap működtetése, szerver-naplózás</h3>
   <dl class="kv-table">
-    <div><dt>Kezelt adatok</dt><dd>IP-cím, a látogatás időpontja, a megtekintett oldal, böngésző- és eszközadatok (szerver-naplófájlok)</dd></div>
+    <div><dt>Kezelt adatok</dt><dd>az alkalmazás minimális technikai naplóiban kérésazonosító, útvonal, nyelv, állapotkód, válaszidő, hibakategória, AI-modell és használati mennyiség szerepelhet; teljes üzenet, kapcsolatfelvételi adat és teljes beszélgetés nem kerül szándékosan az alkalmazásnaplóba. A sebességkorlátozó a kapcsolódó hálózati címet átmenetileg a szerver memóriájában használja. A kiválasztott tárhely vagy hálózati szolgáltató ettől eltérő technikai hozzáférési naplókat is kezelhet.</dd></div>
     <div><dt>Cél</dt><dd>a honlap biztonságos és rendeltetésszerű működtetése, hibák és visszaélések felderítése</dd></div>
-    <div><dt>Jogalap</dt><dd>GDPR 6. cikk (1) f) — az Adatkezelő jogos érdeke (a szolgáltatás biztonsága)</dd></div>
-    <div><dt>Megőrzési idő</dt><dd>legfeljebb <strong>30 nap</strong></dd></div>
+    <div><dt>Jogalap tervezete</dt><dd>GDPR 6. cikk (1) f) — a szolgáltatás biztonságához fűződő jogos érdek; a konkrét naplózáshoz igazítva felülvizsgálandó</dd></div>
+    <div><dt>Megőrzés</dt><dd>az alkalmazás- és infrastruktúra-naplók megőrzési idejét, hozzáféréseit és törlését a tárhely kiválasztása után, élesítés előtt kell véglegesíteni; a korábbi általános 30 napos leírás nem bizonyítja az új környezet beállításait</dd></div>
   </dl>
 
   <h3>3.6. Panaszkezelés</h3>
@@ -213,34 +215,38 @@
     <div><dt>Megőrzési idő</dt><dd>fogyasztói panasz esetén <strong>5 év</strong> (Fgytv. 17/A. § (7)); egyébként az elévülési idő</dd></div>
   </dl>
 
-  <p><strong>3.7.</strong> Ahol az adatkezelés jogalapja jogos érdek, az Adatkezelő érdekmérlegelési tesztet végzett; annak eredményéről az érintett a fenti elérhetőségeken tájékoztatást kérhet. Az érintett a jogos érdeken alapuló adatkezelés ellen bármikor <strong>tiltakozhat</strong> (GDPR 21. cikk).</p>
-  <p><strong>3.8.</strong> Az adatszolgáltatás önkéntes, de a kapcsolattartáshoz és a szerződéskötéshez szükséges adatok hiányában az Adatkezelő a megkeresést megválaszolni, illetve a szerződést megkötni nem tudja. Az Adatkezelő <strong>automatizált döntéshozatalt és profilalkotást</strong> (GDPR 22. cikk) nem alkalmaz.</p>
+  <h3>3.7. Noviram AI, vállalati Projektasszisztens és Lead Engine demó</h3>
+  <p>Az AI használata önkéntes. A beírt üzeneteket, a beszélgetés releváns előzményeit és az abból kinyert strukturált adatokat a böngésző Noviram szerveroldali API-jának küldi. Élő AI-üzemmódban a szerver az OpenAI Responses API-ját használja az üzenetek értelmezésére, a projekt- vagy szolgáltatási tények kinyerésére és válasz előkészítésére. Az űrlapon külön megadott kapcsolatfelvételi adatok küldése nem igényel új OpenAI-hívást; ha ilyen adatot a látogató magába az AI-beszélgetésbe ír, az az üzenet részeként feldolgozásra kerülhet.</p>
+  <p>A minősítési pontszámot és a következő javasolt rendszerlépést a szerver alkalmazásszabályai számítják ki. A cél az üzleti igény rendszerezése és a következő hasznos kérdés vagy emberi egyeztetés előkészítése. A minősítés nem szerződéses döntés, nem hitelbírálat és nem keletkeztet szolgáltatásra vagy időpontra jogosultságot. A személyes adatokhoz kapcsolható automatizált értékelés profilalkotásnak minősülhet; a GDPR szerinti besorolást és az esetleges hatásvizsgálat szükségességét jogilag felül kell vizsgálni. Az alkalmazás nem hoz joghatással vagy hasonlóan jelentős hatással járó végleges döntést.</p>
+  <p>A vállalati beágyazott és lebegő asszisztens közös böngészőmunkamenetet használ. A Lead Engine <strong>HVAC demója külön munkamenet</strong>: a példaként megadott igények feldolgozhatók az AI-val, de a demó nem küld valódi HVAC-érdeklődőt, nem indít SMS-t, nem továbbít adatot CRM-be, és nem foglal valódi naptáridőpontot. A termékoldal külön üzleti kapcsolatfelvételi lehetősége nem küldi el a HVAC-demó adatait.</p>
+  <p>Az OpenAI-kérésekben <code>store: false</code> szerepel: az alkalmazás nem kéri a válaszok későbbi API-lekérés céljából történő tárolását. Ez <strong>nem jelent teljes szolgáltatói adatmegőrzés-mentességet</strong>; visszaélés-megelőzési naplózás és más szolgáltatói adatkezelés az OpenAI feltételei és a vállalati projekt tényleges beállításai szerint történhet. Részletek: <a href="https://developers.openai.com/api/docs/guides/your-data" target="_blank" rel="noopener noreferrer">OpenAI API adatkezelési beállítások</a>. A beállítások és szerződéses garanciák végleges ellenőrzése élesítés előtti feladat.</p>
+  <p>A külön jelölt helyi AI-tesztüzemmódban az értelmezés OpenAI-hívás nélkül történik. Az AI-adatkezelés pontos jogalapja, az egyes adatkezelők és adatfeldolgozók szerepe, valamint a megőrzési szabályok az élesítés előtti jogi felülvizsgálat részei. <strong>Ne adjon meg bizalmas vagy különleges személyes adatot.</strong></p>
+  <p><strong>3.8.</strong> Az adatszolgáltatás önkéntes, de a szükséges elérhetőség hiányában a megkeresést nem tudjuk megválaszolni. A jogos érdekre alapított adatkezelésekhez a tényleges folyamatokra vonatkozó érdekmérlegelést dokumentálni kell; e tervezet nem állítja, hogy az új folyamatokra ez már elkészült. Az érintett jogos érdeken alapuló adatkezelés ellen <strong>tiltakozhat</strong> (GDPR 21. cikk).</p>
 </section>
 
 <section id="cimzettek">
   <h2><span class="sec-num">4</span> Címzettek, adatfeldolgozók</h2>
-  <p><strong>4.1.</strong> A személyes adatokat az Adatkezelő munkatársai a feladataik ellátásához szükséges mértékben ismerhetik meg. Az Adatkezelő az alábbi adatfeldolgozókat veszi igénybe:</p>
+  <p><strong>4.1.</strong> A személyes adatokat a Noviram jogosult munkatársai a megkeresés kezeléséhez szükséges mértékben ismerhetik meg. Az alábbi táblázat a megvalósított adatfolyamokat és a még megerősítendő szolgáltatói adatokat különíti el:</p>
   <table class="data-table">
-    <tr><th>Adatfeldolgozó</th><th>Tevékenység</th></tr>
-    <tr><td><strong>GitHub, Inc.</strong><br>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA</td><td>tárhely- és szerverszolgáltatás</td></tr>
-    <tr><td class="pending">[megerősítésre vár]</td><td>e-mail és irodai alkalmazások</td></tr>
-    <tr><td class="pending">[megerősítésre vár]</td><td>könyvelés, bérszámfejtés</td></tr>
-    <tr><td class="pending">[megerősítésre vár]</td><td>elektronikus számlázás</td></tr>
-    <tr><td class="pending">[megerősítésre vár — ha van]</td><td>hírlevélküldés</td></tr>
-    <tr><td class="pending">[megerősítésre vár — ha van]</td><td>weboldal-analitika, automatizáció</td></tr>
+    <tr><th scope="col">Szolgáltató / állapot</th><th scope="col">Tevékenység</th></tr>
+    <tr><td><strong>OpenAI API</strong><br>A szerződő jogi személy, cím és feldolgozói feltételek a Noviram vállalati projektjéhez ellenőrizendők.</td><td>Élő AI-üzemmódban a továbbított üzenetek és kontextus gépi értelmezése. Nem aktív a helyi AI-tesztüzemmódban.</td></tr>
+    <tr><td><strong>SMTP- és postafiók-szolgáltató</strong><br>A konkrét szolgáltató kiválasztásra és rögzítésre vár.</td><td>Kifejezetten beküldött üzleti megkeresés továbbítása és e-mailes tárolása. Az e-mail-tesztüzemmód nem küld levelet.</td></tr>
+    <tr><td><strong>Webes és API-tárhely</strong><br>Az új éles környezet szolgáltatói még nincsenek rögzítve.</td><td>Statikus honlap és szerveroldali API üzemeltetése, hálózati adatok. A korábbi ÁSZF GitHub, Inc.-et nevez meg; az élesítéskor ténylegesen választott szolgáltatóval egyeztetni kell.</td></tr>
+    <tr><td><strong>Google Fonts</strong></td><td>A honlap külső betűtípusokat tölt be a Google betűtípus-szolgáltatásából; ez hálózati kéréssel és a hálózati cím, illetve a kérés technikai adatainak továbbításával járhat. Nem hozzáadott analitikai vagy hirdetési követőkód.</td></tr>
+    <tr><td><strong>Könyvelés, bérszámfejtés és elektronikus számlázás</strong><br>A tényleges szolgáltatók megerősítésre várnak.</td><td>A weboldali érdeklődési folyamaton kívüli üzleti adminisztráció, ha igénybe veszik.</td></tr>
   </table>
-  <div class="doc-note">A táblázat csak a ténylegesen igénybe vett szolgáltatókkal együtt jogszerű. A GitHubon kívüli sorokat a valódi szolgáltatókkal kell kitölteni — vagy törölni, ha az adott szolgáltatás nincs használatban — a közzététel előtt.</div>
+  <div class="doc-note">Élesítés előtt a tényleges szolgáltatók jogi személyét, címét, szerepét, szerződéseit és megőrzési szabályait ki kell egészíteni. A HighLevel nincs integrálva: a jelen rendszer nem továbbít oda érdeklődőt. Nincs aktivált analitika, marketingkövetés vagy valós naptárintegráció.</div>
   <p><strong>4.2.</strong> Az Adatkezelő személyes adatot hatóság, bíróság részére kizárólag jogszabályon alapuló, hivatalos megkeresésre továbbít. Az adatokat az Adatkezelő harmadik személynek marketingcélra nem adja át, és nem értékesíti.</p>
 </section>
 
 <section id="harmadikorszag">
   <h2><span class="sec-num">5</span> Adattovábbítás harmadik országba</h2>
-  <p><strong>5.1.</strong> Az Adatkezelő törekszik arra, hogy az adatokat az Európai Gazdasági Térségen (EGT) belül kezelje. Amennyiben valamely igénybe vett szolgáltató (pl. felhő- vagy AI-szolgáltató) EGT-n kívüli — jellemzően egyesült államokbeli — adatkezelést végez, az adattovábbítás a GDPR V. fejezetének megfelelően történik: az Európai Bizottság <strong>megfelelőségi határozata</strong> (EU–USA adatvédelmi keretrendszer, Data Privacy Framework) alapján, vagy a Bizottság által elfogadott <strong>általános szerződési feltételek</strong> (SCC) alkalmazásával. A garanciák másolatáról az érintett a fenti elérhetőségeken tájékoztatást kérhet.</p>
+  <p><strong>5.1.</strong> Az OpenAI, a betűtípus-szolgáltató, valamint a kiválasztott tárhely- és e-mail-szolgáltató az Európai Gazdasági Térségen (EGT) kívül is kezelhet adatot. Az új éles szolgáltatói körre vonatkozó országokat és a GDPR V. fejezete szerinti adattovábbítási mechanizmust élesítés előtt dokumentálni kell. A megfelelő garancia lehet az adott címzettre alkalmazható megfelelőségi határozat vagy általános szerződési feltétel (SCC), szükség esetén további intézkedésekkel; e tervezet nem állítja, hogy valamelyik már igazoltan alkalmazható minden szolgáltatóra. Az igazolt garanciákról az info@noviram.com címen kérhető tájékoztatás.</p>
 </section>
 
 <section id="adatbiztonsag">
   <h2><span class="sec-num">6</span> Adatbiztonság</h2>
-  <p><strong>6.1.</strong> Az Adatkezelő a GDPR 32. cikke szerinti, a kockázatokkal arányos technikai és szervezési intézkedéseket alkalmaz, így különösen: titkosított (HTTPS) kapcsolat, hozzáférés-kezelés és jogosultsági szintek, kétfaktoros hitelesítés a kritikus rendszerekben, rendszeres biztonsági mentés, valamint a munkatársak és közreműködők titoktartási kötelezettsége.</p>
+  <p><strong>6.1.</strong> A kiadás szerveroldali kulcskezelést, bemenetellenőrzést, méret- és kérésgyakoriság-korlátokat, kijelölt e-mail-címzettet, valamint adatminimalizált alkalmazásnaplózást alkalmaz. Éles üzemhez HTTPS, szűkített hozzáférések és megfelelő titokkezelés szükséges. A tárhely, postafiók, hozzáférés-védelem, biztonsági mentés és szervezési intézkedések tényleges beállítását Noviramnak a GDPR 32. cikke szerinti kockázatokhoz igazítva, élesítés előtt ellenőriznie kell.</p>
   <p><strong>6.2.</strong> Adatvédelmi incidens esetén az Adatkezelő a GDPR 33–34. cikke szerint jár el: az incidenst nyilvántartja, a kockázattal járó incidenst indokolatlan késedelem nélkül, lehetőség szerint 72 órán belül bejelenti a felügyeleti hatóságnak, a magas kockázatú incidensről pedig az érintetteket is tájékoztatja.</p>
 </section>
 
@@ -273,9 +279,11 @@
 </section>
 
 <section id="sutik">
-  <h2><span class="sec-num">9</span> Sütik (cookie-k)</h2>
-  <p><strong>9.1.</strong> A süti a honlap által az érintett eszközén elhelyezett kis adatfájl. A jelen honlap jelenleg <strong>nem használ sütiket</strong> — sem a működéshez szükséges, sem statisztikai, sem marketingcélú sütiket.</p>
-  <p><strong>9.2.</strong> Amennyiben ez a jövőben megváltozik (pl. látogatottsági statisztika, mint a Google Analytics, vagy hirdetési célú követés bevezetésével), az Adatkezelő a jelen tájékoztatót előzetesen frissíti, és a nem feltétlenül szükséges sütik elhelyezéséhez a honlapon hozzájárulás-kezelő sávot (cookie banner) épít be, az Ekertv. 13/A. § (3) bekezdésével és a GDPR-ral összhangban.</p>
+  <h2><span class="sec-num">9</span> Böngészőtárolás és sütik</h2>
+  <p><strong>9.1.</strong> A honlap kódja nem állít be analitikai vagy marketingcélú sütit. A <code>sessionStorage</code> és a <code>localStorage</code> böngészőtárolók, nem sütik. A funkcionális tárolás célja a beszélgetés folytonossága és a látogató nyelvválasztásának megőrzése.</p>
+  <dl class="kv-table"><div><dt><code>sessionStorage</code></dt><dd><code>noviramCorporateAgentSession</code>: a vállalati asszisztens beszélgetésének rövid előzményei, strukturált állapota és munkamenet-azonosítója; a beágyazott és lebegő felület közösen használja. <code>noviramLeadEngineHvacSession</code>: a külön HVAC-demó állapota. A beszélgetési előzmény kliensenként legfeljebb 14 bejegyzés; az újrakezdés törli az adott beszélgetést. A böngésző a lapmunkamenethez köti a tárolást; munkamenet-visszaállításkor a böngésző korábbi adatokat is helyreállíthat.</dd></div><div><dt><code>localStorage</code></dt><dd><code>noviramLang</code>: a HU/EN nyelvválasztás a böngészőben, amíg a látogató felül nem írja vagy a webhelyadatok törlésével el nem távolítja. Nem hirdetési azonosító. Kifejezett URL-nyelvparaméter elsőbbséget élvez; böngészőnyelv-felismerés nincs.</dd></div></dl>
+  <p><strong>9.2.</strong> A látogató a böngésző webhelyadat-kezelésében törölheti a tárolást. A böngészőbeli törlés nem törli a már kifejezetten elküldött e-mailt vagy a szolgáltatói nyilvántartásokat; ezekkel kapcsolatban a 7. pont szerinti kérelem nyújtható be. Az alkalmazás nem épít saját, tartós beszélgetés-adatbázist; az átmeneti szerveroldali feldolgozás, szolgáltatói adatkezelés és a beküldött e-mail ettől külön adatfolyam.</p>
+  <p><strong>9.3.</strong> Nincs Google Analytics, Meta Pixel, Hotjar vagy más hozzáadott analitikai/hirdetési követés. Ilyen, nem feltétlenül szükséges technológia jövőbeli bevezetése előtt a tájékoztatót és a hozzájárulás-kezelést felül kell vizsgálni, és a szükséges hozzájárulás-kezelést az aktiválás előtt kell megvalósítani. A jelen kiadás az AI miatt önmagában nem ad hozzá általános cookie-bannert.</p>
 </section>
 
 <section id="adatfeldolgozo">
@@ -292,8 +300,8 @@
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Noviram Digital Kft. · Budapest</span>
-    <span><a href="index.html">Főoldal</a> · <a href="aszf.html">ÁSZF</a></span>
+    <span>© 2026 Noviram Digital Kft.</span>
+    <span><a href="aszf.html?lang=hu" data-noviram-legal="terms">ÁSZF</a> · <a href="adatkezeles.html?lang=hu" data-noviram-legal="privacy">Adatkezelés</a> · <a href="company-details.html?lang=hu" data-noviram-legal="company">Cégadatok</a></span>
   </div>
 </footer>
 

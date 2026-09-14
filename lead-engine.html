@@ -4,11 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Noviram Lead Engine — Érdeklődőből minősített értékesítési lehetőség</title>
-<meta id="metaDescription" name="description" content="A Noviram Lead Engine azonnal válaszol, minősíti az érdeklődőket, időpontot foglal, és automatizálja az utánkövetést.">
+<meta id="metaDescription" name="description" content="A Noviram Lead Engine iparágra konfigurálható AI-értékesítési rendszer: értelmezi az igényt, determinisztikusan minősít és meghatározza a következő lépést.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="sales-agent.css">
+<link rel="stylesheet" href="lead-engine-v2.css">
+<script src="site-language.js"></script>
 <style>
 :root{--ink:#0A0E1A;--ink-2:#121a30;--paper:#F4F6F9;--paper-2:#E9ECF2;--signal:#FF4D2E;--signal-2:#FF8A63;--slate:#363c4a;--slate-soft:#6b7280;--mist:#9aa3b8;--wire-light:#DCE1EA;--wire-dark:#212a42;--white:#fff;--display:'Space Grotesk',sans-serif;--body:'Inter',sans-serif;--mono:'JetBrains Mono',monospace;--container:1180px;--radius:14px}html.i18n-pending body{visibility:hidden}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--slate);font-family:var(--body);-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit}h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.05}p{margin:0}ul{list-style:none;margin:0;padding:0}:focus-visible{outline:2px solid var(--signal);outline-offset:3px}.wrap{max-width:var(--container);margin:auto;padding:0 28px}.progress{position:fixed;z-index:80;top:0;left:0;height:3px;width:0;background:var(--signal)}
@@ -32,370 +35,159 @@ header{position:sticky;top:0;z-index:50;background:rgba(244,246,249,.82);backdro
 </style>
 <noscript><style>html.i18n-pending body{visibility:visible}</style></noscript>
 </head>
-<body>
+<body data-agent-page-context="lead_engine_product_page">
 <div class="progress" id="progress"></div>
 <header>
   <nav class="wrap" aria-label="Primary navigation" data-i18n-aria="a11y.primaryNav">
     <a class="logo" href="index.html" data-local-href="index.html"><svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="17" r="10.5" stroke="currentColor" stroke-width="1.6"/><line x1="16" y1="17" x2="16" y2="6.3" stroke="currentColor" stroke-width="1.6"/><circle cx="16" cy="6.3" r="3" fill="var(--signal)"/><circle cx="16" cy="17" r="1.6" fill="currentColor"/></svg>NOVIRAM</a>
     <span class="brand-sub">LEAD ENGINE</span>
-    <div class="nav-links"><a href="#how" data-i18n="nav.how">How it works</a><a href="#demo" data-i18n="nav.demo">Demo</a><a href="#system" data-i18n="nav.system">System</a><a href="index.html" data-local-href="index.html" data-i18n="nav.company">Noviram</a></div>
-    <div class="nav-cta"><div class="lang-switch" role="group" aria-label="Language" data-i18n-aria="a11y.language"><button class="lang-btn" data-lang="en" aria-pressed="true">EN</button><button class="lang-btn" data-lang="hu" aria-pressed="false">HU</button></div><a class="btn btn-primary" href="#contact" data-i18n="nav.cta">Book a demo</a><button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobilePanel" aria-label="Open menu"><svg class="menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg><svg class="close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>
+    <div class="nav-links"><a href="index.html#products" data-local-href="index.html#products" data-i18n="nav.products">Termékek</a><a href="index.html#services" data-local-href="index.html#services" data-i18n="nav.services">Szolgáltatások</a><a href="index.html#about" data-local-href="index.html#about" data-i18n="nav.about">Rólunk</a><a href="#contact" data-i18n="nav.contact">Kapcsolat</a></div>
+    <div class="nav-cta"><div class="lang-switch" role="group" aria-label="Language" data-i18n-aria="a11y.language"><button class="lang-btn" data-lang="en" aria-pressed="true">EN</button><button class="lang-btn" data-lang="hu" aria-pressed="false">HU</button></div><a class="btn btn-primary" href="#contact" data-i18n="nav.cta">Discuss a pilot</a><button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobilePanel" aria-label="Open menu"><svg class="menu" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg><svg class="close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg></button></div>
   </nav>
 </header>
-<div class="mobile-panel" id="mobilePanel"><a href="#how" data-i18n="nav.how">How it works</a><a href="#demo" data-i18n="nav.demo">Demo</a><a href="#system" data-i18n="nav.system">System</a><a href="index.html" data-local-href="index.html" data-i18n="nav.company">Noviram</a><a class="btn btn-primary" href="#contact" data-i18n="nav.cta">Book a demo</a></div>
+<div class="mobile-panel" id="mobilePanel"><a href="index.html#products" data-local-href="index.html#products" data-i18n="nav.products">Termékek</a><a href="index.html#services" data-local-href="index.html#services" data-i18n="nav.services">Szolgáltatások</a><a href="index.html#about" data-local-href="index.html#about" data-i18n="nav.about">Rólunk</a><a href="#contact" data-i18n="nav.contact">Kapcsolat</a><a class="btn btn-primary" href="#demo" data-i18n="hero.primary">Demó megnyitása</a></div>
 <main>
-  <section class="hero"><div class="wrap hero-grid"><div><p class="eyebrow" data-i18n="hero.eyebrow">Noviram Lead Engine</p><h1 data-i18n="hero.h1">Turn more enquiries into qualified, booked opportunities.</h1><p class="lede" data-i18n="hero.lede">Respond in seconds, qualify intent, book the right next step and keep follow-up moving automatically.</p><div class="actions"><a class="btn btn-primary" href="#demo" data-i18n="hero.primary">Open the demo</a><a class="btn btn-ghost" href="#contact" data-i18n="hero.secondary">Discuss a pilot</a></div><p class="micro" data-i18n="hero.micro">First use case: HVAC and high-value local services</p></div><div class="hero-system" aria-label="Lead Engine product preview" data-i18n-aria="a11y.preview"><div class="system-head"><strong>Lead Engine</strong><span class="demo-badge" data-i18n="demo.badge">DEMO</span></div><div class="system-chat"><div class="bubble user" data-i18n="preview.customer">How much would it cost to install AC in a 30 m² living room?</div><div class="bubble"><span class="ai-tag" data-i18n="demo.aiTag">NOVIRAM AI · DEMO</span><span data-i18n="preview.ai">Hi! I’ve already picked up the 30 m² room size from your message. Which city would the installation be in?</span></div></div><div class="system-result"><span data-i18n="hero.result">Qualified lead</span><b data-i18n="preview.status">QUALIFIED · HOT</b></div></div></div></section>
+  <section class="hero"><div class="wrap hero-grid"><div><p class="eyebrow" data-i18n="hero.eyebrow">Noviram Lead Engine</p><h1 data-i18n="hero.h1">Turn enquiries into a clear sales next step.</h1><p class="lede" data-i18n="hero.lede">Understand natural-language enquiries, capture useful facts and qualify intent — with a configurable pathway to the right person or sales step.</p><div class="actions"><a class="btn btn-primary" href="#demo" data-i18n="hero.primary">Open the demo</a><a class="btn btn-ghost" href="#contact" data-i18n="hero.secondary">Discuss a pilot</a></div><p class="micro" data-i18n="hero.micro">Industry-configurable sales system · First interactive demo: HVAC</p></div><div class="hero-system" aria-label="Lead Engine product preview" data-i18n-aria="a11y.preview"><div class="system-head"><strong>Lead Engine</strong><span class="demo-badge" data-i18n="demo.badge">DEMO</span></div><div class="system-chat"><div class="bubble user" data-i18n="preview.customer">How much would it cost to install AC in a 30 m² living room?</div><div class="bubble"><span class="ai-tag" data-i18n="demo.aiTag">NOVIRAM AI · DEMO</span><span data-i18n="preview.ai">Hi! I’ve already picked up the 30 m² room size from your message. Which city would the installation be in?</span></div></div><div class="system-result"><span data-i18n="hero.result">Qualified lead</span><b data-i18n="preview.status">QUALIFIED · HOT</b></div></div></div></section>
   <div class="ticker" aria-hidden="true"><div class="ticker-track"><span class="ticker-item" data-i18n="ticker.1">Instant response</span><span class="ticker-item" data-i18n="ticker.2">Qualification</span><span class="ticker-item" data-i18n="ticker.3">Lead scoring</span><span class="ticker-item" data-i18n="ticker.4">Booking</span><span class="ticker-item" data-i18n="ticker.5">Follow-up</span><span class="ticker-item" data-i18n="ticker.6">Human handoff</span><span class="ticker-item" data-i18n="ticker.1">Instant response</span><span class="ticker-item" data-i18n="ticker.2">Qualification</span><span class="ticker-item" data-i18n="ticker.3">Lead scoring</span><span class="ticker-item" data-i18n="ticker.4">Booking</span><span class="ticker-item" data-i18n="ticker.5">Follow-up</span><span class="ticker-item" data-i18n="ticker.6">Human handoff</span></div></div>
   <section class="section" id="how"><div class="wrap"><div class="section-head reveal"><p class="eyebrow" data-i18n="flow.eye">One connected flow</p><h2 data-i18n="flow.title">Every lead gets a clear next step.</h2><p data-i18n="flow.copy">Lead Engine connects the moments between a new inquiry and a human sales conversation.</p></div><div class="flow-wrap"><ol class="flow reveal"><li><span>01</span><strong data-i18n="flow.1">Incoming lead</strong></li><li><span>02</span><strong data-i18n="flow.2">AI conversation</strong></li><li><span>03</span><strong data-i18n="flow.3">Qualification</strong></li><li><span>04</span><strong data-i18n="flow.4">Lead scoring</strong></li><li><span>05</span><strong data-i18n="flow.5">Booking</strong></li><li><span>06</span><strong data-i18n="flow.6">CRM / follow-up</strong></li><li><span>07</span><strong data-i18n="flow.7">Qualified opportunity</strong></li></ol></div><p class="scroll-hint" data-i18n="scroll">Swipe sideways →</p></div></section>
-  <section class="section" id="demo" style="background:#fff;border-block:1px solid var(--wire-light)"><div class="wrap"><div class="section-head reveal"><p class="eyebrow" data-i18n="demo.eye">Interactive product demo</p><h2 data-i18n="demo.title">See the system understand, qualify, and route a lead.</h2><p data-i18n="demo.copy">This self-contained simulation uses sample data only. It does not send or store personal information.</p></div><div class="demo-grid reveal"><section class="chat" aria-label="Interactive lead conversation" data-i18n-aria="a11y.conversation"><div class="chat-head"><div class="chat-identity"><span class="avatar">N</span><span><strong data-i18n="demo.name">AC Demo</strong><small data-i18n="demo.ai">AI assistant · demo</small></span></div><button class="reset" id="reset" type="button" data-i18n="demo.reset">Reset</button></div><div class="chat-progress"><span id="chatProgress" style="width:20%"></span></div><div class="chat-body" id="chatBody"><p class="notice" data-i18n="demo.notice">Simulation · No quote is given and no data is saved</p><div id="messages" role="log" aria-live="polite" aria-relevant="additions text"></div><div class="options" id="options" aria-label="Response options" data-i18n-aria="a11y.options"></div></div><div class="chat-foot"><span id="stepLabel">Minősítés · 1/5</span><strong id="stepName">HELYSZÍN</strong></div></section><aside class="summary" aria-label="Lead summary" data-i18n-aria="a11y.summary"><div class="score-head"><div><small data-i18n="summary.score">LEAD SCORE</small><strong id="temperature">FOLYAMATBAN</strong></div><span class="score-num" id="score">10</span></div><h3 data-i18n="summary.title">Air-conditioning installation inquiry</h3><dl><div><dt data-i18n="summary.service">Service</dt><dd id="sService">Klímatelepítés</dd></div><div><dt data-i18n="summary.room">Room</dt><dd>30 m²<span class="pill" data-i18n="summary.extracted">Extracted from first message</span></dd></div><div><dt data-i18n="summary.location">Location</dt><dd id="sLocation">—</dd></div><div><dt data-i18n="summary.property">Property</dt><dd id="sProperty">—</dd></div><div><dt data-i18n="summary.timing">Timing</dt><dd id="sTiming">—</dd></div><div><dt data-i18n="summary.contact">Contact</dt><dd id="sContact">—</dd></div><div><dt id="nextLabel">Következő lépés</dt><dd id="sNext">—</dd></div></dl><div class="next-action"><small data-i18n="summary.action">NEXT SYSTEM ACTION</small><strong id="disposition">Minősítésre vár</strong></div><p class="demo-note" data-i18n="summary.note">DEMO · SAMPLE DATA · NO INTEGRATIONS</p></aside></div></div></section>
-  <section class="section section-dark" id="system"><div class="wrap"><div class="section-head reveal"><p class="eyebrow" data-i18n="system.eye">The product system</p><h2 data-i18n="system.title">Automation for repetition. People for judgement.</h2><p data-i18n="system.copy">Modules work together around the lead, while technical questions, complaints, exceptions, and special requests are handed to a person.</p></div><div class="module-grid reveal"><article class="module"><span class="module-num">01</span><h3 data-i18n="m1.t">Instant response</h3><p data-i18n="m1.d">A new inquiry receives a relevant response immediately, including outside working hours.</p></article><article class="module"><span class="module-num">02</span><h3 data-i18n="m2.t">Qualification &amp; scoring</h3><p data-i18n="m2.d">Known details are extracted, missing details are asked, and sales readiness is scored.</p></article><article class="module"><span class="module-num">03</span><h3 data-i18n="m3.t">Booking</h3><p data-i18n="m3.d">Qualified leads can move directly to an appropriate appointment or human next step.</p></article><article class="module"><span class="module-num">04</span><h3 data-i18n="m4.t">Follow-up</h3><p data-i18n="m4.d">Open inquiries, quotes, missed calls, and older leads can follow distinct workflows.</p></article><article class="module"><span class="module-num">05</span><h3 data-i18n="m5.t">Pipeline visibility</h3><p data-i18n="m5.d">Source, status, score, owner, and next action remain visible in one process.</p></article><article class="module"><span class="module-num">06</span><h3 data-i18n="m6.t">Review requests</h3><p data-i18n="m6.d">After completed work, the system can request a review at an appropriate moment.</p></article><article class="module handoff"><div><span class="module-num" data-i18n="handoff.eye">HUMAN HANDOFF</span><h3 data-i18n="handoff.t">The system knows when to stop.</h3></div><div class="handoff-callout"><strong data-i18n="handoff.label">EXAMPLE ROUTING RULE</strong><span data-i18n="handoff.d">“The outdoor unit needs a listed-building approval.” → Do not improvise a technical answer. Capture the context and route it to a specialist for confirmation.</span></div></article></div></div></section>
+  <section class="section" id="demo" style="background:#fff;border-block:1px solid var(--wire-light)"><div class="wrap"><div class="section-head reveal"><p class="eyebrow" data-i18n="demo.eye">Interactive product demo</p><h2 data-i18n="demo.title">See the system understand, qualify, and route a lead.</h2><p data-i18n="demo.copy">Try a fictional enquiry. Messages are processed by the server-side AI in live mode; this session stays separate from corporate enquiries. No real HVAC lead, calendar booking, CRM record or SMS is submitted.</p></div><div class="demo-grid reveal"><section class="chat" aria-label="Interactive lead conversation" data-i18n-aria="a11y.conversation"><div class="chat-head"><div class="chat-identity"><span class="avatar">N</span><span><strong data-i18n="demo.name">Lead Engine · HVAC demo</strong><small data-i18n="demo.ai">AI assistant · demo</small></span></div><button class="reset" id="reset" type="button" data-i18n="demo.reset">Reset</button></div><div class="chat-progress"><span id="chatProgress" style="width:0%"></span></div><div class="chat-body" id="chatBody"><p class="notice" data-i18n="demo.notice">HVAC demo · AI processing · No real quote or booking</p><div id="messages" role="log" aria-live="polite" aria-relevant="additions text"></div><div class="options" id="options" aria-label="Response options" data-i18n-aria="a11y.options"></div></div><div class="chat-foot"><span id="stepLabel">Minősítés · 1/5</span><strong id="stepName">HELYSZÍN</strong></div></section><aside class="summary" aria-label="Lead summary" data-i18n-aria="a11y.summary"><div class="score-head"><div><small data-i18n="summary.score">LEAD SCORE</small><strong id="temperature">FOLYAMATBAN</strong></div><span class="score-num" id="score">—</span></div><h3 data-i18n="summary.title">Air-conditioning installation inquiry</h3><dl><div><dt data-i18n="summary.service">Service</dt><dd id="sService">—</dd></div><div><dt data-i18n="summary.location">Location</dt><dd id="sLocation">—</dd></div><div><dt data-i18n="summary.property">Property</dt><dd id="sProperty">—</dd></div><div><dt data-i18n="summary.timing">Timing</dt><dd id="sTiming">—</dd></div><div><dt data-i18n="summary.contact">Contact</dt><dd id="sContact">—</dd></div><div><dt id="nextLabel" data-i18n="summary.next">Következő lépés</dt><dd id="sNext">—</dd></div></dl><div class="next-action"><small data-i18n="summary.action">NEXT SYSTEM ACTION</small><strong id="disposition">Minősítésre vár</strong></div><p class="demo-note" data-i18n="summary.note">DEMO · NO EXTERNAL LEAD SUBMISSION</p></aside></div></div></section>
+  <section class="section section-dark" id="system"><div class="wrap"><div class="section-head reveal"><p class="eyebrow" data-i18n="system.eye">The product system</p><h2 data-i18n="system.title">Automation for repetition. People for judgement.</h2><p data-i18n="system.copy">Modules work together around the lead, while technical questions, complaints, exceptions, and special requests are handed to a person.</p></div><div class="module-grid reveal"><article class="module"><span class="module-num">01</span><h3 data-i18n="m1.t">Instant response</h3><p data-i18n="m1.d">A new inquiry receives a relevant response immediately, including outside working hours.</p></article><article class="module"><span class="module-num">02</span><h3 data-i18n="m2.t">Qualification &amp; scoring</h3><p data-i18n="m2.d">Known details are extracted, missing details are asked, and sales readiness is scored.</p></article><article class="module"><span class="module-num">03</span><h3 data-i18n="m3.t">Booking</h3><p data-i18n="m3.d">Qualified leads can move directly to an appropriate appointment or human next step.</p></article><article class="module"><span class="module-num">04</span><h3 data-i18n="m4.t">Follow-up</h3><p data-i18n="m4.d">Open inquiries, quotes, missed calls, and older leads can follow distinct workflows.</p></article><article class="module"><span class="module-num">05</span><h3 data-i18n="m5.t">Pipeline visibility</h3><p data-i18n="m5.d">Source, status, score, owner, and next action remain visible in one process.</p></article><article class="module"><span class="module-num">06</span><h3 data-i18n="m6.t">Review requests</h3><p data-i18n="m6.d">With a future integration, completed work could trigger a review request at an appropriate moment.</p></article><article class="module handoff"><div><span class="module-num" data-i18n="handoff.eye">HUMAN HANDOFF</span><h3 data-i18n="handoff.t">The system knows when to stop.</h3></div><div class="handoff-callout"><strong data-i18n="handoff.label">EXAMPLE ROUTING RULE</strong><span data-i18n="handoff.d">“The outdoor unit needs a listed-building approval.” → Do not improvise a technical answer. Capture the context and route it to a specialist for confirmation.</span></div></article></div></div></section>
   <section class="section"><div class="wrap"><div class="section-head reveal"><p class="eyebrow" data-i18n="dash.eye">Pipeline visibility</p><h2 data-i18n="dash.title">A measurable process, not a hidden inbox.</h2><p data-i18n="dash.copy">This sample board illustrates how leads and next actions could be presented. All values below are demo data.</p></div><div class="dashboard reveal"><div class="dash-head"><strong data-i18n="dash.board">Lead Pipeline</strong><span class="dash-badge" data-i18n="dash.badge">DEMO · SAMPLE DATA</span></div><div class="metrics"><div class="metric"><small data-i18n="metric.1">Visible sample leads</small><strong>4</strong></div><div class="metric"><small data-i18n="metric.2">Waiting for action</small><strong>2</strong></div><div class="metric"><small data-i18n="metric.3">Booked</small><strong>1</strong></div><div class="metric"><small data-i18n="metric.4">Human review</small><strong>1</strong></div></div><div class="pipeline-scroll" aria-label="Sample lead pipeline" data-i18n-aria="a11y.pipeline"><div class="pipeline"><div class="column"><h4 data-i18n="col.1">New</h4><div class="lead"><em>HOT</em><strong>Nagy Anna</strong><span data-i18n="lead.1">Air conditioning · 30 m²</span></div></div><div class="column"><h4 data-i18n="col.2">Qualification</h4><div class="lead"><em>WARM</em><strong>Kiss Péter</strong><span data-i18n="lead.2">Heat-pump survey</span></div></div><div class="column"><h4 data-i18n="col.3">Appointment</h4><div class="lead"><em>HOT</em><strong>Varga Dóra</strong><span data-i18n="lead.3">Replacement · 2 units</span></div></div><div class="column"><h4 data-i18n="col.4">Human review</h4><div class="lead"><strong>Tóth Gábor</strong><span data-i18n="lead.4">Service-area confirmation</span></div></div></div></div><p class="scroll-hint" data-i18n="scroll">Swipe sideways →</p></div></div></section>
-  <section class="section" style="background:var(--paper-2)"><div class="wrap use-case"><div class="section-head reveal"><p class="eyebrow" data-i18n="use.eye">First vertical</p><h2 data-i18n="use.title">Starting with HVAC. Designed to expand.</h2><p data-i18n="use.copy">The first pilot focuses on air-conditioning and heat-pump companies, where speed, location, timing, and technical handoff matter. The underlying product is designed for high-value local services more broadly.</p></div><div class="use-card reveal"><small data-i18n="use.card.eye">TYPICAL LEAD PATH</small><h3 data-i18n="use.card.title">From “how much?” to a useful sales conversation.</h3><ul class="use-list"><li><b data-i18n="use.1t">Understand what is already known</b><span data-i18n="use.1d">Do not ask for the 30 m² room size twice.</span></li><li><b data-i18n="use.2t">Qualify what changes the next step</b><span data-i18n="use.2d">Location, property type, timing, contact, and intent.</span></li><li><b data-i18n="use.3t">Route responsibly</b><span data-i18n="use.3d">Book, follow up, nurture, or hand off — without pretending every lead is HOT.</span></li></ul></div></div></section>
-  <section class="section section-dark contact" id="contact"><div class="wrap contact-inner"><p class="eyebrow" data-i18n="contact.eye">Lead Engine pilot</p><h2 data-i18n="contact.title">Let’s map the journey from first message to the next sales step.</h2><p data-i18n="contact.copy">In a short conversation, we will cover your lead sources, qualification rules, handoff points, and current systems.</p><div class="actions"><a class="btn btn-primary" id="demoMailLink" href="mailto:info@noviram.com?subject=Noviram%20Lead%20Engine%20demo" data-i18n="contact.cta">Request a demo</a><a class="btn btn-ghost" href="index.html#contact" data-local-href="index.html#contact" data-i18n="contact.custom">Start a custom project</a></div><p class="fine" data-i18n="contact.fine">No form or booking backend is connected on this page.</p></div></section>
+  <section class="section" style="background:var(--paper-2)"><div class="wrap use-case"><div class="section-head reveal"><p class="eyebrow" data-i18n="use.eye">First industry configuration</p><h2 data-i18n="use.title">Lead Engine adapts to the sales process.</h2><p data-i18n="use.copy">The current interactive demo is configured for HVAC businesses. The same core system can be configured for other industries and sales workflows.</p></div><div class="use-card reveal"><small data-i18n="use.card.eye">TYPICAL LEAD PATH</small><h3 data-i18n="use.card.title">From “how much?” to a useful sales conversation.</h3><ul class="use-list"><li><b data-i18n="use.1t">Understand what is already known</b><span data-i18n="use.1d">Do not ask for the 30 m² room size twice.</span></li><li><b data-i18n="use.2t">Qualify what changes the next step</b><span data-i18n="use.2d">Location, property type, timing, contact, and intent.</span></li><li><b data-i18n="use.3t">Route responsibly</b><span data-i18n="use.3d">Book, follow up, nurture, or hand off — without pretending every lead is HOT.</span></li></ul></div></div></section>
+  <section class="section section-dark contact" id="contact"><div class="wrap contact-inner"><p class="eyebrow" data-i18n="contact.eye">Lead Engine pilot</p><h2 data-i18n="contact.title">Let’s map the journey from first message to the next sales step.</h2><p data-i18n="contact.copy">In a short conversation, we will cover your lead sources, qualification rules, handoff points, and current systems.</p><div class="actions"><button class="btn btn-primary" type="button" id="demoMailLink" data-noviram-contact="lead_engine" data-i18n="contact.cta">Érdekel a Lead Engine</button><a class="btn btn-ghost" href="index.html#contact" data-local-href="index.html#contact" data-i18n="contact.custom">Start a custom project</a></div><p class="fine" data-i18n="contact.fine">This is a separate Noviram business enquiry, sent only after your confirmation. No HVAC demo data is included.</p></div></section>
 </main>
-<footer class="footer"><div class="wrap footer-inner"><span>© 2026 Noviram Digital Kft.</span><span><a href="index.html" data-local-href="index.html" data-i18n="foot.home">Noviram</a> · <a href="aszf.html" data-i18n="foot.terms">Terms (HU)</a> · <a href="adatkezeles.html" data-i18n="foot.privacy">Privacy (HU)</a></span><span>info@noviram.com</span></div></footer>
+<footer class="footer"><div class="wrap footer-inner"><span>© 2026 Noviram Digital Kft.</span><nav aria-label="Jogi információk" data-i18n-aria="a11y.legalNav"><a href="index.html?lang=hu" data-local-href="index.html" data-i18n="foot.home">Noviram</a> · <a href="aszf.html?lang=hu" data-noviram-legal="terms" data-i18n="foot.terms">ÁSZF</a> · <a href="adatkezeles.html?lang=hu" data-noviram-legal="privacy" data-i18n="foot.privacy">Adatkezelés</a> · <a href="company-details.html?lang=hu" data-noviram-legal="company" data-i18n="foot.company">Cégadatok</a></nav></div></footer>
 <script>
 const T = {
   en: {
-    'nav.how':'How it works','nav.demo':'Demo','nav.system':'System','nav.company':'Noviram','nav.cta':'Book a demo',
+    'nav.products':'Products','nav.services':'Services','nav.about':'About','nav.contact':'Contact','nav.how':'How it works','nav.demo':'Demo','nav.system':'System','nav.company':'Noviram','nav.cta':"Let’s discuss it",
     'hero.eyebrow':'Noviram Lead Engine',
-    'hero.h1':'Turn more enquiries into qualified, booked opportunities.',
-    'hero.lede':'Respond in seconds, qualify intent, book the right next step and keep follow-up moving automatically.',
-    'hero.primary':'Open the demo','hero.secondary':'Discuss a pilot',
-    'hero.micro':'First use case: HVAC and high-value local services','hero.result':'Qualified lead',
+    'hero.h1':"Give every enquiry a clear next step.",
+    'hero.lede':"Lead Engine understands the message, recognises the details already supplied and asks for what is missing. It then qualifies the lead and uses your sales rules to select the next step.",
+    'hero.primary':'Open the demo','hero.secondary':"Let’s discuss it",
+    'hero.micro':"Configurable for different industries · Current demo: HVAC",'hero.result':'Qualified lead',
     'preview.customer':'How much would it cost to install AC in a 30 m² living room?',
     'preview.ai':'Hi! I’ve already picked up the 30 m² room size from your message. Which city would the installation be in?',
     'preview.status':'QUALIFIED · HOT',
     'ticker.1':'Instant response','ticker.2':'Qualification','ticker.3':'Lead scoring','ticker.4':'Booking','ticker.5':'Follow-up','ticker.6':'Human handoff',
-    'flow.eye':'One connected flow','flow.title':'Every lead gets a clear next step.',
-    'flow.copy':'Lead Engine connects the first enquiry with qualification, booking, and sales handoff.',
-    'flow.1':'Incoming lead','flow.2':'AI conversation','flow.3':'Qualification','flow.4':'Lead scoring','flow.5':'Booking','flow.6':'CRM / follow-up','flow.7':'Qualified sales opportunity',
+    'flow.eye':'One connected flow','flow.title':"The enquiry arrives. The system puts the details together.",
+    'flow.copy':"AI interprets the message and recognises the details already supplied. The system asks for what qualification still needs, then applies fixed scoring rules and selects the next step. Human handoff, booking, CRM actions and follow-up can run through future, separately configured integrations; the demo only indicates these pathways.",
+    'flow.1':'Incoming lead','flow.2':'Understand language','flow.3':'Extract known facts','flow.4':'Useful missing details','flow.5':'Deterministic score','flow.6':'Choose next action','flow.7':"Later: handoff & integrations",
     'scroll':'Swipe sideways →',
-    'demo.eye':'Interactive product demo','demo.title':'See how the system understands, qualifies, and routes a lead.',
-    'demo.copy':'This self-contained simulation uses sample data only. It does not send or store personal information.',
-    'demo.badge':'DEMO','demo.name':'AC Demo','demo.ai':'AI assistant · demo','demo.aiTag':'NOVIRAM AI · DEMO','demo.reset':'Reset',
-    'demo.notice':'Simulation · No quote is given and no data is saved',
+    'demo.eye':'Interactive product demo','demo.title':"Try it with an enquiry.",
+    'demo.copy':"Describe a fictional air-conditioning or heat-pump requirement and see what the system recognises. In live mode, server-side AI processes the messages. The demo is separate from business enquiries sent to Noviram: it does not submit a real HVAC enquiry, book a calendar appointment, create a CRM record or send an SMS.",
+    'demo.badge':'DEMO','demo.name':'Lead Engine · HVAC demo','demo.ai':'AI assistant · demo','demo.aiTag':'NOVIRAM AI · DEMO','demo.reset':'Reset',
+    'demo.notice':'HVAC demo · AI processing · No real quote or booking',
     'demo.serviceValue':'Air-conditioning installation',
     'summary.score':'LEAD SCORE','summary.title':'Air-conditioning installation enquiry','summary.service':'Service',
     'summary.room':'Room','summary.extracted':'Extracted from first message','summary.location':'Location',
     'summary.property':'Property','summary.timing':'Timing','summary.contact':'Contact',
     'summary.next':'Next step','summary.appointment':'Appointment','summary.action':'NEXT SYSTEM ACTION',
-    'summary.waiting':'Waiting for qualification','summary.note':'DEMO · SAMPLE DATA · NO INTEGRATIONS',
+    'summary.waiting':'Waiting for qualification','summary.note':'DEMO · NO EXTERNAL LEAD SUBMISSION',
     'summary.contactSample':'Sample contact supplied','summary.contactNone':'No contact supplied','summary.outside':'Outside demo service area',
     'system.eye':'The product system','system.title':'Automation for repetition. People for judgement.',
-    'system.copy':'The system automates repetitive steps while technical questions, complaints, exceptions, and special requests are routed to a person.',
+    'system.copy':'Qualification and next-action decisions are demonstrated now. Booking, CRM, follow-up and review-request execution require separately configured integrations; they are not active in this demo. Technical questions and exceptions trigger a human-review pathway.',
     'm1.t':'Instant response','m1.d':'A new enquiry receives a relevant response immediately, including outside working hours.',
     'm2.t':'Qualification & scoring','m2.d':'Known details are extracted, missing details are asked, and sales readiness is scored.',
-    'm3.t':'Booking','m3.d':'Appropriately qualified leads can move directly to booking or a team member.',
-    'm4.t':'Follow-up','m4.d':'Open leads, quotes, missed calls, and older enquiries can receive distinct follow-up workflows.',
-    'm5.t':'Pipeline visibility','m5.d':'Source, status, score, owner, and next action remain visible in one place.',
-    'm6.t':'Review requests','m6.d':'After completed work, the system can request a review at an appropriate moment.',
-    'handoff.eye':'HUMAN HANDOFF','handoff.t':'Automatic handoff when human judgement is needed.',
+    'm3.t':'Booking','m3.d':'With a configured integration, qualified leads can move to booking or a team member. This demo only shows the selected pathway.',
+    'm4.t':'Follow-up','m4.d':'A future integration can give open leads, quotes, missed calls and older enquiries distinct follow-up workflows.',
+    'm5.t':'Pipeline visibility','m5.d':'A configured pipeline can bring source, status, score, owner and next action into one view. The board below is a sample.',
+    'm6.t':'Review requests','m6.d':'With a future integration, completed work could trigger a review request at an appropriate moment.',
+    'handoff.eye':'HUMAN HANDOFF','handoff.t':'A human-review pathway when judgement is needed.',
     'handoff.label':'EXAMPLE ROUTING RULE',
-    'handoff.d':'“The outdoor unit may require listed-building approval.” → Do not improvise a technical answer. Capture the context and route it to a specialist for confirmation.',
-    'dash.eye':'Sales pipeline','dash.title':'A measurable process, not scattered messages.',
+    'handoff.d':"“The outdoor unit may require listed-building approval.” The system does not guess: it records the question and identifies specialist review as the next step.",
+    'dash.eye':'Sales pipeline','dash.title':"See what each lead needs next.",
     'dash.copy':'This sample board illustrates how leads and next actions could be presented. All values below are demo data.',
     'dash.board':'Lead Pipeline','dash.badge':'DEMO · SAMPLE DATA',
     'metric.1':'Sample leads','metric.2':'Waiting for action','metric.3':'Booked','metric.4':'Human review',
     'col.1':'New','col.2':'Qualification','col.3':'Appointment','col.4':'Human review',
     'lead.1':'Air conditioning · 30 m²','lead.2':'Heat-pump survey','lead.3':'Replacement · 2 units','lead.4':'Service-area confirmation',
-    'use.eye':'First target market','use.title':'Starting with HVAC, designed to expand to other services.',
-    'use.copy':'The first pilot focuses on air-conditioning and heat-pump companies, where fast responses, location, timing, and technical handoff matter. The underlying system can expand to other high-value local services.',
+    'use.eye':'First industry configuration','use.title':'Lead Engine adapts to the sales process.',
+    'use.copy':"The current demo shows a sales workflow for HVAC businesses. The same system can be configured for other industries: the information requested, qualification rules and next steps can be adapted to the business.",
     'use.card.eye':'TYPICAL LEAD PATH','use.card.title':'From “how much?” to a useful sales conversation.',
-    'use.1t':'Recognise what is already known','use.1d':'The system should not ask again for information already supplied, such as the 30 m² room size.',
+    'use.1t':'Recognise what is already known','use.1d':"If the customer says the room is 30 m², the system recognises and retains that detail.",
     'use.2t':'Capture what determines the next step','use.2d':'Location, property type, timing, contact, and intent.',
-    'use.3t':'Route to the right outcome','use.3d':'Booking, follow-up, or human handoff — according to the lead’s intent.',
-    'contact.eye':'Lead Engine pilot','contact.title':'Let’s map the journey from first message to the next sales step.',
+    'use.3t':'Route to the right outcome','use.3d':"Qualification can suggest booking, follow-up or human handoff. Executing these steps requires separately configured integrations.",
+    'contact.eye':"Discuss Lead Engine",'contact.title':"Let’s discuss how you want to handle enquiries.",
     'contact.copy':'In a short conversation, we will cover your lead sources, qualification rules, handoff points, and current systems.',
-    'contact.cta':'Request a demo','contact.custom':'Start a custom project',
-    'contact.fine':'No form or booking backend is connected on this page.',
-    'foot.home':'Noviram','foot.terms':'Terms (HU)','foot.privacy':'Privacy (HU)',
+    'contact.cta':'Discuss Lead Engine','contact.custom':"Discuss a different project",
+    'contact.fine':'This is a separate Noviram business enquiry, sent only after your confirmation. No HVAC demo data is included.',
+    'foot.home':'Noviram','foot.terms':'Terms','foot.privacy':'Privacy','foot.company':'Company details',
     'doc.title':'Noviram Lead Engine — From enquiry to qualified opportunity',
-    'meta.description':'Noviram Lead Engine responds instantly, qualifies incoming leads, books the right next step, and keeps follow-up moving.',
+    'meta.description':'Noviram Lead Engine is an industry-configurable AI sales system for enquiry understanding, deterministic qualification and next-step routing.',
     'mail.subject':'Noviram Lead Engine demo',
-    'a11y.primaryNav':'Primary navigation','a11y.language':'Language','a11y.preview':'Lead Engine product preview',
+    'a11y.legalNav':'Legal information','a11y.primaryNav':'Primary navigation','a11y.language':'Language','a11y.preview':'Lead Engine product preview',
     'a11y.conversation':'Interactive lead conversation','a11y.options':'Response options','a11y.summary':'Lead summary',
     'a11y.pipeline':'Sample lead pipeline','a11y.menuOpen':'Open menu','a11y.menuClose':'Close menu',
-    'step.location':'LOCATION','step.property':'PROPERTY','step.timing':'TIMING','step.contact':'CONTACT','step.next':'NEXT STEP',
-    'progress.active':'Qualification','progress.complete':'Qualification complete','progress.inProgress':'IN PROGRESS',
-    'question.location':'Hi! I’ve already picked up the 30 m² room size from your message. Which city would the installation be in?',
-    'question.property':'What type of property is it?','question.timing':'When would you like the installation?',
-    'question.contact':'Would you like to use sample contact details for the next step? Nothing is stored.',
-    'question.next':'Choose the most appropriate next step.',
-    'question.noContact':'Without contact details, no appointment or follow-up can be recorded.',
-    'question.outside':'Debrecen is outside the demo service area. Installation is not promised; a team member can confirm availability.',
-    'question.researching':'Since you are still researching, the demo will not push an appointment.',
-    'disposition.booked':'Expert consultation · booked appointment',
-    'disposition.noContact':'No follow-up · contact details unavailable',
-    'disposition.noAction':'No further automated action',
-    'disposition.outside':'Human service-area confirmation',
-    'disposition.later':'Later, low-intensity follow-up',
-    'disposition.short':'Short automated follow-up',
-    'completion.booked':'Thank you — the sample appointment is booked. A specialist consultation is the next step.',
-    'completion.noContact':'The demo is complete. Without contact details, no follow-up or appointment can be arranged.',
-    'completion.noAction':'Understood. No further automated action will be taken.',
-    'completion.outside':'The demo is complete. A team member would need to confirm service-area availability before any installation is promised.',
-    'completion.later':'The demo is complete. A later, low-intensity follow-up would be the next step.',
-    'completion.short':'The demo is complete. A short automated follow-up sequence would be the next step.'
   },
   hu: {
-    'nav.how':'Hogyan működik','nav.demo':'Demó','nav.system':'Rendszer','nav.company':'Noviram','nav.cta':'Demó kérése',
+    'nav.products':'Termékek','nav.services':'Szolgáltatások','nav.about':'Rólunk','nav.contact':'Kapcsolat','nav.how':'Hogyan működik','nav.demo':'Demó','nav.system':'Rendszer','nav.company':'Noviram','nav.cta':"Egyeztessünk róla",
     'hero.eyebrow':'Noviram Lead Engine',
-    'hero.h1':'Alakítsa az érdeklődőket minősített, időpontra foglalt értékesítési lehetőségekké.',
-    'hero.lede':'Válaszoljon másodperceken belül, minősítse az érdeklődőket, foglaljon időpontot, és automatizálja az utánkövetést.',
-    'hero.primary':'Demó megnyitása','hero.secondary':'Pilot egyeztetése',
-    'hero.micro':'Első alkalmazási terület: klíma-, hőszivattyú- és más magas értékű helyi szolgáltatások','hero.result':'Minősített érdeklődő',
+    'hero.h1':"Minden megkeresésből legyen következő lépés.",
+    'hero.lede':"A Lead Engine megérti az érdeklődő üzenetét, felismeri a megadott adatokat, és bekéri, ami még hiányzik. Ezután minősít, és az értékesítési szabályok alapján eldönti, mi történjen.",
+    'hero.primary':'Demó megnyitása','hero.secondary':"Egyeztessünk róla",
+    'hero.micro':"Többféle iparághoz beállítható · Jelenlegi demó: klíma és hőszivattyú",'hero.result':'Minősített érdeklődő',
     'preview.customer':'Mennyibe kerülne egy klíma egy 30 m²-es nappaliba?',
     'preview.ai':'Szia! A 30 m²-es helyiségméretet már rögzítettem az üzenetedből. Melyik településen lenne a telepítés?',
     'preview.status':'MINŐSÍTETT · HOT',
     'ticker.1':'Azonnali válasz','ticker.2':'Minősítés','ticker.3':'Pontozás','ticker.4':'Időpontfoglalás','ticker.5':'Utánkövetés','ticker.6':'Emberi átadás',
-    'flow.eye':'Egy összekapcsolt folyamat','flow.title':'Minden érdeklődő egyértelmű következő lépést kap.',
-    'flow.copy':'A Lead Engine összeköti az első megkeresést a minősítéssel, időpontfoglalással és az értékesítőhöz történő átadással.',
-    'flow.1':'Beérkező érdeklődő','flow.2':'AI-beszélgetés','flow.3':'Minősítés','flow.4':'Pontozás','flow.5':'Időpontfoglalás','flow.6':'CRM / utánkövetés','flow.7':'Minősített értékesítési lehetőség',
+    'flow.eye':"Az üzenettől a következő lépésig",'flow.title':"Az érdeklődő ír. A rendszer összerakja a képet.",
+    'flow.copy':"Az AI értelmezi az üzenetet és felismeri a megadott adatokat. A rendszer bekéri a minősítéshez még szükséges részleteket, majd rögzített szabályok szerint pontoz és kiválasztja a következő lépést. Munkatársi átadást, foglalást, CRM-műveletet vagy utánkövetést később, külön integrációval indíthat; a demó ezeket csak jelzi.",
+    'flow.1':"Megkeresés érkezik",'flow.2':"Az AI megérti",'flow.3':"Felismeri az adatokat",'flow.4':"Bekéri, ami hiányzik",'flow.5':"Szabályok szerint minősít",'flow.6':"Következő lépést választ",'flow.7':"Később: átadás és integrációk",
     'scroll':'Oldalra húzható →',
-    'demo.eye':'Interaktív termékdemó','demo.title':'Nézze meg, hogyan értelmezi, minősíti és irányítja tovább a rendszer az érdeklődőt.',
-    'demo.copy':'Ez az önálló szimuláció kizárólag mintaadatokat használ. Személyes adatot nem küld és nem tárol.',
-    'demo.badge':'DEMÓ','demo.name':'Klíma Demo','demo.ai':'AI-asszisztens · demó','demo.aiTag':'NOVIRAM AI · DEMÓ','demo.reset':'Újrakezdés',
-    'demo.notice':'Szimuláció · Nem ad árajánlatot és nem ment adatot',
+    'demo.eye':'Interaktív termékdemó','demo.title':"Próbálja ki egy megkereséssel.",
+    'demo.copy':"Írjon egy kitalált klíma- vagy hőszivattyús igényt, és figyelje, mit ismer fel a rendszer. Éles módban az üzeneteket szerveroldali AI dolgozza fel. A demó külön fut a Noviramnak küldött üzleti megkeresésektől: nem továbbít valódi HVAC-megkeresést, nem foglal naptári időpontot, nem hoz létre CRM-rekordot és nem küld SMS-t.",
+    'demo.badge':'DEMÓ','demo.name':'Lead Engine · HVAC demó','demo.ai':'AI-asszisztens · demó','demo.aiTag':'NOVIRAM AI · DEMÓ','demo.reset':'Újrakezdés',
+    'demo.notice':'HVAC demó · AI-feldolgozás · Nincs valódi ajánlat vagy foglalás',
     'demo.serviceValue':'Klímatelepítés',
     'summary.score':'PONTSZÁM','summary.title':'Klímatelepítési érdeklődés','summary.service':'Szolgáltatás',
     'summary.room':'Helyiség','summary.extracted':'Az első üzenetből felismerve','summary.location':'Helyszín',
     'summary.property':'Ingatlan','summary.timing':'Időzítés','summary.contact':'Elérhetőség',
     'summary.next':'Következő lépés','summary.appointment':'Időpont','summary.action':'KÖVETKEZŐ RENDSZERLÉPÉS',
-    'summary.waiting':'Minősítésre vár','summary.note':'DEMÓ · MINTAADAT · NINCS INTEGRÁCIÓ',
+    'summary.waiting':'Minősítésre vár','summary.note':"DEMÓ · NINCS VALÓDI HVAC-MEGKERESÉS KÜLDÉSE",
     'summary.contactSample':'Mintaelérhetőség megadva','summary.contactNone':'Nincs megadott elérhetőség','summary.outside':'A demó szolgáltatási területén kívül',
-    'system.eye':'A termékrendszer','system.title':'Automatizáció a rutinfeladatokra. Emberi döntés, amikor szükséges.',
-    'system.copy':'A rendszer automatizálja az ismétlődő lépéseket, a műszaki kérdéseket, panaszokat és kivételeket pedig munkatárshoz irányítja.',
-    'm1.t':'Azonnali válasz','m1.d':'Az új érdeklődő azonnal releváns választ kap, akár munkaidőn kívül is.',
-    'm2.t':'Minősítés és pontozás','m2.d':'A rendszer felismeri a már megadott adatokat, rákérdez a hiányzókra, és pontozza az értékesítési készséget.',
-    'm3.t':'Időpontfoglalás','m3.d':'A megfelelően minősített érdeklődő közvetlenül időpontfoglalásra vagy munkatárshoz irányítható.',
-    'm4.t':'Utánkövetés','m4.d':'A folyamatban lévő érdeklődők, ajánlatok, nem fogadott hívások és korábbi megkeresések külön utánkövetési folyamatot kaphatnak.',
-    'm5.t':'Átlátható értékesítési folyamat','m5.d':'A forrás, státusz, pontszám, felelős és következő lépés egy helyen látható.',
-    'm6.t':'Értékeléskérés','m6.d':'A munka lezárása után a rendszer a megfelelő pillanatban kérhet értékelést.',
-    'handoff.eye':'EMBERI ÁTADÁS','handoff.t':'Automatikus átadás, amikor emberi döntés kell.',
+    'system.eye':"A Lead Engine működése",'system.title':"A rutint a rendszer kezeli. A szakmai döntés az emberé.",
+    'system.copy':"A minősítést és a következő lépés kiválasztását már kipróbálhatja. A foglaláshoz, CRM-műveletekhez, utánkövetéshez és értékeléskéréshez külön integráció kell; ezek a demóban nem aktívak. Műszaki kérdésnél vagy kivételes helyzetben a rendszer jelzi, hogy munkatársi ellenőrzés szükséges.",
+    'm1.t':'Azonnali válasz','m1.d':"Az érdeklődő munkaidőn kívül is választ kap a megkeresésére.",
+    'm2.t':'Minősítés és pontozás','m2.d':"A már megadott adatokat felismeri, a hiányzó részletekre rákérdez. Rögzített szabályok szerint pontozza, mennyire áll készen az érdeklődő a következő értékesítési lépésre.",
+    'm3.t':'Időpontfoglalás','m3.d':"Külön integrációval az érdeklődő időpontot foglalhat, vagy munkatárshoz kerülhet. A demó csak azt mutatja meg, melyik lépés következne.",
+    'm4.t':'Utánkövetés','m4.d':"Későbbi integrációval külön utánkövetés állítható be a nyitott megkeresésekhez, kiküldött ajánlatokhoz, nem fogadott hívásokhoz és korábbi érdeklődőkhöz.",
+    'm5.t':'Átlátható értékesítési folyamat','m5.d':"Külön beállítással egy helyen látható az érdeklődő forrása, státusza, pontszáma, felelőse és következő lépése. Az alábbi tábla ezt szemlélteti, mintaadatokkal.",
+    'm6.t':'Értékeléskérés','m6.d':"Későbbi integrációval a rendszer a munka lezárása után kérhet értékelést, az előre meghatározott időpontban.",
+    'handoff.eye':"AMIKOR MUNKATÁRS KELL",'handoff.t':"Tudja, mikor kell szakembert bevonni.",
     'handoff.label':'PÉLDA EGY TOVÁBBÍTÁSI SZABÁLYRA',
-    'handoff.d':'„A kültéri egységhez műemléki engedélyre lehet szükség.” → A rendszer nem rögtönöz műszaki választ: rögzíti a helyzetet, és megerősítésre szakértőhöz irányítja.',
-    'dash.eye':'Értékesítési folyamat','dash.title':'Mérhető folyamat, nem szétszórt üzenetek.',
-    'dash.copy':'Ez a mintatábla azt szemlélteti, hogyan jelenhetnek meg az érdeklődők és a következő lépések. Minden alábbi érték demóadat.',
+    'handoff.d':"„A kültéri egységhez műemléki engedélyre lehet szükség.” A rendszer nem találgat: rögzíti a kérdést, és szakértői ellenőrzést jelöl meg következő lépésként.",
+    'dash.eye':'Értékesítési folyamat','dash.title':"Látszik, melyik érdeklődővel mi a teendő.",
+    'dash.copy':"Így jelenhetnek meg egy helyen az érdeklődők és a következő lépések. A tábla szemléltető példa, minden érték mintaadat.",
     'dash.board':'Értékesítési folyamat','dash.badge':'DEMÓ · MINTAADAT',
     'metric.1':'Mintaérdeklődők','metric.2':'Teendőre vár','metric.3':'Lefoglalt időpont','metric.4':'Emberi ellenőrzés',
     'col.1':'Új','col.2':'Minősítés','col.3':'Időpont','col.4':'Emberi ellenőrzés',
     'lead.1':'Klíma · 30 m²','lead.2':'Hőszivattyú-felmérés','lead.3':'Csere · 2 készülék','lead.4':'Területi elérhetőség ellenőrzése',
-    'use.eye':'Első célpiac','use.title':'Klímás cégekkel indul, más szolgáltatásokra is bővíthető.',
-    'use.copy':'Az első pilot klíma- és hőszivattyús cégekre fókuszál, ahol különösen fontos a gyors válasz, a helyszín, az időzítés és a műszaki kérdések megfelelő továbbítása. Az alap rendszer más magas értékű helyi szolgáltatásokra is bővíthető.',
-    'use.card.eye':'TIPIKUS ÉRDEKLŐDŐI ÚT','use.card.title':'A „mennyibe kerül?” kérdéstől a hasznos értékesítési beszélgetésig.',
-    'use.1t':'A már ismert adatok felismerése','use.1d':'A rendszer ne kérdezze meg újra azt, amit az érdeklődő már megadott — például a 30 m²-es helyiségméretet.',
-    'use.2t':'A következő lépést meghatározó adatok','use.2d':'Helyszín, ingatlantípus, időzítés, elérhetőség és vásárlási szándék.',
-    'use.3t':'Megfelelő továbbirányítás','use.3d':'Időpontfoglalás, utánkövetés vagy emberi átadás — az érdeklődő szándékának megfelelően.',
-    'contact.eye':'Lead Engine pilot','contact.title':'Tervezzük meg az érdeklődő útját az első üzenettől a következő értékesítési lépésig.',
-    'contact.copy':'Egy rövid egyeztetésen átbeszéljük, honnan érkeznek az érdeklődők, hogyan történik a minősítés, mikor kell munkatárshoz kerülniük, és milyen rendszereket használ már a cég.',
-    'contact.cta':'Demó kérése','contact.custom':'Egyedi projekt indítása',
-    'contact.fine':'Az oldalon nincs valódi űrlap vagy időpontfoglaló háttérrendszer.',
-    'foot.home':'Noviram','foot.terms':'ÁSZF','foot.privacy':'Adatkezelés',
+    'use.eye':"A jelenlegi demó iparága",'use.title':'A Lead Engine az értékesítési folyamathoz alkalmazkodik.',
+    'use.copy':"A mostani demó klíma- és hőszivattyús cégek értékesítési folyamatát mutatja be. Ugyanez a rendszer más iparághoz is beállítható: a bekért adatok, a minősítés szabályai és a következő lépések az adott vállalkozás működéséhez igazíthatók.",
+    'use.card.eye':"EGY MEGKERESÉS MENETE",'use.card.title':"A „mennyibe kerül?” kérdés után se akadjon el a beszélgetés.",
+    'use.1t':"Nem kérdez rá újra arra, amit már tud",'use.1d':"Ha az érdeklődő megírta, hogy 30 m²-es a helyiség, a rendszer ezt felismeri és megőrzi.",
+    'use.2t':"A döntéshez szükséges részleteket kéri be",'use.2d':'Helyszín, ingatlantípus, időzítés, elérhetőség és vásárlási szándék.',
+    'use.3t':"Kiválasztja, mi következzen",'use.3d':"A minősítés alapján foglalást, utánkövetést vagy munkatársi átadást javasolhat. Ezek végrehajtásához külön integráció szükséges.",
+    'contact.eye':"Lead Engine egyeztetés",'contact.title':"Beszéljük át, hogyan kezelné az érdeklődőket.",
+    'contact.copy':"Honnan érkeznek a megkeresések? Mit kell megtudni az érdeklődőről? Mikor vegye át munkatárs? Ezekből és a cég már használt rendszereiből indulunk ki.",
+    'contact.cta':"Beszéljünk a Lead Engine-ről",'contact.custom':"Más projektről egyeztetnék",
+    'contact.fine':'Ez külön Noviram üzleti megkeresés, amelyet csak az Ön jóváhagyásával küldünk el. Nem tartalmazza a HVAC demó adatait.',
+    'foot.home':'Noviram','foot.terms':'ÁSZF','foot.privacy':'Adatkezelés','foot.company':'Cégadatok',
     'doc.title':'Noviram Lead Engine — Érdeklődőből minősített értékesítési lehetőség',
-    'meta.description':'A Noviram Lead Engine azonnal válaszol, minősíti az érdeklődőket, időpontot foglal, és automatizálja az utánkövetést.',
+    'meta.description':"A Noviram Lead Engine megérti a megkeresést, felismeri az adatokat, rögzített szabályok szerint minősít és kiválasztja a következő lépést. Többféle iparághoz beállítható.",
     'mail.subject':'Noviram Lead Engine demó',
-    'a11y.primaryNav':'Elsődleges navigáció','a11y.language':'Nyelv','a11y.preview':'A Lead Engine termék előnézete',
+    'a11y.legalNav':'Jogi információk','a11y.primaryNav':'Elsődleges navigáció','a11y.language':'Nyelv','a11y.preview':'A Lead Engine termék előnézete',
     'a11y.conversation':'Interaktív érdeklődői beszélgetés','a11y.options':'Válaszlehetőségek','a11y.summary':'Érdeklődő összegzése',
     'a11y.pipeline':'Minta értékesítési folyamat','a11y.menuOpen':'Menü megnyitása','a11y.menuClose':'Menü bezárása',
-    'step.location':'HELYSZÍN','step.property':'INGATLAN','step.timing':'IDŐZÍTÉS','step.contact':'ELÉRHETŐSÉG','step.next':'KÖVETKEZŐ LÉPÉS',
-    'progress.active':'Minősítés','progress.complete':'Minősítés befejezve','progress.inProgress':'FOLYAMATBAN',
-    'question.location':'Szia! A 30 m²-es helyiségméretet már rögzítettem az üzenetedből. Melyik településen lenne a telepítés?',
-    'question.property':'Milyen típusú ingatlanról van szó?','question.timing':'Mikorra szeretnéd a telepítést?',
-    'question.contact':'Szeretnél mintaelérhetőséget használni a következő lépéshez? A demó semmit nem tárol.',
-    'question.next':'Válaszd ki a megfelelő következő lépést.',
-    'question.noContact':'Elérhetőség nélkül nem tudunk időpontot vagy utánkövetést rögzíteni.',
-    'question.outside':'Debrecen a demó szolgáltatási területén kívül van. A telepítés lehetőségét nem ígérjük; ezt munkatárs tudja ellenőrizni.',
-    'question.researching':'Mivel most még csak tájékozódsz, a demó nem sürgeti az időpontfoglalást.',
-    'disposition.booked':'Szakértői egyeztetés · lefoglalt időpont',
-    'disposition.noContact':'Nincs utánkövetés · elérhetőség nem áll rendelkezésre',
-    'disposition.noAction':'Nincs további automatikus lépés',
-    'disposition.outside':'Területi elérhetőség emberi ellenőrzése',
-    'disposition.later':'Későbbi, alacsony intenzitású utánkövetés',
-    'disposition.short':'Rövid automatikus utánkövetési folyamat',
-    'completion.booked':'Köszönöm — a mintaidőpontot lefoglaltuk. A következő lépés a szakértői egyeztetés.',
-    'completion.noContact':'A demó befejeződött. Elérhetőség nélkül nem indítható utánkövetés, és időpont sem rögzíthető.',
-    'completion.noAction':'Rendben. Nem indul további automatikus lépés.',
-    'completion.outside':'A demó befejeződött. A területi elérhetőséget munkatársnak kell ellenőriznie, mielőtt a telepítés lehetőségéről visszajelzés adható.',
-    'completion.later':'A demó befejeződött. A következő lépés egy későbbi, alacsony intenzitású utánkövetés.',
-    'completion.short':'A demó befejeződött. A következő lépés egy rövid automatikus utánkövetési folyamat.'
   }
 };
-
-const CHOICE_LABELS = {
-  location: {
-    budapest:{en:'Budapest',hu:'Budapest'},budaors:{en:'Budaörs',hu:'Budaörs'},
-    erd:{en:'Érd',hu:'Érd'},debrecen:{en:'Debrecen',hu:'Debrecen'}
-  },
-  property: {
-    apartment:{en:'Apartment',hu:'Társasházi lakás'},
-    house:{en:'Detached house',hu:'Családi ház'},
-    office:{en:'Office',hu:'Iroda'}
-  },
-  timing: {
-    within_2_weeks:{en:'Within 2 weeks',hu:'2 héten belül'},
-    within_1_month:{en:'Within 1 month',hu:'1 hónapon belül'},
-    researching:{en:'I’m only researching',hu:'Csak tájékozódom'}
-  },
-  contact: {
-    sample_contact:{en:'Use sample contact details',hu:'Mintaszám használata'},
-    no_contact:{en:'Continue without contact details',hu:'Elérhetőség nélkül folytatom'}
-  },
-  next: {
-    book_tue_1030:{en:'Tuesday 10:30',hu:'Kedd 10:30'},
-    book_wed_1400:{en:'Wednesday 14:00',hu:'Szerda 14:00'},
-    book_fri_0900:{en:'Friday 09:00',hu:'Péntek 09:00'},
-    no_booking:{en:'I don’t want to book now',hu:'Most nem foglalok időpontot'},
-    service_area_review:{en:'Request service-area confirmation',hu:'Területi elérhetőség ellenőrzését kérem'},
-    later_followup:{en:'Request follow-up later',hu:'Későbbi utánkövetést kérek'},
-    no_action:{en:'No further action for now',hu:'Most nem kérek további lépést'},
-    close_without_save:{en:'Finish without saving',hu:'Lezárom mentés nélkül'}
-  }
-};
-
-const STEP_DEFINITIONS = [
-  {key:'location',labelKey:'step.location',questionKey:'question.location',group:'location',options:['budapest','budaors','erd','debrecen']},
-  {key:'property',labelKey:'step.property',questionKey:'question.property',group:'property',options:['apartment','house','office']},
-  {key:'timing',labelKey:'step.timing',questionKey:'question.timing',group:'timing',options:['within_2_weeks','within_1_month','researching']},
-  {key:'contact',labelKey:'step.contact',questionKey:'question.contact',group:'contact',options:['sample_contact','no_contact']},
-  {key:'next',labelKey:'step.next',questionKey:'question.next',group:'next',options:[]}
-];
 
 const LANGUAGE_KEY = 'noviramLang';
 const VALID_LANGUAGES = ['en','hu'];
-const SERVICE_AREA = new Set(['budapest','budaors','erd']);
-const BOOKING_CHOICES = new Set(['book_tue_1030','book_wed_1400','book_fri_0900']);
-let lang = 'en';
-let stepIndex = 0;
-let answers = {};
-let messages = [];
-
-const $ = function(id){ return document.getElementById(id); };
-const t = function(key){ return T[lang][key]; };
-
-function escapeHtml(value){
-  return String(value).replace(/[&<>"']/g, function(character){
-    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[character];
-  });
-}
-
-function labelFor(group, value){
-  return value && CHOICE_LABELS[group] && CHOICE_LABELS[group][value] ? CHOICE_LABELS[group][value][lang] : '—';
-}
-
-function hasContact(){ return answers.contact === 'sample_contact'; }
-function isInServiceArea(){ return SERVICE_AREA.has(answers.location); }
-function isBooked(){ return BOOKING_CHOICES.has(answers.next); }
-
-function calculateScore(){
-  let score = 10;
-  if (isInServiceArea()) score += 15;
-  if (answers.property) score += 5;
-  if (answers.timing === 'within_2_weeks') score += 25;
-  if (answers.timing === 'within_1_month') score += 15;
-  if (hasContact()) score += 15;
-  if (isBooked()) score += 25;
-  return score;
-}
-
-function temperatureFor(score){
-  if (score >= 80) return 'HOT';
-  if (score >= 55) return 'WARM';
-  return 'NURTURE';
-}
-
-function dispositionKey(){
-  if (isBooked()) return 'booked';
-  if (!hasContact()) return 'noContact';
-  if (answers.next === 'no_action') return 'noAction';
-  if (!isInServiceArea()) return 'outside';
-  if (answers.timing === 'researching' && answers.next === 'later_followup') return 'later';
-  return 'short';
-}
-
-function currentOptions(){
-  if (stepIndex < 4) return STEP_DEFINITIONS[stepIndex].options;
-  if (!hasContact()) return ['close_without_save'];
-  if (!isInServiceArea()) return ['service_area_review','no_action'];
-  if (answers.timing === 'researching') return ['later_followup','no_action'];
-  return ['book_tue_1030','book_wed_1400','book_fri_0900','no_booking'];
-}
-
-function nextAssistantText(){
-  if (stepIndex === 4 && !hasContact()) return t('question.noContact');
-  if (stepIndex === 4 && !isInServiceArea()) return t('question.outside');
-  if (stepIndex === 4 && answers.timing === 'researching') return t('question.researching');
-  return t(STEP_DEFINITIONS[stepIndex].questionKey);
-}
-
-function renderMessages(){
-  $('messages').innerHTML = messages.map(function(message){
-    const tag = message.who === 'ai' ? '<span class="ai-tag">' + escapeHtml(t('demo.aiTag')) + '</span>' : '';
-    return '<div class="msg-row ' + message.who + '"><div class="bubble">' + tag + escapeHtml(message.text) + '</div></div>';
-  }).join('');
-}
-
-function renderOptions(complete){
-  const options = complete ? [] : currentOptions();
-  $('options').innerHTML = options.map(function(value){
-    return '<button type="button" data-option="' + value + '">' + escapeHtml(labelFor(STEP_DEFINITIONS[stepIndex].group, value)) + '</button>';
-  }).join('');
-}
-
-function renderSummary(complete){
-  const score = calculateScore();
-  $('score').textContent = score;
-  $('temperature').textContent = complete ? temperatureFor(score) : t('progress.inProgress');
-  $('sService').textContent = t('demo.serviceValue');
-
-  if (answers.location) {
-    $('sLocation').innerHTML = escapeHtml(labelFor('location', answers.location)) +
-      (!isInServiceArea() ? '<span class="pill">' + escapeHtml(t('summary.outside')) + '</span>' : '');
-  } else {
-    $('sLocation').textContent = '—';
-  }
-
-  $('sProperty').textContent = answers.property ? labelFor('property', answers.property) : '—';
-  $('sTiming').textContent = answers.timing ? labelFor('timing', answers.timing) : '—';
-  $('sContact').textContent = answers.contact ? t(hasContact() ? 'summary.contactSample' : 'summary.contactNone') : '—';
-  $('sNext').textContent = answers.next ? labelFor('next', answers.next) : '—';
-  $('nextLabel').textContent = t(isBooked() ? 'summary.appointment' : 'summary.next');
-  $('disposition').textContent = complete ? t('disposition.' + dispositionKey()) : t('summary.waiting');
-}
-
-function render(){
-  const complete = stepIndex >= STEP_DEFINITIONS.length;
-  renderMessages();
-  renderOptions(complete);
-  $('chatProgress').style.width = (complete ? 100 : (stepIndex + 1) * 20) + '%';
-  $('stepLabel').textContent = complete ? t('progress.complete') : t('progress.active') + ' · ' + (stepIndex + 1) + '/5';
-  $('stepName').textContent = complete ? temperatureFor(calculateScore()) : t(STEP_DEFINITIONS[stepIndex].labelKey);
-  renderSummary(complete);
-  $('chatBody').scrollTop = $('chatBody').scrollHeight;
-}
-
-function resetDemo(){
-  stepIndex = 0;
-  answers = {service:'ac_installation',roomSize:30};
-  messages = [
-    {who:'user',text:t('preview.customer')},
-    {who:'ai',text:t('question.location')}
-  ];
-  render();
-}
-
-function choose(value){
-  const step = STEP_DEFINITIONS[stepIndex];
-  answers[step.key] = value;
-  messages.push({who:'user',text:labelFor(step.group, value)});
-  stepIndex += 1;
-  if (stepIndex < STEP_DEFINITIONS.length) {
-    messages.push({who:'ai',text:nextAssistantText()});
-  } else {
-    messages.push({who:'ai',text:t('completion.' + dispositionKey())});
-  }
-  render();
-}
+let lang = 'hu';
+const $ = (id) => document.getElementById(id);
+const t = (key) => T[lang][key];
 
 function resolveInitialLanguage(){
   const parameter = new URLSearchParams(window.location.search).get('lang');
@@ -454,7 +246,7 @@ function applyLang(language, persistPreference = true){
   });
   document.title = t('doc.title');
   $('metaDescription').setAttribute('content', t('meta.description'));
-  $('demoMailLink').setAttribute('href', 'mailto:info@noviram.com?subject=' + encodeURIComponent(t('mail.subject')));
+  window.NoviramLanguage.apply(language);
   localizeCrossPageLinks(language);
   updateMenuLabel();
   updateLanguageUrl(language);
@@ -462,18 +254,12 @@ function applyLang(language, persistPreference = true){
     try { localStorage.setItem(LANGUAGE_KEY, language); } catch (error) {}
   }
   document.documentElement.classList.remove('i18n-pending');
-  resetDemo();
+  window.dispatchEvent(new CustomEvent('noviram:languagechange',{detail:{language:language}}));
 }
 
 document.querySelectorAll('.lang-btn').forEach(function(button){
   button.addEventListener('click', function(){ applyLang(button.getAttribute('data-lang')); });
 });
-$('reset').addEventListener('click', resetDemo);
-$('options').addEventListener('click', function(event){
-  const button = event.target.closest('button[data-option]');
-  if (button) choose(button.getAttribute('data-option'));
-});
-
 toggle.addEventListener('click', function(){
   const open = panel.classList.toggle('open');
   toggle.setAttribute('aria-expanded', String(open));
@@ -512,5 +298,9 @@ document.addEventListener('scroll', function(){
 
 applyLang(resolveInitialLanguage(), false);
 </script>
+<script src="agent-config.js"></script>
+<script src="lead-engine-v2.js"></script>
+<script src="sales-agent.js"></script>
+<script src="business-contact.js"></script>
 </body>
 </html>
