@@ -8,4 +8,13 @@ header{border-bottom:1px solid var(--wire-light);background:rgba(244,246,249,.97
 footer{border-top:1px solid var(--wire-light);padding:24px 0}footer .wrap{font-size:13px;color:var(--slate-soft);display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:space-between;line-height:1.8}footer a{color:var(--slate-soft)}[hidden]{display:none!important}
 @media(max-width:600px){.doc-toc ol{columns:1}.kv-table div,.impresszum div{grid-template-columns:1fr;gap:3px}.doc-header-inner{padding-top:12px;padding-bottom:12px;align-items:flex-start}.doc-navigation{justify-content:flex-end;gap:4px 12px}.back-link{font-size:12px}.doc-title{padding-top:36px}.wrap{padding-left:20px;padding-right:20px}.doc-body section{scroll-margin-top:130px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+/* Mobile hierarchy: brand first, then a full-width row of usable controls. */
+@media(max-width:600px){
+  .doc-header-inner{height:auto;flex-direction:column;gap:8px}
+  .doc-navigation{width:100%;justify-content:space-between;align-items:center;gap:8px}
+  .back-link{display:inline-flex;align-items:center;min-height:44px;font-size:14px;color:var(--slate)}
+  .doc-languages{gap:4px;font-size:14px;flex-shrink:0}
+  .doc-languages a{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:10px 8px}
+  .doc-body section{scroll-margin-top:160px}
+}
 @media print{header,.doc-toc,footer,.skip-link,.doc-languages{display:none}.doc-title{padding-top:0}.doc-body{padding-bottom:0}.doc-body section{break-inside:avoid}.wrap{max-width:none;padding:0}body{background:white}}
