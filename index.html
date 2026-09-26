@@ -341,7 +341,8 @@
   .orbit-core .logo-mark{ width:76%; height:76%; color:var(--ink); pointer-events:none; }
   .orbit[data-interactive] .orbit-track{ animation:none; transform:rotate(var(--orbit-angle,0deg)); }
   .orbit[data-interactive] .pip{ animation:none; transform:rotate(calc(-1 * var(--orbit-angle,0deg))); }
-  .orbit[data-interactive] .orbit-core .logo-mark{ transform:rotate(var(--orbit-angle,0deg)); }
+  /* The core logo stays upright while the ring spins (brand mark is never rotated). */
+  .orbit[data-interactive] .orbit-core .logo-mark{ transform:none; }
 
   @media (max-width: 880px){
     .hero-grid{ grid-template-columns: 1fr; }
