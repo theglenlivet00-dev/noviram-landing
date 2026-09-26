@@ -275,7 +275,7 @@
   .orbit-core{
     position:absolute; top:50%; left:50%; transform: translate(-50%,-50%);
     width: 30%; height:30%;
-    background: var(--ink);
+    background: var(--paper);
     border-radius: 50%;
     display:flex; align-items:center; justify-content:center;
     font-family: var(--font-display);
@@ -286,8 +286,8 @@
     animation: corePulse 3.2s ease-in-out infinite;
   }
   @keyframes corePulse{
-    0%,100%{ box-shadow: 0 0 0 10px rgba(255,77,46,0.06), 0 20px 40px -18px rgba(10,14,26,0.5); }
-    50%{ box-shadow: 0 0 0 17px rgba(255,77,46,0.13), 0 20px 40px -18px rgba(10,14,26,0.5); }
+    0%,100%{ box-shadow: 0 0 0 10px rgba(255,77,46,0.06); }
+    50%{ box-shadow: 0 0 0 17px rgba(255,77,46,0.13); }
   }
   .orbit-track{
     position:absolute; inset:0;
@@ -332,6 +332,16 @@
 
   @keyframes spin{ to{ transform: rotate(360deg); } }
   @keyframes spin-reverse{ to{ transform: rotate(-360deg); } }
+
+  /* Interactive orbit: vertical scrolling and pinch zoom remain browser-owned. */
+  .orbit[data-interactive]{ touch-action:pan-y pinch-zoom; cursor:grab; user-select:none; -webkit-user-select:none; -webkit-user-drag:none; }
+  .orbit[data-dragging]{ cursor:grabbing; }
+  #orbit-help{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+  .orbit[data-interactive]:focus-visible{ outline:2px solid var(--signal); outline-offset:24px; border-radius:50%; }
+  .orbit-core .logo-mark{ width:76%; height:76%; color:var(--ink); pointer-events:none; }
+  .orbit[data-interactive] .orbit-track{ animation:none; transform:rotate(var(--orbit-angle,0deg)); }
+  .orbit[data-interactive] .pip{ animation:none; transform:rotate(calc(-1 * var(--orbit-angle,0deg))); }
+  .orbit[data-interactive] .orbit-core .logo-mark{ transform:rotate(var(--orbit-angle,0deg)); }
 
   @media (max-width: 880px){
     .hero-grid{ grid-template-columns: 1fr; }
@@ -663,7 +673,7 @@
       </div>
 
       <div class="orbit-wrap">
-        <div class="orbit" role="img" data-i18n-aria="orbit.aria" aria-label="Noviram services — AI, web, apps, growth, and operations — orbiting the company core">
+        <div class="orbit" role="img" data-i18n-aria="orbit.aria" aria-label="Noviram services — AI, web, apps, growth, and operations — orbiting the company core" aria-describedby="orbit-help">
           <div class="orbit-ring"></div>
           <div class="orbit-track">
             <div class="orbit-spoke p1"></div>
@@ -677,8 +687,16 @@
             <div class="orbit-node p4"><div class="pip">GROW</div></div>
             <div class="orbit-node p5"><div class="pip">OPS</div></div>
           </div>
-          <div class="orbit-core">N</div>
+          <div class="orbit-core">
+            <svg class="logo-mark" width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <circle cx="16" cy="17" r="10.5" stroke="currentColor" stroke-width="1.6"/>
+              <line x1="16" y1="17" x2="16" y2="6.3" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="16" cy="6.3" r="3" fill="var(--signal)"/>
+              <circle cx="16" cy="17" r="1.6" fill="currentColor"/>
+            </svg>
+          </div>
         </div>
+        <span id="orbit-help" class="sr-only" data-i18n="orbit.help">Drag sideways to spin. Use the left/right arrow keys or press Enter or Space.</span>
       </div>
     </div>
   </section>
@@ -986,6 +1004,7 @@
       'a11y.productCapabilities':'Lead Engine capabilities',
       'a11y.menuOpen':'Open menu','a11y.menuClose':'Close menu',
       'orbit.aria':'Noviram services — AI, web, apps, growth, and operations — orbiting the company core',
+      'orbit.help':'Drag sideways to spin. Use the left/right arrow keys or press Enter or Space.',
       'doc.title':'Noviram Digital — AI Automation, Web Development, Apps & Growth',
       'meta.description':'Noviram designs and builds AI automation, websites, web and mobile apps, growth systems and managed digital infrastructure.',
       'mail.subject':'Noviram project enquiry'
@@ -1047,6 +1066,7 @@
       'a11y.productCapabilities':'A Lead Engine funkciói',
       'a11y.menuOpen':'Menü megnyitása','a11y.menuClose':'Menü bezárása',
       'orbit.aria':'A Noviram szolgáltatásai — AI, web, alkalmazások, növekedés és üzemeltetés — a vállalat magja körül',
+      'orbit.help':'Forgatáshoz húzza oldalra. Billentyűzettel használja a balra/jobbra nyilat, az Entert vagy a szóközt.',
       'doc.title':'Noviram Digital — AI-automatizáció, webfejlesztés, alkalmazások és növekedés',
       'meta.description':"AI-rendszerek, weboldalak és alkalmazások fejlesztése a Noviramtól. Digitális marketinggel és üzemeltetéssel is segítjük a vállalkozásokat.",
       'mail.subject':"Projektmegkeresés a Noviramnak"
@@ -1201,6 +1221,7 @@
   applyLang(resolveInitialLanguage(), false);
 </script>
 <script src="agent-config.js"></script>
+<script src="interactive-orbit.js"></script>
 <script src="sales-agent.js"></script>
 <script src="mobile-chat-viewport.js"></script>
 <script src="business-contact.js"></script>
